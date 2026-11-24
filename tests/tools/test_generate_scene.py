@@ -80,11 +80,24 @@ class GeneratedScenario(unittest.TestCase):
         self.assertEqual(set(scene.graph.nodes_geometry), {b["id"] for b in self.meta["buildings"]})
         for b in self.meta["buildings"][:20]:
             mesh = scene.geometry[b["id"]]
-            self.assertAlmostEqual(mesh.bounds[1][1], b["base_y"] + b["height_m"], places=3)
-            # Godot axes: footprint area appears on the x/z plane.
-            self.assertAlmostEqual(mesh.area_faces[mesh.face_normals[:, 1] > 0.99].sum(), b["footprint_area_m2"], delta=0.05)
+            top = b["base_y"] + b["height_m"]
+            self.assertAlmostEqual(mesh.bounds[1][1], top, places=3)
+            # Godot axes: the roof (upward faces at the top) has the footprint area.
+            roof = (mesh.face_normals[:, 1] > 0.99) & (abs(mesh.triangles_center[:, 1] - top) < 1e-3)
+            self.assertAlmostEqual(mesh.area_faces[roof].sum(), b["footprint_area_m2"], delta=0.05)
         sidewalks = trimesh.load(self.out / "sidewalks.glb")
         self.assertEqual(len(sidewalks.graph.nodes_geometry), 8)
+
+    def test_facades_are_deterministic_and_flagged_as_estimated(self):
+        gen = json.loads((ROOT / "tools/geometry_generator/config/resistencia_2x2.json").read_text())
+        colors = set()
+        for b in self.meta["buildings"]:
+            appearance = b["appearance"]
+            self.assertTrue(appearance["is_estimated"])
+            self.assertIn(appearance["facade_color"], gen["facade_palette"])
+            self.assertEqual(appearance["facade_color"], gs.facade_color(b["id"], gen["facade_palette"]))
+            colors.add(appearance["facade_color"])
+        self.assertGreaterEqual(len(colors), 6)
 
     def test_metadata_has_required_fields_and_resource_hashes(self):
         written = json.loads((self.out / "scenario.json").read_text())

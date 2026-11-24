@@ -9,7 +9,7 @@ extends Node3D
 ##   "version": 1,
 ##   "buildings": {
 ##     "<id>": {"removed": true}
-##     "<id>": {"color": "#rrggbb"}
+##     "<id>": {"color": "#rrggbb"}          (facade colour)
 ##     "<id>": {"replacement_scene": "res://path/to/model.tscn"}
 ##   },
 ##   "added": [{"id": "custom_1", "scene": "res://...", "position": [x, y, z]}]
@@ -18,6 +18,9 @@ extends Node3D
 const OVERRIDES_VERSION := 1
 
 @export var buildings_scene: PackedScene
+## Stylized facade (windows, shopfront, cornice). Per-building colour comes
+## from scenario.json "appearance"; it is estimated, not the real colour.
+@export var facade_material: Material = preload("res://assets/materials/facade_material.tres")
 @export var overrides_path := "user://overrides/buildings.json"
 
 ## id -> MeshInstance3D (generated) or Node3D (replacement / added)
@@ -39,6 +42,7 @@ func load_buildings(metadata: Dictionary) -> void:
 			push_warning("BuildingManager: mesh '%s' has no metadata" % id)
 		buildings[id] = mesh
 		(mesh as MeshInstance3D).create_trimesh_collision()
+		apply_appearance(mesh, building_data.get(id, {}))
 	apply_overrides(load_overrides(overrides_path))
 
 
@@ -81,10 +85,20 @@ func remove_building(id: String) -> void:
 	buildings.erase(id)
 
 
+func apply_appearance(mesh: MeshInstance3D, data: Dictionary) -> void:
+	if facade_material == null:
+		return
+	mesh.material_override = facade_material
+	var appearance: Dictionary = data.get("appearance", {})
+	if appearance.has("facade_color"):
+		mesh.set_instance_shader_parameter("facade_color", Color(appearance["facade_color"]))
+	var base_y := float(data.get("base_y", 0.0))
+	mesh.set_instance_shader_parameter("base_y", base_y)
+	mesh.set_instance_shader_parameter("top_y", base_y + float(data.get("height_m", 0.0)))
+
+
 func set_building_color(id: String, color: Color) -> void:
-	var material := StandardMaterial3D.new()
-	material.albedo_color = color
-	(buildings[id] as MeshInstance3D).material_override = material
+	(buildings[id] as MeshInstance3D).set_instance_shader_parameter("facade_color", color)
 
 
 ## Replaces a generated building by a custom model placed on its footprint centroid.

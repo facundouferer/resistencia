@@ -30,13 +30,16 @@ The proposed `streets.tscn` / `sidewalks.tscn` / `buildings.tscn` are the genera
 | `scripts/world/world_manager.gd` | Finds the world's `SpawnPoint`, places/respawns the player, saves and restores the player position |
 | `scripts/world/geo_reference.gd` | Only place that converts EPSG:32721 ↔ Godot (`x = E - E0`, `y = h`, `z = -(N - N0)`); 64-bit floats for projected values |
 | `scripts/world/resistance_world.gd` | Loads `scenario.json`, adds trimesh collisions to terrain/streets/sidewalks, places spawn, shows attribution |
-| `scripts/buildings/building_manager.gd` | Loads buildings by persistent id, adds collisions, applies overrides (remove, recolor, replace model, add) |
+| `scripts/buildings/building_manager.gd` | Loads buildings by persistent id, adds collisions, applies the facade material and colour, applies overrides (remove, recolor, replace model, add) |
+| `assets/materials/facade.gdshader` | Stylized windows, shopfront and cornice in world space (meshes have no UVs); per-building colour via instance uniforms |
 | `scripts/player/player_controller.gd` | `CharacterBody3D` movement relative to camera yaw, walk/run, gravity, curb step-up (≤ 0.3 m) |
 | `scripts/player/camera_controller.gd` | Third-person orbit camera, pitch limits, `SpringArm3D` wall avoidance, mouse capture |
 
 No streaming yet: the scenario is small. A future streaming layer would load per-sector GLBs listed in `scenario.json` `resources`.
 
 ## Tests
+
+- `Godot --path . -s tests/render_snapshot.gd -- OUTPUT_DIR`: renders `street_level.png` and `overview.png` (needs a window; for visual review).
 
 - `Godot --headless --fixed-fps 60 --path . -s tests/run_tests.gd`: input, movement, camera, collisions, geo conversion, world loading, overrides, street/sidewalk traversal, persistence.
 - `tools/.venv/bin/python -m unittest discover -s tests/tools`: geographic analysis and 3D generation.

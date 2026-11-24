@@ -173,6 +173,11 @@ func _test_world_loads_buildings_with_collisions() -> void:
 			"%s has collision" % part)
 	_check(manager.building_data[manager.building_data.keys()[0]].has("height_is_estimated"),
 		"building metadata keeps the estimated-height flag")
+	var first_id: String = manager.buildings.keys()[0]
+	var first := manager.buildings[first_id] as MeshInstance3D
+	_check(first.material_override == manager.facade_material
+		and first.get_instance_shader_parameter("facade_color") == Color(manager.building_data[first_id]["appearance"]["facade_color"]),
+		"buildings use the facade material with their metadata colour")
 	await _free(world)
 
 
@@ -196,8 +201,7 @@ func _test_building_overrides_do_not_touch_generated_files() -> void:
 	var manager := world.get_node("Buildings") as BuildingManager
 	_check(not manager.buildings.has(ids[0]), "override removes a building")
 	var colored := manager.buildings[ids[1]] as MeshInstance3D
-	_check(colored.material_override is StandardMaterial3D
-		and (colored.material_override as StandardMaterial3D).albedo_color == Color("#ff0000"), "override recolors a building")
+	_check(colored.get_instance_shader_parameter("facade_color") == Color("#ff0000"), "override recolors a building facade")
 	_check(manager.buildings[ids[2]].scene_file_path == "res://tests/scenes/replacement_box.tscn",
 		"override replaces a building model")
 	_check(manager.buildings.has("custom_test"), "override adds a building")

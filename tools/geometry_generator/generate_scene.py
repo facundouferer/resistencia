@@ -100,6 +100,11 @@ def export(meshes: list[tuple[str, trimesh.Trimesh, list[int]]], path: Path) -> 
     path.write_bytes(scene.export(file_type="glb"))
 
 
+def facade_color(building_id: str, palette: list[str]) -> str:
+    """Deterministic palette pick: the same building always gets the same colour."""
+    return palette[int(hashlib.sha256(building_id.encode()).hexdigest(), 16) % len(palette)]
+
+
 def ring_coords(geometry) -> list[list[list[float]]]:
     """Exterior rings of a (multi)polygon in local metres, 3 decimals."""
     return [[[round(x, 3), round(y, 3)] for x, y in poly.exterior.coords] for poly in polygons(geometry)]
@@ -159,7 +164,12 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
         else:
             height = gen["default_levels"] * gen["level_height_m"]
             estimated, rule = True, "default_levels x level_height_m"
-        mesh = slab(clipped, 0.0, curb + height, b.id)
+        top = curb + height
+        cornice = gen["cornice"]
+        body = slab(clipped, 0.0, top, b.id)
+        ledge = slab(clipped.buffer(cornice["overhang_m"], join_style=MITRE),
+                     top - cornice["drop_m"] - cornice["height_m"], top - cornice["drop_m"], b.id)
+        mesh = trimesh.util.concatenate([body, ledge])
         rgb = gen["colors"]["building_surveyed" if b.source == "openstreetmap" else "building_machine_learned"]
         building_meshes.append((b.id, mesh, rgb))
         building_meta.append({
@@ -179,6 +189,11 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
             "height_rule": rule,
             "building_type": b.tags.get("building", "unknown") if b.source == "openstreetmap" else "unknown",
             "model": "generic_building",
+            "appearance": {
+                "style": gen["facade_style"],
+                "facade_color": facade_color(b.id, gen["facade_palette"]),
+                "is_estimated": True,
+            },
         })
 
     out.mkdir(parents=True, exist_ok=True)
@@ -238,6 +253,7 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
             "level_height_m": gen["level_height_m"],
             "default_levels": gen["default_levels"],
             "terrain": "flat at y = 0 (no elevation data used)",
+            "facades": f"{gen['facade_style']}: stylized windows/shopfront/cornice, colour picked from a palette by building id; not real appearance",
         },
         "resources": resources,
         "spawn": {"x": round(spawn_center.x, 3), "y": curb + 0.05, "z": round(-spawn_center.y, 3)},

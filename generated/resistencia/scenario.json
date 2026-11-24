@@ -1,6 +1,6 @@
 {
  "name": "resistencia_2x2",
- "generated_at_utc": "2026-11-24T01:21:59+00:00",
+ "generated_at_utc": "2026-11-24T01:52:03+00:00",
  "generator": "tools/geometry_generator/generate_scene.py 0.1.0",
  "sources": [
   {
@@ -55,13 +55,14 @@
   "curb_height_m": 0.15,
   "level_height_m": 3.0,
   "default_levels": 2,
-  "terrain": "flat at y = 0 (no elevation data used)"
+  "terrain": "flat at y = 0 (no elevation data used)",
+  "facades": "procedural_facade_v1: stylized windows/shopfront/cornice, colour picked from a palette by building id; not real appearance"
  },
  "resources": {
   "terrain.glb": "6fbd699adcd942ab597665de46d9e6cd3ba433298734a0106705c44848769368",
   "streets.glb": "7ef6d33bc8f78c7ef4d358f62c6c3cf92450c73c34a0c76246d1df1fcaeeb74a",
   "sidewalks.glb": "2581e7aa588e737c1ae2aefbf2f8b544a2d37b28b7727bc30dae9069bc62c8bd",
-  "buildings.glb": "d03fdb2ac146445b84454c9565ca02b743c8acb42a8bed2c44da996bb1c0fd93"
+  "buildings.glb": "1555e01c9fe8af89af4049bfb4fd086091c8fe63d367108e18dee2877d3cf19a"
  },
  "spawn": {
   "x": 14.294,
@@ -1088,7 +1089,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181775",
@@ -1129,7 +1135,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181777",
@@ -1182,7 +1193,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "roof",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181779",
@@ -1231,7 +1247,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "roof",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181781",
@@ -1272,7 +1293,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181783",
@@ -1313,7 +1339,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181785",
@@ -1354,7 +1385,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181787",
@@ -1427,7 +1463,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181789",
@@ -1496,7 +1537,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181792",
@@ -1545,7 +1591,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181794",
@@ -1598,7 +1649,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181796",
@@ -1643,7 +1699,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181798",
@@ -1700,7 +1761,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181800",
@@ -1757,7 +1823,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181802",
@@ -1806,7 +1877,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181804",
@@ -1847,7 +1923,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181806",
@@ -1896,7 +1977,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181808",
@@ -1961,7 +2047,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181811",
@@ -2014,7 +2105,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181813",
@@ -2063,7 +2159,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181814",
@@ -2108,7 +2209,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181815",
@@ -2165,7 +2271,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181817",
@@ -2214,7 +2325,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181819",
@@ -2259,7 +2375,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181821",
@@ -2324,7 +2445,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181824",
@@ -2365,7 +2491,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181825",
@@ -2418,7 +2549,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181828",
@@ -2459,7 +2595,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181830",
@@ -2512,7 +2653,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181837",
@@ -2581,7 +2727,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181839",
@@ -2654,7 +2805,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181841",
@@ -2695,7 +2851,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181843",
@@ -2736,7 +2897,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181845",
@@ -2777,7 +2943,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181847",
@@ -2822,7 +2993,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181848",
@@ -2895,7 +3071,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181849",
@@ -2944,7 +3125,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181851",
@@ -2993,7 +3179,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "osm_way_573181852",
@@ -3050,7 +3241,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "yes",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_0577a0f1-f449-4cc1-8b00-a845c9423d90",
@@ -3091,7 +3287,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_0662fd8e-408e-43f3-b84d-ac6ab6aa38b3",
@@ -3132,7 +3333,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_073ea167-1a8d-42fd-9c87-4ca6e99aaaf1",
@@ -3173,7 +3379,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_08a487b1-4a48-4fc6-8399-2873de9d2ba2",
@@ -3230,7 +3441,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_0bcb9c71-802e-4b3c-8228-e3e34c062ae8",
@@ -3271,7 +3487,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_0e627e47-8d2f-4e93-b0af-a8ba9821d49a",
@@ -3312,7 +3533,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_0ec42f1e-8f69-4a1c-856e-3666c638d87f",
@@ -3361,7 +3587,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_0ef51423-9b79-4a71-8dd7-95253c73c086",
@@ -3402,7 +3633,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d9c7a7",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_176e74b7-5a31-4840-86e5-46d5e6dba425",
@@ -3443,7 +3679,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_21aaba19-c1cd-4111-83e8-62258d9fcd32",
@@ -3492,7 +3733,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_21d7aa81-fea0-4365-b1d6-8c588cf3ad48",
@@ -3533,7 +3779,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_25aabacf-9b9e-45f2-b8a6-37d18aaa5198",
@@ -3574,7 +3825,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_2718c79a-36b3-4e3c-b54e-c6be80571884",
@@ -3615,7 +3871,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_2811b320-58f2-4e3f-ab49-19859d6602e0",
@@ -3656,7 +3917,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_2aab8e4a-63bc-4c11-832c-0cedbe72e279",
@@ -3705,7 +3971,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_2d5fb154-ff10-4884-bdb2-15e77bf3d80d",
@@ -3746,7 +4017,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_2f3aa07b-ebbb-42c7-a76f-4eff9288f3e6",
@@ -3787,7 +4063,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_30f09b6a-82ac-45c8-b9be-cdedbd11ef00",
@@ -3828,7 +4109,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_328cf43a-dc8b-4cd8-a9c4-4bd67cae5e41",
@@ -3885,7 +4171,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_33624ff3-cd65-4ae7-b97c-8e27d1bf127d",
@@ -3934,7 +4225,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_33680726-9880-48c8-94ff-72f540485303",
@@ -3975,7 +4271,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_3461419d-434b-4cd1-9e88-b7e2de1b81b1",
@@ -4016,7 +4317,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_359ea27e-c558-485f-95c1-da8d517cb547",
@@ -4065,7 +4371,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_3685c8ab-7eed-4ecb-9884-027d68265557",
@@ -4106,7 +4417,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_369767fc-ef5c-4d0c-b928-86ed62557939",
@@ -4147,7 +4463,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_371f6b1f-7de9-4a0d-9d6c-ce543d820470",
@@ -4196,7 +4517,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_37b470de-0392-4a89-bcb0-e69f846aa0d4",
@@ -4237,7 +4563,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d9c7a7",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_38cae5b1-5675-4052-88b5-4af4b15c75b6",
@@ -4278,7 +4609,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_39444eee-84dc-44d1-b2f5-de5c3cbb6d0e",
@@ -4319,7 +4655,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_39d846a0-bf23-4da0-b52e-3bf7845f4c3c",
@@ -4360,7 +4701,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_3c18dc77-cecb-4f0f-9a76-b5119baacfe5",
@@ -4409,7 +4755,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_3cbcf8e0-e825-45e2-8d0e-d37c3c308e20",
@@ -4450,7 +4801,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_405e637e-6aa7-4492-886e-8c96d8c89251",
@@ -4491,7 +4847,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_420023d5-2337-4ea5-98a2-d51020f72bf5",
@@ -4548,7 +4909,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_42a8f070-2871-4be7-b134-57f7ae7ee875",
@@ -4589,7 +4955,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_44c2fb83-e575-46b1-bf9b-51c48a01bdf4",
@@ -4638,7 +5009,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_46b2ac26-f1c3-4db8-aabc-068bdf221ddd",
@@ -4679,7 +5055,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4867c93d-f586-4e68-bff1-08b70dca4879",
@@ -4728,7 +5109,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_49566fcc-f37a-4ff3-851b-2535981de682",
@@ -4769,7 +5155,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4983feb6-a3fc-4b2b-a746-4486eb15469c",
@@ -4810,7 +5201,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4aa72e75-5bbf-4abe-b562-d75090af5019",
@@ -4875,7 +5271,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4b31bae7-2e36-46d3-9dae-e900ea5a67c7",
@@ -4920,7 +5321,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4ce8a14e-54cf-4fbc-9771-4495a91d77c5",
@@ -4969,7 +5375,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4e001a89-c469-4dd3-893f-f677e3fbf6f6",
@@ -5010,7 +5421,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4ea7a778-f04c-4ee1-a947-0f361798a377",
@@ -5051,7 +5467,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4eb8e213-fe53-42c7-b428-c2ce8ec1c0ae",
@@ -5092,7 +5513,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_4ebf6583-3744-4631-a857-25d37c676f46",
@@ -5133,7 +5559,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_50ef3579-a185-4187-9b6e-f93d5a6eeaac",
@@ -5190,7 +5621,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_541086b9-3726-42d6-a045-27f6b474b89c",
@@ -5255,7 +5691,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_5423a77c-270c-4ba5-9e35-b2c62ffad517",
@@ -5304,7 +5745,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_543fca8e-7e5d-4744-9c18-038626d9968b",
@@ -5345,7 +5791,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_58cffd29-0feb-4e50-8be7-abafb465044c",
@@ -5394,7 +5845,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_5931e5c4-af3f-4cba-b099-aa2b6a46e118",
@@ -5447,7 +5903,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_5934da26-c8e6-44f8-ae2e-c0151c427e96",
@@ -5512,7 +5973,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_5c3f1ed3-85c1-47c2-ba34-45a06d0333f2",
@@ -5561,7 +6027,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_5cb7313a-eeb2-4dee-8b08-db28065d0d09",
@@ -5602,7 +6073,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_5d8508af-0f4b-4d40-8976-a7b06d49b370",
@@ -5643,7 +6119,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_5ff02f57-6e0f-46e4-a730-2eb190fbdbae",
@@ -5684,7 +6165,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_604349d1-c262-4480-b6c5-cd279a8a3d4b",
@@ -5725,7 +6211,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_672aa349-a6c2-424d-9c94-ab5c9686b0d5",
@@ -5766,7 +6257,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_6bd8151b-943d-4ce0-8dba-0cdbcf582430",
@@ -5815,7 +6311,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_6de57b4b-2320-48dc-ae8a-cf1fc49fa3d2",
@@ -5856,7 +6357,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_703f2214-7cb6-467e-a3d7-3c22028ef7e5",
@@ -5897,7 +6403,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_7064105a-f9a1-433f-89ca-a5165b9efb3b",
@@ -5938,7 +6449,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_71aa3e25-6609-46d5-9158-f59da92b5235",
@@ -5979,7 +6495,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_769e5602-e5c5-4f36-a6ef-4bd009e704d0",
@@ -6028,7 +6549,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_77ed5320-d81e-4755-b1d1-96d1b2212fa2",
@@ -6069,7 +6595,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_7b7fed66-578e-4fc0-8459-a069083cdf7a",
@@ -6110,7 +6641,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_7bf10070-aa40-4430-b7ce-2398242bd179",
@@ -6151,7 +6687,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_7c9aa228-4736-46ea-89c4-bac5d0d0d4f3",
@@ -6192,7 +6733,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_7f83f86f-6ccb-4c4d-8571-7398f8468ba7",
@@ -6233,7 +6779,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d9c7a7",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_80ce4e24-92a0-4a00-a846-005c8a8cc6ad",
@@ -6274,7 +6825,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_84e6762c-e740-409e-ad54-264f3d51a9f8",
@@ -6315,7 +6871,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_866e1d29-415d-4489-9984-555cce2689a0",
@@ -6356,7 +6917,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_8691cbfe-300f-4c0b-b22d-13c64bf62dc6",
@@ -6397,7 +6963,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_8f818115-509a-43f6-829c-91e36b3331fb",
@@ -6438,7 +7009,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_918011ff-1d95-4b7c-9dcc-955a614c4288",
@@ -6479,7 +7055,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_9339fd6d-fb1d-46d4-b1a9-6ae38c07f156",
@@ -6520,7 +7101,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_99e172cd-9a8e-446c-afdc-69368c13e1f6",
@@ -6561,7 +7147,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_9e35a900-8fc8-4c5d-99dc-d56ea81bc0a6",
@@ -6602,7 +7193,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_9fffe861-fdbe-439f-9428-8e32ff3b29ab",
@@ -6651,7 +7247,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_a188ac66-67c3-4232-8f7e-06b342081392",
@@ -6692,7 +7293,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_a1ecfeee-303c-4f8a-9aa3-aa4ec3bfb066",
@@ -6733,7 +7339,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_a2144a62-28c4-4fd1-9620-eb9c5c7bec48",
@@ -6774,7 +7385,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_a2db53b6-4c70-4400-8ccd-771fb129ec50",
@@ -6815,7 +7431,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_a7167090-775f-43e0-8285-8864a59075d9",
@@ -6856,7 +7477,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_a7e5dbe6-ac19-4f9a-b4ae-5bd127b91c22",
@@ -6897,7 +7523,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_aab3661b-ce33-4f67-bc01-80b6f29dbf64",
@@ -6954,7 +7585,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_ac9b1bb2-1b0c-4e13-a62d-0d88dd948434",
@@ -6995,7 +7631,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_ae3e55ff-763e-43f0-833f-448782f7afd6",
@@ -7036,7 +7677,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_af57cfe6-949a-453f-bec4-ff92133cfdea",
@@ -7077,7 +7723,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_aff67729-d926-4f9d-aeaa-38faa946bc4c",
@@ -7118,7 +7769,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_b24977ad-c501-4f3b-898b-288e907d0947",
@@ -7159,7 +7815,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_b7ed2570-de42-44f9-8665-b885a89dff57",
@@ -7200,7 +7861,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_b8767267-0690-49c5-966c-d7d0d4d8f8fa",
@@ -7241,7 +7907,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_b98e2eef-044c-4a1d-86bb-7c0a90d0f519",
@@ -7302,7 +7973,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_bab3f6aa-bc8d-424c-adbd-c2aedf3c87d4",
@@ -7343,7 +8019,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_bb602e88-9b1d-4e82-add5-5149a846cc81",
@@ -7384,7 +8065,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d9c7a7",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_bc2a05dd-0250-43a3-a108-bfc75b515de4",
@@ -7425,7 +8111,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_bddf1656-c4b3-4a88-b9e1-fb0d7b5f5966",
@@ -7466,7 +8157,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_bfdbd1ac-1565-4122-985b-2ff95c163976",
@@ -7507,7 +8203,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_c0239e50-11da-4658-83ec-1c0549762c5c",
@@ -7548,7 +8249,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_c7f52782-92a6-4f82-88e4-6411b94f26f5",
@@ -7605,7 +8311,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_c8798c27-7ff4-4f5d-84b1-ccd32048e6a5",
@@ -7646,7 +8357,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e3c4b0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_c9cd1d4d-c812-476e-a188-c3757c239e46",
@@ -7687,7 +8403,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_c9d6b3a6-25b0-46c9-8e2b-9870cffa6b9c",
@@ -7728,7 +8449,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_ca4a70f0-3b40-41b3-b585-d018b877bf8a",
@@ -7785,7 +8511,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_cea318c1-46f6-41fe-bcaf-54c4f9cce2c2",
@@ -7826,7 +8557,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_cf9a7ceb-d352-4ae1-a0b9-9d80c31acacb",
@@ -7867,7 +8603,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_d05d0b46-c44c-4d4f-9b7a-391b44141e37",
@@ -7908,7 +8649,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e6d3a3",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_d28a4b00-331e-4186-bde1-51d19f193bf0",
@@ -7949,7 +8695,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#c98f6b",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_d669c50c-7629-4bde-bf88-dd2f304cf950",
@@ -7998,7 +8749,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_d89cc361-ef46-4d4c-b5ca-0c978ecace0f",
@@ -8039,7 +8795,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_dbf6f32e-7b6f-4ca8-844b-fb5406a8704a",
@@ -8096,7 +8857,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d9c7a7",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_dc671f8a-902d-4b30-874a-bab7d6475955",
@@ -8137,7 +8903,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_dc9eb702-ef7b-433d-8513-3c223c9d34ed",
@@ -8186,7 +8957,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_dcf11084-5f84-4afc-bb68-093242b3fcb4",
@@ -8227,7 +9003,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_de3ead8d-fbec-4b01-9fab-8bb8c6d5dba2",
@@ -8268,7 +9049,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#f0ebe0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_e0e074be-a063-48be-b0fc-9e988b56d2b6",
@@ -8309,7 +9095,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_e1b99627-5ba6-41f6-a560-0b29a0e39fa0",
@@ -8350,7 +9141,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_e37af8a1-4ee9-4737-858a-6114c8d7fa1e",
@@ -8391,7 +9187,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d9c7a7",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_e547e7d4-be17-4f78-970e-bcb0673e89fd",
@@ -8432,7 +9233,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_e5606758-3d97-4ac2-9162-66d0790272bf",
@@ -8473,7 +9279,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_e7265b3e-aa04-4a08-8d86-4e99b16488d0",
@@ -8522,7 +9333,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#e8dcc4",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_e7cb80d3-50de-485c-8fbb-489017461969",
@@ -8563,7 +9379,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_ecebd291-3053-45ed-a12e-c0ff35faa147",
@@ -8604,7 +9425,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d9c7a7",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_ede31bee-c58c-4916-ac5b-bf993ca0e4d4",
@@ -8645,7 +9471,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#cfcac0",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_eeff3f63-acef-419a-bc8e-6226b0babe1f",
@@ -8686,7 +9517,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_ef287c3e-670a-4947-9a12-dabd398b3ac5",
@@ -8727,7 +9563,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_f62960b4-e645-44a7-9cf4-f737d8e7ea6b",
@@ -8768,7 +9609,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#d8b48c",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_fada47b3-1050-4ca5-ae9a-2d4bc4f3ac3c",
@@ -8817,7 +9663,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#a8b0a8",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_feb53188-6ef5-4910-9048-e5938620728d",
@@ -8858,7 +9709,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   },
   {
    "id": "overture_fef4414e-102b-41d1-b6fa-baf311a96d51",
@@ -8899,7 +9755,12 @@
    "height_is_estimated": true,
    "height_rule": "default_levels x level_height_m",
    "building_type": "unknown",
-   "model": "generic_building"
+   "model": "generic_building",
+   "appearance": {
+    "style": "procedural_facade_v1",
+    "facade_color": "#b9a58a",
+    "is_estimated": true
+   }
   }
  ],
  "warnings": [

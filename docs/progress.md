@@ -155,3 +155,10 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 - Cause: the capsule's rounded bottom rests on the curb edge (contact normal ~50°), so `is_on_floor()` is false and the step-up never ran. Also the step check used the velocity, which `move_and_slide` cancels against the curb.
 - Fix: step-up uses the intended motion, probes 2 cm above the floor, and accepts "ground within 10 cm below" instead of `is_on_floor()`.
 - Result: 16/16 approaches; Godot suite 55 checks, 0 failures.
+
+## Procedural facades (2026-11-24)
+
+- User feedback: scale OK, building footprints coherent, "todavía no tienen la forma o el color de los edificios". User chose procedural facades.
+- Generator: cornice ledge + deterministic facade colour per building (`appearance`, flagged estimated). Godot: facade shader, `BuildingManager` applies it; colour overrides now change the facade colour.
+- Checks: pipeline 17 tests OK; Godot suite 56 checks, 0 failures; `tests/render_snapshot.gd` screenshots reviewed (street level and overview render windows, shopfronts, cornices, varied colours; no shader errors).
+- Limits: stylized only; ML footprints have stair-stepped outlines; all buildings are 2 levels (no height data).

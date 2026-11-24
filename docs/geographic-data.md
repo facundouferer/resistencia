@@ -123,4 +123,6 @@ Street layout rule (`tools/geometry_generator/config/resistencia_2x2.json`):
 - Curb height: 0.15 m (estimated). Terrain: flat (no elevation data used).
 - Corners are square (mitre); real chamfered corners ("ochavas") are not in the data.
 
+Facades (`procedural_facade_v1`): a 0.25 m cornice ledge in the geometry plus `assets/materials/facade.gdshader` drawing windows per 3 m level and 3.2 m bay, a shopfront ground floor and a darker cornice band. Facade colour is picked from `facade_palette` by a hash of the building id (deterministic) and stored as `appearance.facade_color` with `is_estimated: true`. **This is a stylized look, not the real appearance of each building.**
+
 Building height rule: source `height` if present, else `building:levels × 3.0 m`, else **2 levels × 3.0 m = 6 m**. Today all 172 heights are estimated (`height_is_estimated: true`, `height_rule` says which rule). Building footprints are clipped to their lot; none needed dropping.

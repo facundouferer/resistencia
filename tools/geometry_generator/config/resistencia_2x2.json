@@ -9,11 +9,53 @@
   "default_levels": 2,
   "min_building_area_m2": 4.0,
   "colors": {
-    "terrain": [96, 110, 80],
-    "roadway": [58, 58, 62],
-    "sidewalk": [170, 166, 158],
-    "lot": [120, 132, 96],
-    "building_surveyed": [214, 196, 170],
-    "building_machine_learned": [200, 190, 178]
+    "terrain": [
+      96,
+      110,
+      80
+    ],
+    "roadway": [
+      58,
+      58,
+      62
+    ],
+    "sidewalk": [
+      170,
+      166,
+      158
+    ],
+    "lot": [
+      120,
+      132,
+      96
+    ],
+    "building_surveyed": [
+      214,
+      196,
+      170
+    ],
+    "building_machine_learned": [
+      200,
+      190,
+      178
+    ]
+  },
+  "facade_style": "procedural_facade_v1",
+  "facade_palette": [
+    "#e8dcc4",
+    "#d9c7a7",
+    "#cfcac0",
+    "#e6d3a3",
+    "#c98f6b",
+    "#f0ebe0",
+    "#b9a58a",
+    "#d8b48c",
+    "#a8b0a8",
+    "#e3c4b0"
+  ],
+  "cornice": {
+    "overhang_m": 0.25,
+    "height_m": 0.3,
+    "drop_m": 0.25
   }
 }
