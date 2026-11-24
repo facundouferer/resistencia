@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+; TEMPORARY placeholder world for Phase 1. Not geographic data.
+; Ground 100 x 100 m, a wall 10 m north of the spawn and a few boxes.
+
+[sub_resource type="StandardMaterial3D" id="ground_mat"]
+albedo_color = Color(0.42, 0.45, 0.4, 1)
+
+[sub_resource type="StandardMaterial3D" id="block_mat"]
+albedo_color = Color(0.75, 0.68, 0.55, 1)
+
+[sub_resource type="BoxShape3D" id="ground_shape"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="ground_mesh"]
+material = SubResource("ground_mat")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="wall_shape"]
+size = Vector3(10, 3, 1)
+
+[sub_resource type="BoxMesh" id="wall_mesh"]
+material = SubResource("block_mat")
+size = Vector3(10, 3, 1)
+
+[sub_resource type="BoxShape3D" id="block_shape"]
+size = Vector3(4, 6, 4)
+
+[sub_resource type="BoxMesh" id="block_mesh"]
+material = SubResource("block_mat")
+size = Vector3(4, 6, 4)
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("ground_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("ground_mesh")
+
+[node name="Wall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+shape = SubResource("wall_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+mesh = SubResource("wall_mesh")
+
+[node name="BlockEast" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3, 6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlockEast"]
+shape = SubResource("block_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlockEast"]
+mesh = SubResource("block_mesh")
+
+[node name="BlockWest" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3, 6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlockWest"]
+shape = SubResource("block_shape")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlockWest"]
+mesh = SubResource("block_mesh")
