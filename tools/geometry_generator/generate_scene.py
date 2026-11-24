@@ -281,6 +281,153 @@ def reference_trees(faces: dict, platforms: dict, reference: dict | None, curb: 
     return trees
 
 
+REPLACED_OVERLAP = 0.2  # Overture footprint dropped when this share lies under a photo frontage
+MIN_FRONTAGE_AREA_M2 = 10.0
+TILE_ROOF_PITCH_DEG = 25.0
+ROOF_EAVE_M = 0.3
+
+
+def frontage_depth(levels: int, gen: dict) -> float:
+    rules = gen["frontage_depth_m"]
+    if levels >= 6:
+        return rules["tower"]
+    if levels >= 3:
+        return rules["mid_rise"]
+    return rules["house"]
+
+
+def frontage_volumes(lot_faces: dict, lots: dict, osm_by_block: dict, reference: dict | None,
+                     gen: dict, warnings: list) -> list[dict]:
+    """Party-wall buildings on the property line, one per observed frontage segment.
+
+    Taller buildings are placed first so they own the corners; OSM footprints
+    (surveyed) are never overlapped. Unknown levels or levels 0 create nothing.
+    """
+    candidates = []
+    for face_id, face in sorted(lot_faces.items()):
+        observed = (reference or {}).get(face_id) or {}
+        entries = sorted(observed.get("buildings") or [], key=lambda e: e.get("order", 0))
+        if observed.get("visibility") == "none" or not entries:
+            continue
+        line = face["line"]
+        total = sum(float(e.get("frontage_fraction") or 0) for e in entries) or 1.0
+        inward_sign = 1.0
+        mid = line.interpolate(0.5, normalized=True)
+        (x0, y0), (x1, y1) = line.coords[0], line.coords[-1]
+        normal = np.array([-(y1 - y0), x1 - x0]) / max(np.hypot(x1 - x0, y1 - y0), 1e-9)
+        if not lots[face["block"]].contains(Point(mid.x + normal[0], mid.y + normal[1])):
+            inward_sign = -1.0
+        start = 0.0
+        for entry in entries:
+            share = float(entry.get("frontage_fraction") or 0) / total
+            end_ = min(start + share, 1.0)
+            levels = entry.get("levels")
+            if isinstance(levels, int) and levels > 0 and end_ > start:
+                segment = shapely.ops.substring(line, start, end_, normalized=True)
+                depth = frontage_depth(levels, gen)
+                offset = normal * inward_sign * depth
+                (ax, ay), (bx, by) = segment.coords[0], segment.coords[-1]
+                polygon = Polygon([(ax, ay), (bx, by), (bx + offset[0], by + offset[1]), (ax + offset[0], ay + offset[1])])
+                candidates.append({
+                    "id": f"ref_{face_id.replace(':', '_').replace(' ', '_')}_{entry.get('order')}",
+                    "face_id": face_id, "order": entry.get("order"), "block": face["block"],
+                    "levels": levels, "depth": depth, "polygon": polygon.intersection(lots[face["block"]]),
+                    "entry": entry, "observed": observed, "front": segment,
+                })
+            start = end_
+    placed, result = [], []
+    for c in sorted(candidates, key=lambda c: (-c["levels"], c["id"])):
+        poly = c["polygon"].difference(unary_union(osm_by_block[c["block"]] + placed))
+        if poly.area < MIN_FRONTAGE_AREA_M2:
+            warnings.append(f"{c['id']}: no room left for the photo frontage ({poly.area:.1f} m²)")
+            continue
+        c["polygon"] = poly
+        placed.append(poly)
+        result.append(c)
+    return result
+
+
+def feature_flags(features: list[str] | None) -> dict:
+    text = " ".join(features or []).lower()
+    return {
+        "pitched_roof": "pitched" in text,
+        "balconies": "balcon" in text,
+        "brick_base": "brick" in text and ("base" in text or "band" in text),
+        "brick_facade": "brick" in text and not ("base" in text or "band" in text),
+    }
+
+
+def default_appearance(building_id: str, gen: dict) -> dict:
+    return {
+        "style": gen["facade_style"],
+        "facade_color": facade_color(building_id, gen["facade_palette"]),
+        "ground_floor": "shopfront",
+        "roof": "flat",
+        "balconies": False,
+        "base_band_color": None,
+        "window_grid": "house",
+        "wall_material": "plaster",
+        "source": "palette_by_id",
+        "is_estimated": True,
+    }
+
+
+def observed_appearance(entry: dict, observed: dict, face_id: str, levels) -> dict:
+    flags = feature_flags(entry.get("features"))
+    appearance = {
+        "ground_floor": ground_floor_kind(entry.get("features")),
+        "roof": "gable_tile" if flags["pitched_roof"] else "flat",
+        "balconies": flags["balconies"],
+        "base_band_color": "#8a4b35" if flags["brick_base"] else None,
+        "window_grid": "tower" if isinstance(levels, int) and levels >= 6 else "house",
+        "wall_material": "brick" if flags["brick_facade"] else "plaster",
+        "source": "mapillary_reference",
+        "reference_face": face_id,
+        "reference_images": [img.get("pkey") for img in observed.get("images", [])],
+        "reference_confidence": entry.get("confidence"),
+        "reference_features": entry.get("features"),
+    }
+    color = entry.get("facade_color")
+    if isinstance(color, str) and len(color) == 7 and color.startswith("#"):
+        appearance["facade_color"] = color.lower()
+    return appearance
+
+
+def gable_roof(polygon, front, top: float, gen: dict) -> trimesh.Trimesh | None:
+    """Gable roof with the ridge parallel to the street; None when not a near rectangle."""
+    if not isinstance(polygon, Polygon):
+        return None
+    rect = polygon.minimum_rotated_rectangle
+    if rect.area <= 0 or polygon.area / rect.area < 0.9:
+        return None
+    rect = rect.buffer(ROOF_EAVE_M, join_style=MITRE)
+    c = list(rect.exterior.coords)[:4]
+    sides = [(c[i], c[(i + 1) % 4]) for i in range(4)]
+    if front is not None:
+        (fx0, fy0), (fx1, fy1) = front.coords[0], front.coords[-1]
+        fdir = np.array([fx1 - fx0, fy1 - fy0])
+    else:
+        fdir = np.array(sides[0][1]) - np.array(sides[0][0])
+    fdir = fdir / max(np.linalg.norm(fdir), 1e-9)
+
+    def parallel(side):
+        d = np.array(side[1]) - np.array(side[0])
+        return abs(np.dot(d / max(np.linalg.norm(d), 1e-9), fdir))
+
+    i = max(range(4), key=lambda k: parallel(sides[k]))
+    a, b = np.array(sides[i][0]), np.array(sides[i][1])
+    cc, d = np.array(sides[(i + 2) % 4][0]), np.array(sides[(i + 2) % 4][1])  # cc pairs with b, d with a
+    half_depth = np.linalg.norm(d - a) / 2
+    rise = half_depth * np.tan(np.radians(gen.get("tile_roof_pitch_deg", TILE_ROOF_PITCH_DEG)))
+    m1, m2 = (a + d) / 2, (b + cc) / 2
+    v = np.array([[*a, top], [*b, top], [*cc, top], [*d, top], [*m1, top + rise], [*m2, top + rise]])
+    f = np.array([[0, 1, 5], [0, 5, 4], [2, 3, 4], [2, 4, 5], [0, 4, 3], [1, 2, 5], [0, 3, 2], [0, 2, 1]])
+    mesh = trimesh.Trimesh(vertices=v, faces=f, process=True)
+    trimesh.repair.fix_normals(mesh)
+    mesh.apply_transform(TO_GODOT)
+    return mesh
+
+
 def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source, out: Path,
              reference: dict | None = None) -> dict:
     report, _, _, buildings, boundary, extra_geo = aa.analyze(area_config, osm, extra, extra_source)
@@ -309,10 +456,24 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
 
     warnings = list(report["warnings"])
     faces = block_faces(platforms, streets_l)
-    building_meta, building_meshes = [], []
+    lot_faces = block_faces(lots, streets_l)
+    osm_by_block: dict[str, list] = {name: [] for name in blocks}
+    for b in buildings:
+        if b.block and b.source == "openstreetmap":
+            osm_by_block[b.block].append(to_local(b.footprint, origin).intersection(lots[b.block]))
+    frontages = frontage_volumes(lot_faces, lots, osm_by_block, reference, gen, warnings)
+    frontage_union = {name: unary_union([f["polygon"] for f in frontages if f["block"] == name]) for name in blocks}
+
+    specs = []  # one entry per building to build, whatever its source
     for b in sorted((b for b in buildings if b.block), key=lambda b: b.id):
         footprint = to_local(b.footprint, origin)
         clipped = footprint.intersection(lots[b.block])
+        if b.source != "openstreetmap" and not frontage_union[b.block].is_empty:
+            overlap = clipped.intersection(frontage_union[b.block]).area
+            if overlap > REPLACED_OVERLAP * clipped.area:
+                warnings.append(f"{b.id}: replaced by photo-based frontage ({overlap / clipped.area:.0%} overlap)")
+                continue
+            clipped = clipped.difference(frontage_union[b.block])
         if clipped.area < gen["min_building_area_m2"]:
             warnings.append(f"{b.id}: dropped, {clipped.area:.1f} m² left inside its lot")
             continue
@@ -323,13 +484,7 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
         else:
             height = gen["default_levels"] * gen["level_height_m"]
             estimated, rule = True, "default_levels x level_height_m"
-        appearance = {
-            "style": gen["facade_style"],
-            "facade_color": facade_color(b.id, gen["facade_palette"]),
-            "ground_floor": "shopfront",
-            "source": "palette_by_id",
-            "is_estimated": True,
-        }
+        appearance = default_appearance(b.id, gen)
         levels = b.levels
         matched = match_frontage(clipped, b.block, faces, reference)
         if matched:
@@ -342,40 +497,67 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
             elif observed_levels == 0:
                 warnings.append(f"{b.id}: reference photo of {face_id} shows no building here "
                                 f"({', '.join(entry.get('features') or [])}); footprint kept")
-            color = entry.get("facade_color")
-            if isinstance(color, str) and len(color) == 7 and color.startswith("#"):
-                appearance["facade_color"] = color.lower()
-            appearance.update({
-                "ground_floor": ground_floor_kind(entry.get("features")),
-                "source": "mapillary_reference",
-                "reference_face": face_id,
-                "reference_images": [img.get("pkey") for img in observed.get("images", [])],
-                "reference_confidence": entry.get("confidence"),
-            })
+            appearance.update(observed_appearance(entry, observed, face_id, levels))
+        specs.append({
+            "id": b.id, "source": b.source, "source_id": b.source_id, "source_dataset": b.source_dataset,
+            "confidence": b.confidence, "block": b.block, "polygon": clipped,
+            "clipped_to_lot": round(1 - clipped.area / footprint.area, 3) if footprint.area else 0.0,
+            "height": height, "levels": levels, "height_is_estimated": estimated, "height_rule": rule,
+            "geometry_is_estimated": b.source != "openstreetmap",
+            "geometry_rule": "source footprint" if b.source == "openstreetmap" else "machine-learned footprint",
+            "building_type": b.tags.get("building", "unknown") if b.source == "openstreetmap" else "unknown",
+            "appearance": appearance, "front": None,
+        })
+    for f in frontages:
+        specs.append({
+            "id": f["id"], "source": "mapillary_reference", "source_id": f"{f['face_id']}#{f['order']}",
+            "source_dataset": "Mapillary street-level observation", "confidence": f["entry"].get("confidence"),
+            "block": f["block"], "polygon": f["polygon"], "clipped_to_lot": 0.0,
+            "height": f["levels"] * gen["level_height_m"], "levels": f["levels"], "height_is_estimated": True,
+            "height_rule": "reference photo levels x level_height_m (mapillary)",
+            "geometry_is_estimated": True,
+            "geometry_rule": f"observed frontage share on the property line x {f['depth']} m estimated depth",
+            "building_type": "unknown",
+            "appearance": {**default_appearance(f["id"], gen),
+                           **observed_appearance(f["entry"], f["observed"], f["face_id"], f["levels"])},
+            "front": f["front"],
+        })
+
+    building_meta, building_meshes = [], []
+    for spec in sorted(specs, key=lambda x: x["id"]):
+        clipped, height = spec["polygon"], spec["height"]
         top = curb + height
-        cornice = gen["cornice"]
-        body = slab(clipped, 0.0, top, b.id)
-        ledge = slab(clipped.buffer(cornice["overhang_m"], join_style=MITRE),
-                     top - cornice["drop_m"] - cornice["height_m"], top - cornice["drop_m"], b.id)
-        mesh = trimesh.util.concatenate([body, ledge])
-        rgb = gen["colors"]["building_surveyed" if b.source == "openstreetmap" else "building_machine_learned"]
-        building_meshes.append((b.id, mesh, rgb))
+        appearance = spec["appearance"]
+        parts = [slab(clipped, 0.0, top, spec["id"])]
+        roof = gable_roof(clipped, spec["front"], top, gen) if appearance.get("roof") == "gable_tile" else None
+        if roof is not None:
+            parts.append(roof)
+        else:
+            appearance["roof"] = "flat"
+            cornice = gen["cornice"]
+            parts.append(slab(clipped.buffer(cornice["overhang_m"], join_style=MITRE),
+                              top - cornice["drop_m"] - cornice["height_m"], top - cornice["drop_m"], spec["id"]))
+        mesh = trimesh.util.concatenate(parts)
+        rgb = gen["colors"]["building_surveyed" if spec["source"] == "openstreetmap" else "building_machine_learned"]
+        building_meshes.append((spec["id"], mesh, rgb))
         building_meta.append({
-            "id": b.id,
-            "source": b.source,
-            "source_id": b.source_id,
-            "source_dataset": b.source_dataset,
-            "confidence": b.confidence,
-            "block": b.block,
+            "id": spec["id"],
+            "source": spec["source"],
+            "source_id": spec["source_id"],
+            "source_dataset": spec["source_dataset"],
+            "confidence": spec["confidence"],
+            "block": spec["block"],
             "footprint": ring_coords(clipped),
             "footprint_area_m2": round(clipped.area, 2),
-            "clipped_to_lot": round(1 - clipped.area / footprint.area, 3) if footprint.area else 0.0,
+            "clipped_to_lot": spec["clipped_to_lot"],
+            "geometry_is_estimated": spec["geometry_is_estimated"],
+            "geometry_rule": spec["geometry_rule"],
             "base_y": curb,
             "height_m": round(height, 2),
-            "levels": levels,
-            "height_is_estimated": estimated,
-            "height_rule": rule,
-            "building_type": b.tags.get("building", "unknown") if b.source == "openstreetmap" else "unknown",
+            "levels": spec["levels"],
+            "height_is_estimated": spec["height_is_estimated"],
+            "height_rule": spec["height_rule"],
+            "building_type": spec["building_type"],
             "model": "generic_building",
             "appearance": appearance,
         })

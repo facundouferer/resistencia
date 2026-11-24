@@ -18,6 +18,10 @@ extends Node3D
 const OVERRIDES_VERSION := 1
 ## Index = shader ground_floor_kind.
 const GROUND_FLOOR_KINDS := ["shopfront", "residential", "garage"]
+const TILE_ROOF_COLOR := Color("#a5553a")
+const FLAT_ROOF_COLOR := Color(0.42, 0.41, 0.4)
+const HOUSE_BAY_M := 3.2
+const TOWER_BAY_M := 2.2
 
 @export var buildings_scene: PackedScene
 ## Stylized facade (windows, shopfront, cornice). Per-building colour comes
@@ -99,6 +103,14 @@ func apply_appearance(mesh: MeshInstance3D, data: Dictionary) -> void:
 	mesh.set_instance_shader_parameter("top_y", base_y + float(data.get("height_m", 0.0)))
 	mesh.set_instance_shader_parameter("ground_floor_kind",
 		float(GROUND_FLOOR_KINDS.find(appearance.get("ground_floor", "shopfront"))))
+	var gable: bool = appearance.get("roof", "flat") == "gable_tile"
+	mesh.set_instance_shader_parameter("roof_tint", TILE_ROOF_COLOR if gable else FLAT_ROOF_COLOR)
+	var band = appearance.get("base_band_color")
+	mesh.set_instance_shader_parameter("base_band",
+		Color(band) if band is String else Color(0, 0, 0, 0))
+	mesh.set_instance_shader_parameter("balconies", 1.0 if appearance.get("balconies", false) else 0.0)
+	mesh.set_instance_shader_parameter("bay", TOWER_BAY_M if appearance.get("window_grid") == "tower" else HOUSE_BAY_M)
+	mesh.set_instance_shader_parameter("wall_material", 1.0 if appearance.get("wall_material") == "brick" else 0.0)
 
 
 func set_building_color(id: String, color: Color) -> void:

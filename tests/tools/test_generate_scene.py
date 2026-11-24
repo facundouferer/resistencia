@@ -118,6 +118,15 @@ class GeneratedScenario(unittest.TestCase):
                 self.assertTrue(any(p["id"] in w for w in self.meta["warnings"]), p["id"])
                 self.assertTrue(self.result["roadway"].contains(Point(p["position"])))
 
+    def test_collision_meshes_keep_shared_vertices(self):
+        # Unmerged (per-face) vertices broke edge connectivity: the player snagged
+        # on the kerb (4/564 kerb-edge cases failed). Flat shading is done in the
+        # facade shader instead.
+        for name in ("sidewalks.glb", "buildings.glb"):
+            scene = trimesh.load(self.out / name, process=False)
+            for geometry_name, mesh in scene.geometry.items():
+                self.assertLess(len(mesh.vertices), 3 * len(mesh.faces), f"{name}:{geometry_name}")
+
     def test_metadata_has_required_fields_and_resource_hashes(self):
         written = json.loads((self.out / "scenario.json").read_text())
         for key in REQUIRED_METADATA:
@@ -141,6 +150,15 @@ FAKE_REFERENCE = {  # test data, not a real survey
         ],
     },
     "block_n:Corrientes": {"face_id": "block_n:Corrientes", "visibility": "none", "trees": None, "buildings": None},
+    "block_n:Remedios de Escalada": {
+        "face_id": "block_n:Remedios de Escalada", "visibility": "good", "images": [], "trees": {"present": False},
+        "buildings": [
+            {"order": 1, "frontage_fraction": 0.5, "levels": 3, "facade_color": "#778899",
+             "features": ["pitched tile roof", "balconies", "white house with red-brick base"]},
+            {"order": 2, "frontage_fraction": 0.25, "levels": None, "features": ["unknown"]},
+            {"order": 3, "frontage_fraction": 0.25, "levels": 0, "features": ["vacant lot"]},
+        ],
+    },
 }
 
 
@@ -190,6 +208,50 @@ class ReferenceObservations(unittest.TestCase):
             self.assertIn("mapillary", b["height_rule"])
         others = [b for b in self.meta["buildings"] if "reference_face" not in b["appearance"]]
         self.assertTrue(all(b["height_m"] == 6.0 for b in others))
+
+    def test_frontages_are_built_on_the_property_line_only_for_known_levels(self):
+        built = [b for b in self.meta["buildings"] if b["source"] == "mapillary_reference"
+                 and b["appearance"]["reference_face"] == "block_n:Remedios de Escalada"]
+        self.assertEqual([b["id"] for b in built], ["ref_block_n_Remedios_de_Escalada_1"])
+        b = built[0]
+        lot = self.result["lots"]["block_n"]
+        footprint = Polygon(b["footprint"][0])
+        self.assertTrue(lot.buffer(0.01).contains(footprint))
+        front = self.result["faces"]["block_n:Remedios de Escalada"]["line"]
+        self.assertLess(footprint.distance(front), 3.0 + 0.05)  # sidewalk width: lot edge = property line
+        self.assertAlmostEqual(footprint.exterior.distance(lot.exterior), 0.0, places=2)
+        self.assertTrue(b["geometry_is_estimated"])
+        self.assertEqual((b["levels"], b["height_m"]), (3, 9.0))
+        appearance = b["appearance"]
+        self.assertEqual((appearance["roof"], appearance["balconies"], appearance["base_band_color"]),
+                         ("gable_tile", True, "#8a4b35"))
+
+    def test_frontages_replace_overture_but_never_overlap_osm(self):
+        buildings = self.meta["buildings"]
+        self.assertEqual(len([b for b in buildings if b["source"] == "openstreetmap"]), 39)
+        ref = [Polygon(r) for b in buildings if b["source"] == "mapillary_reference" for r in b["footprint"]]
+        others = [Polygon(r) for b in buildings if b["source"] != "mapillary_reference" for r in b["footprint"]]
+        for poly in ref:
+            for other in others:
+                self.assertLess(poly.intersection(other).area, 0.05)
+        self.assertTrue(any("replaced by photo-based frontage" in w for w in self.meta["warnings"]))
+
+    def test_gable_roof_rises_above_the_walls(self):
+        scene = trimesh.load(Path(self._tmp.name) / "buildings.glb")
+        b = next(b for b in self.meta["buildings"] if b["id"] == "ref_block_n_Remedios_de_Escalada_1")
+        mesh = scene.geometry[b["id"]]
+        self.assertGreater(mesh.bounds[1][1], b["base_y"] + b["height_m"] + 1.0)
+
+
+class FeatureKeywords(unittest.TestCase):
+    def test_free_text_features_map_to_flags(self):
+        self.assertEqual(gs.feature_flags(["red tile canopy/pitched tile roof", "ornate iron balcony"]),
+                         {"pitched_roof": True, "balconies": True, "brick_base": False, "brick_facade": False})
+        self.assertEqual(gs.feature_flags(["brick bands", "flat roof"]),
+                         {"pitched_roof": False, "balconies": False, "brick_base": True, "brick_facade": False})
+        self.assertEqual(gs.feature_flags(None),
+                         {"pitched_roof": False, "balconies": False, "brick_base": False, "brick_facade": False})
+        self.assertTrue(gs.feature_flags(["brick-red facade", "corner tower"])["brick_facade"])
 
 
 if __name__ == "__main__":

@@ -22,6 +22,7 @@ func _run() -> void:
 		"street_level": [0.6, -0.12, 4.0, null],
 		"overview": [0.8, -0.6, 40.0, null],
 		"trees_and_lamps": [2.6, -0.25, 22.0, Vector3(5, 0.2, 175)],
+		"houses_escalada": [-2.33, -0.12, 9.0, Vector3(-45.2, 0.2, -125.8)],
 	}
 	for name in views:
 		var v: Array = views[name]
