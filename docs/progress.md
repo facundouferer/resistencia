@@ -185,3 +185,4 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 - Generator `--reference`: 91 street trees on sidewalks; 73 buildings with observed levels/colour/ground floor; facade shader supports shopfront / residential / garage ground floors. First attempt matched only 4 buildings (band of 4 m from the kerb line); widened to the first 15 m of the lot → 73.
 - Attribution label now spans the screen width and wraps (it was cut off).
 - Checks: pipeline 21 tests OK (incl. synthetic reference observations, faces in sync); Godot suite 62 checks, 0 failures; render snapshots reviewed.
+- Manual check (user, 2026-11-24): curb climb and step-down work in play.
