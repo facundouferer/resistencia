@@ -5,3 +5,5 @@
 export.cfg
 export_credentials.cfg
 .DS_Store
+tools/.venv/
+__pycache__/

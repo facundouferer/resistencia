@@ -1,0 +1,153 @@
+{
+  "scenario": "resistencia_2x2",
+  "generated_at_utc": "2026-11-24T00:59:33+00:00",
+  "generator": "tools/geo_processor/analyze_area.py 0.1.0",
+  "source": {
+    "name": "OpenStreetMap",
+    "osm_base_timestamp": "2026-11-24T00:48:21Z",
+    "license": "Open Database License (ODbL) 1.0",
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "secondary_source": {
+    "source": "overture_maps",
+    "release": "2026-11-18.0",
+    "licenses": [
+      "ODbL-1.0"
+    ],
+    "attribution": "© OpenStreetMap contributors, Overture Maps Foundation; includes Google Open Buildings and Microsoft ML Building Footprints",
+    "sha256": "51aab8fa1d8711466b912d9fe8bc1d6c0c4b8dd4eb19c978a62093a4a4486bad",
+    "file": "resistencia_2x2.buildings.geojson"
+  },
+  "projection": "EPSG:32721",
+  "units": "metres",
+  "local_origin": {
+    "description": "Intersection of Pueyrredón and Santa Fe centerlines, rounded to 1 m",
+    "easting": 303672,
+    "northing": 6962373,
+    "lat": -27.4480076,
+    "lon": -58.9865132
+  },
+  "godot_axes": "x = easting - origin.easting; y = height; z = -(northing - origin.northing)",
+  "boundary_streets": [
+    "Remedios de Escalada",
+    "Marcelo Torcuato de Alvear",
+    "Bartolomé Mitre",
+    "Corrientes"
+  ],
+  "inner_streets": [
+    "Pueyrredón",
+    "Santa Fe"
+  ],
+  "corners": {
+    "Remedios de Escalada x Marcelo Torcuato de Alvear": {
+      "easting": 303502.41,
+      "northing": 6962369.43,
+      "lat": -27.4480153,
+      "lon": -58.9882289
+    },
+    "Marcelo Torcuato de Alvear x Bartolomé Mitre": {
+      "easting": 303674.88,
+      "northing": 6962201.94,
+      "lat": -27.4495514,
+      "lon": -58.9865117
+    },
+    "Bartolomé Mitre x Corrientes": {
+      "easting": 303842.32,
+      "northing": 6962375.44,
+      "lat": -27.4480101,
+      "lon": -58.9847903
+    },
+    "Corrientes x Remedios de Escalada": {
+      "easting": 303667.47,
+      "northing": 6962542.27,
+      "lat": -27.4464797,
+      "lon": -58.9865317
+    }
+  },
+  "boundary_sides_m": [
+    240.4,
+    241.1,
+    241.7,
+    239.0
+  ],
+  "boundary_bounds_utm": [
+    303502.41,
+    6962201.94,
+    303842.32,
+    6962542.27
+  ],
+  "blocks": {
+    "block_e": {
+      "centerline_cell_area_m2": 14602.0,
+      "centerline_cell_sides_m": [
+        121.6,
+        120.9,
+        120.1,
+        121.2
+      ],
+      "building_count": 43,
+      "buildings_by_dataset": {
+        "Google Open Buildings": 33,
+        "Microsoft ML Buildings": 10
+      },
+      "building_footprint_coverage": 0.306,
+      "buildings_with_height_or_levels": 0
+    },
+    "block_n": {
+      "centerline_cell_area_m2": 14396.5,
+      "centerline_cell_sides_m": [
+        118.9,
+        120.5,
+        120.1,
+        120.4
+      ],
+      "building_count": 45,
+      "buildings_by_dataset": {
+        "Google Open Buildings": 27,
+        "Microsoft ML Buildings": 18
+      },
+      "building_footprint_coverage": 0.297,
+      "buildings_with_height_or_levels": 0
+    },
+    "block_s": {
+      "centerline_cell_area_m2": 14438.9,
+      "centerline_cell_sides_m": [
+        121.0,
+        120.2,
+        120.9,
+        119.6
+      ],
+      "building_count": 39,
+      "buildings_by_dataset": {
+        "OpenStreetMap": 39
+      },
+      "building_footprint_coverage": 0.529,
+      "buildings_with_height_or_levels": 0
+    },
+    "block_w": {
+      "centerline_cell_area_m2": 14365.0,
+      "centerline_cell_sides_m": [
+        120.1,
+        120.4,
+        120.2,
+        119.4
+      ],
+      "building_count": 45,
+      "buildings_by_dataset": {
+        "Google Open Buildings": 26,
+        "Microsoft ML Buildings": 19
+      },
+      "building_footprint_coverage": 0.269,
+      "buildings_with_height_or_levels": 0
+    }
+  },
+  "buildings_in_blocks": 172,
+  "buildings_outside_blocks": 435,
+  "extra_buildings_dropped_as_osm_duplicates": 0,
+  "building_warnings": {},
+  "warnings": [
+    "7 building:part ways present; not used for footprints yet",
+    "172 of 172 buildings in the blocks have no height or levels",
+    "133 building footprints in the blocks are machine-learned (Overture), not surveyed; shapes and separation between adjacent buildings are approximate"
+  ]
+}

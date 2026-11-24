@@ -1,0 +1,12 @@
+{
+  "name": "resistencia_2x2",
+  "description": "Four blocks (2 x 2) in Resistencia, Chaco, Argentina",
+  "boundary_streets": [
+    "Remedios de Escalada",
+    "Marcelo Torcuato de Alvear",
+    "Bartolomé Mitre",
+    "Corrientes"
+  ],
+  "inner_streets": ["Pueyrredón", "Santa Fe"],
+  "expected_blocks": 4
+}

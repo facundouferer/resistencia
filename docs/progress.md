@@ -71,3 +71,34 @@ Headless mode cannot check rendering or real mouse input. To verify by hand (`Go
 - [x] The camera does not go through the wall or the blocks (confirmed by user, 2026-11-23).
 
 Phase 1 acceptance criteria met.
+
+## Phase 2 — Real geography (2026-11-24)
+
+### Delivered
+
+- Python 3.13 venv in `tools/.venv` (git-ignored), pinned in `tools/requirements.txt` (pyproj 3.8.0, shapely 2.2.0, osmium 4.3.2, trimesh 5.2.2). Homebrew Python was already installed; nothing new installed system-wide.
+- `tools/osm_importer/fetch_osm.py` + query: raw OSM download with provenance, never overwrites.
+- `tools/geo_processor/analyze_area.py` + `areas/resistencia_2x2.json`: corners, blocks, measurements, building assignment, GeoJSON/SVG outputs.
+- `tests/tools/test_analyze_area.py`: synthetic-grid tests, projection round trip, real-area check.
+- `docs/geographic-data.md`: source, license, coordinates, origin, axes, known gaps.
+
+### Validation
+
+| Command | Result |
+| --- | --- |
+| `fetch_osm.py` | 2,741 elements, 712 KB, SHA-256 recorded |
+| `analyze_area.py` | 4 corners, 4 blocks, sides 118.9–121.6 m |
+| `tools/.venv/bin/python -m unittest discover -s tests/tools` | 6 tests OK |
+| `preview.svg` visual check | 2 × 2 grid and block_s buildings render as expected |
+
+### Missing buildings — decision (2026-11-24)
+
+User chose option A: complete the 3 empty blocks with Overture Maps buildings (release 2026-11-18.0), OSM first.
+
+- Added `tools/overture_importer/fetch_overture.py` (pinned release, provenance, no overwrite) and the `overturemaps` 2.1.1 dependency (official client; needed to read Overture's GeoParquet by bbox).
+- `analyze_area.py --extra-buildings`: merges Overture footprints where they do not duplicate OSM; per-building source, dataset and confidence.
+- Result: 172 buildings (39 OSM + 133 machine-learned), 0 duplicates dropped. Tests: 9 OK. Preview checked visually.
+
+### Remaining known gaps
+
+- No height data in any source; street widths missing; ML footprints are approximate. See `docs/geographic-data.md`.
