@@ -170,3 +170,11 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 - Generator: `props` in `scenario.json` (OSM position, species, surface, estimated height, lamp facing to nearest street). Godot: `PropManager` + generic models in `assets/vegetation/` and `assets/props/` with trunk/pole collisions.
 - Regression found while testing: curb climb failed 1/16 (block_w, walking). Cause: the capsule rides the curb edge with contact normals oscillating around the 45° floor limit. Fix: step detection by contact height (3–30 cm) instead of normal angle. Curb matrix widened to 80 approaches (2 sides × 4 blocks × walk/run × 5 angles): 80/80.
 - Checks: pipeline 18 tests OK; Godot suite 60 checks, 0 failures; render snapshot `trees_and_lamps.png` reviewed.
+
+## Fix — could not step down from the curb in some places (2026-11-24)
+
+- User report: "hay lugares donde subo al cordón y luego no puedo bajar".
+- Not reproduced by mid-side, corner or shallow-angle tests (122/122 each way). Reproduced from the user's autosave position (23.73, 0.15, -17.86), sidewalk of block_e near Pueyrredón × Santa Fe: 5 of 16 directions blocked.
+- Cause: the capsule's centre 5 mm inside the kerb; its rounded bottom rests on the edge (floor normal tilted ~8° outward) and floor snapping pulled it back onto the edge every frame.
+- Fix: `PlayerController._release_edge_snap` turns floor snapping off for the frame when the floor normal is tilted and the player moves towards the side it falls to.
+- Regression test: standing on the kerb edge every 7 m around every block (+ the reported spot), 3 directions each: old controller 645/669, fixed 669/669. Descend matrix (122 approaches) added too.

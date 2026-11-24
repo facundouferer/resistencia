@@ -15,10 +15,13 @@ extends CharacterBody3D
 const STEP_PROBE_LIFT := 0.02
 const GROUND_PROBE_DEPTH := 0.1
 const STEP_MIN_HEIGHT := 0.03
+## Floor normals less vertical than this mean the body rests on an edge.
+const EDGE_NORMAL_Y := 0.999
 @export var camera_path: NodePath = ^"CameraPivot"
 @export var visual_path: NodePath = ^"Visual"
 
 var _gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var _default_floor_snap := floor_snap_length
 
 @onready var _camera: CameraController = get_node(camera_path)
 @onready var _visual: Node3D = get_node(visual_path)
@@ -37,6 +40,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = horizontal.x
 	velocity.z = horizontal.z
 	var stepped := _try_step_up(direction * speed * delta)
+	_release_edge_snap(direction)
 	move_and_slide()
 	if stepped:
 		# Land on top of the step instead of floating for a few frames.
@@ -79,3 +83,17 @@ func _try_step_up(motion: Vector3) -> bool:
 		return false  # still blocked: a wall, not a step
 	global_position += up
 	return true
+
+
+## A capsule standing on a curb edge reports a tilted floor normal and floor
+## snapping keeps pulling it back onto the edge, so the player cannot step
+## down. When moving towards the side the edge falls to, snapping is turned
+## off for this frame and gravity takes the body down.
+func _release_edge_snap(direction: Vector3) -> void:
+	floor_snap_length = _default_floor_snap
+	if not is_on_floor() or direction.length_squared() < 1e-6:
+		return
+	var normal := get_floor_normal()
+	var downhill := Vector2(normal.x, normal.z)
+	if normal.y < EDGE_NORMAL_Y and downhill.dot(Vector2(direction.x, direction.z)) > 0.0:
+		floor_snap_length = 0.0

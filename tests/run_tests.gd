@@ -42,6 +42,8 @@ func _run() -> void:
 	await _test_walk_every_sidewalk()
 	await _test_step_from_roadway_onto_sidewalk()
 	await _test_curb_climb_matrix()
+	await _test_curb_descend_matrix()
+	await _test_step_down_from_curb_edge()
 	await _test_buildings_block_the_player()
 	await _test_tree_trunk_blocks_the_player()
 	# Phase 5: persistence
@@ -294,8 +296,16 @@ func _test_step_from_roadway_onto_sidewalk() -> void:
 	await _free(main)
 
 
-## Two sides of every block, walking and running, at five approach angles.
+## Two sides of every block, walking and running, at five angles, up and down.
 func _test_curb_climb_matrix() -> void:
+	await _curb_matrix(true)
+
+
+func _test_curb_descend_matrix() -> void:
+	await _curb_matrix(false)
+
+
+func _curb_matrix(climbing: bool) -> void:
 	var main := await _spawn_main(REAL_MAIN_SCENE)
 	var world: ResistanceWorld = main.get_node("World")
 	var failed: Array[String] = []
@@ -313,14 +323,104 @@ func _test_curb_climb_matrix() -> void:
 			for running in [false, true]:
 				for angle_deg in [-45.0, -20.0, 0.0, 20.0, 45.0]:
 					var dir := outward.rotated(Vector3.UP, deg_to_rad(angle_deg))
-					var start := on_sidewalk + dir * (4.0 / cos(deg_to_rad(angle_deg))) + Vector3(0, 0.1, 0)
-					var reached := await _walk_path(main, start, [on_sidewalk], -1.0, 600, running)
+					var on_road := on_sidewalk + dir * (4.0 / cos(deg_to_rad(angle_deg)))
+					var start := (on_road if climbing else on_sidewalk) + Vector3(0, 0.3, 0)
+					var target := on_sidewalk if climbing else on_road
+					var reached := await _walk_path(main, start, [target], -1.0, 600, running)
 					await _frames(5)
 					var y := _player(main).global_position.y
+					var expected_y := 0.15 if climbing else 0.0
 					total += 1
-					if not reached or absf(y - 0.15) > 0.05:
+					if not reached or absf(y - expected_y) > 0.05:
 						failed.append("%s side%d %s %d° y=%.2f" % [block, side, "run" if running else "walk", angle_deg, y])
-	_check(failed.is_empty(), "curb climbed in %d/%d approaches %s" % [total - failed.size(), total, failed])
+	# Corners: leave/enter each sidewalk corner diagonally, through the intersection.
+	for block in world.metadata["blocks"]:
+		var center := _ring_center(world.metadata["blocks"][block]["lot"][0])
+		var path: Array = world.metadata["blocks"][block]["sidewalk_path"]
+		for i in path.size() - 1:
+			var corner := GeoReference.local_to_godot(path[i])
+			var out_dir := corner - center
+			out_dir.y = 0
+			var on_road := corner + out_dir.normalized() * 4.0
+			for running in [false, true]:
+				var start := (on_road if climbing else corner) + Vector3(0, 0.3, 0)
+				var target := corner if climbing else on_road
+				var reached := await _walk_path(main, start, [target], -1.0, 600, running)
+				await _frames(5)
+				var y := _player(main).global_position.y
+				total += 1
+				if not reached or absf(y - (0.15 if climbing else 0.0)) > 0.05:
+					failed.append("%s corner%d %s y=%.2f" % [block, i, "run" if running else "walk", y])
+	# Shallow angles: almost parallel to the kerb.
+	for block in world.metadata["blocks"]:
+		var path: Array = world.metadata["blocks"][block]["sidewalk_path"]
+		var center := _ring_center(world.metadata["blocks"][block]["lot"][0])
+		var a := GeoReference.local_to_godot(path[0])
+		var b := GeoReference.local_to_godot(path[1])
+		var on_sidewalk := (a + b) / 2.0
+		var tangent := (b - a).normalized()
+		var outward := on_sidewalk - center
+		outward = (outward - tangent * outward.dot(tangent)).normalized()
+		for angle_deg in [-75.0, 75.0]:
+			var dir := outward.rotated(Vector3.UP, deg_to_rad(angle_deg))
+			var on_road := on_sidewalk + dir * (4.0 / cos(deg_to_rad(angle_deg)))
+			var start := (on_road if climbing else on_sidewalk) + Vector3(0, 0.3, 0)
+			var target := on_sidewalk if climbing else on_road
+			var reached := await _walk_path(main, start, [target], -1.0, 900, false)
+			await _frames(5)
+			var y := _player(main).global_position.y
+			total += 1
+			if not reached or absf(y - (0.15 if climbing else 0.0)) > 0.05:
+				failed.append("%s shallow %d° y=%.2f" % [block, angle_deg, y])
+	_check(failed.is_empty(), "curb %s in %d/%d approaches %s" % [
+		"climbed" if climbing else "descended", total - failed.size(), total, failed])
+	await _free(main)
+
+
+## Regression: standing right on the kerb edge (capsule half over the road),
+## floor snapping kept the player on the edge (user report, saved position
+## (23.73, 0.15, -17.86) next to Pueyrredón x Santa Fe). Samples every 7 m
+## along every side of every block, plus the reported position.
+func _test_step_down_from_curb_edge() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	var world: ResistanceWorld = main.get_node("World")
+	var half_width: float = world.metadata["estimation_rules"]["sidewalk_width_m"] / 2.0
+	var cases: Array = []  # [edge position, outward direction]
+	for block in world.metadata["blocks"]:
+		var path: Array = world.metadata["blocks"][block]["sidewalk_path"]
+		var center := _ring_center(world.metadata["blocks"][block]["lot"][0])
+		for side in path.size() - 1:
+			var a := GeoReference.local_to_godot(path[side])
+			var b := GeoReference.local_to_godot(path[side + 1])
+			var tangent := (b - a).normalized()
+			var outward := (a + b) / 2.0 - center
+			outward = (outward - tangent * outward.dot(tangent)).normalized()
+			var d := 7.0
+			while d < a.distance_to(b) - 7.0:
+				cases.append([a + tangent * d + outward * (half_width - 0.005) + Vector3(0, 0.15, 0), outward])
+				d += 7.0
+	cases.append([Vector3(23.7290554046631, 0.149513557553291, -17.8599338531494), Vector3(-0.7071, 0, -0.7071)])
+	var failed: Array[String] = []
+	var total := 0
+	var player := _player(main)
+	var camera := _camera(main)
+	for c in cases:
+		for angle_deg in [-45.0, 0.0, 45.0]:
+			player.global_position = c[0]
+			player.velocity = Vector3.ZERO
+			await _frames(3)
+			var dir: Vector3 = c[1].rotated(Vector3.UP, deg_to_rad(angle_deg))
+			camera.yaw = atan2(-dir.x, -dir.z)
+			camera.apply_look(Vector2.ZERO)
+			Input.action_press("move_forward")
+			await _frames(90)
+			Input.action_release("move_forward")
+			await _frames(5)
+			total += 1
+			var pos := player.global_position
+			if pos.y > 0.05 or _horizontal(pos - c[0]).length() < 1.5:
+				failed.append("%s %d° y=%.2f" % [c[0].snapped(Vector3.ONE * 0.1), angle_deg, pos.y])
+	_check(failed.is_empty(), "player steps down from the kerb edge in %d/%d cases %s" % [total - failed.size(), total, failed.slice(0, 5)])
 	await _free(main)
 
 
