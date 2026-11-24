@@ -1,0 +1,12 @@
+{
+  "source": "openstreetmap",
+  "license": "Open Database License (ODbL) 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "// Four blocks (2 x 2) bounded by Remedios de Escalada, Bartolome Mitre,\n// Marcelo Torcuato de Alvear and Corrientes, Resistencia, Chaco.\n// Bbox = corner intersections (computed from OSM street geometry,\n// 2026-11-24) plus ~70 m margin. Order: south, west, north, east.\n// Every node and way in the bbox plus multipolygon/building relations.\n// Route relations (bus lines) are excluded: they span the whole city.\n[out:json][timeout:120][bbox:-27.4503,-58.9890,-27.4458,-58.9840];\n(\n  node;\n  way;\n  relation[\"type\"~\"^(multipolygon|building)$\"];\n);\n(._;>;);\nout meta;\n",
+  "downloaded_at_utc": "2026-11-24T00:49:17+00:00",
+  "osm_base_timestamp": "2026-11-24T00:48:21Z",
+  "element_count": 2741,
+  "sha256": "999ea64822be8ecf7fb7532370f9cf46d9c94a694188cce3f84b834f9034540e",
+  "file": "resistencia_2x2.osm.json"
+}

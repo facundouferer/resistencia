@@ -1,0 +1,322 @@
+[
+ {
+  "face_id": "block_e:Bartolomé Mitre",
+  "block": "block_e",
+  "street": "Bartolomé Mitre",
+  "from_corner": "Bartolomé Mitre x Corrientes",
+  "to_corner": "Bartolomé Mitre x Santa Fe",
+  "from_latlon": [
+   -27.44801,
+   -58.984856
+  ],
+  "to_latlon": [
+   -27.448728,
+   -58.985656
+  ],
+  "mid_latlon": [
+   -27.448369,
+   -58.985256
+  ],
+  "length_m": 112.2
+ },
+ {
+  "face_id": "block_e:Santa Fe",
+  "block": "block_e",
+  "street": "Santa Fe",
+  "from_corner": "Santa Fe x Bartolomé Mitre",
+  "to_corner": "Santa Fe x Pueyrredón",
+  "from_latlon": [
+   -27.448728,
+   -58.985656
+  ],
+  "to_latlon": [
+   -27.448011,
+   -58.986449
+  ],
+  "mid_latlon": [
+   -27.44837,
+   -58.986052
+  ],
+  "length_m": 111.7
+ },
+ {
+  "face_id": "block_e:Pueyrredón",
+  "block": "block_e",
+  "street": "Pueyrredón",
+  "from_corner": "Pueyrredón x Santa Fe",
+  "to_corner": "Pueyrredón x Corrientes",
+  "from_latlon": [
+   -27.448011,
+   -58.986449
+  ],
+  "to_latlon": [
+   -27.447299,
+   -58.985659
+  ],
+  "mid_latlon": [
+   -27.447655,
+   -58.986054
+  ],
+  "length_m": 111.0
+ },
+ {
+  "face_id": "block_e:Corrientes",
+  "block": "block_e",
+  "street": "Corrientes",
+  "from_corner": "Corrientes x Pueyrredón",
+  "to_corner": "Corrientes x Bartolomé Mitre",
+  "from_latlon": [
+   -27.447299,
+   -58.985659
+  ],
+  "to_latlon": [
+   -27.44801,
+   -58.984856
+  ],
+  "mid_latlon": [
+   -27.447654,
+   -58.985258
+  ],
+  "length_m": 111.9
+ },
+ {
+  "face_id": "block_n:Remedios de Escalada",
+  "block": "block_n",
+  "street": "Remedios de Escalada",
+  "from_corner": "Remedios de Escalada x Santa Fe",
+  "to_corner": "Remedios de Escalada x Corrientes",
+  "from_latlon": [
+   -27.447243,
+   -58.98731
+  ],
+  "to_latlon": [
+   -27.446538,
+   -58.986531
+  ],
+  "mid_latlon": [
+   -27.446891,
+   -58.986921
+  ],
+  "length_m": 109.7
+ },
+ {
+  "face_id": "block_n:Corrientes",
+  "block": "block_n",
+  "street": "Corrientes",
+  "from_corner": "Corrientes x Remedios de Escalada",
+  "to_corner": "Corrientes x Pueyrredón",
+  "from_latlon": [
+   -27.446538,
+   -58.986531
+  ],
+  "to_latlon": [
+   -27.44724,
+   -58.985725
+  ],
+  "mid_latlon": [
+   -27.446889,
+   -58.986128
+  ],
+  "length_m": 111.3
+ },
+ {
+  "face_id": "block_n:Pueyrredón",
+  "block": "block_n",
+  "street": "Pueyrredón",
+  "from_corner": "Pueyrredón x Corrientes",
+  "to_corner": "Pueyrredón x Santa Fe",
+  "from_latlon": [
+   -27.44724,
+   -58.985725
+  ],
+  "to_latlon": [
+   -27.447951,
+   -58.986514
+  ],
+  "mid_latlon": [
+   -27.447596,
+   -58.98612
+  ],
+  "length_m": 110.8
+ },
+ {
+  "face_id": "block_n:Santa Fe",
+  "block": "block_n",
+  "street": "Santa Fe",
+  "from_corner": "Santa Fe x Pueyrredón",
+  "to_corner": "Santa Fe x Remedios de Escalada",
+  "from_latlon": [
+   -27.447951,
+   -58.986514
+  ],
+  "to_latlon": [
+   -27.447243,
+   -58.98731
+  ],
+  "mid_latlon": [
+   -27.447597,
+   -58.986912
+  ],
+  "length_m": 111.2
+ },
+ {
+  "face_id": "block_s:Marcelo Torcuato de Alvear",
+  "block": "block_s",
+  "street": "Marcelo Torcuato de Alvear",
+  "from_corner": "Marcelo Torcuato de Alvear x Bartolomé Mitre",
+  "to_corner": "Marcelo Torcuato de Alvear x Pueyrredón",
+  "from_latlon": [
+   -27.44949,
+   -58.986514
+  ],
+  "to_latlon": [
+   -27.448776,
+   -58.987308
+  ],
+  "mid_latlon": [
+   -27.449133,
+   -58.986911
+  ],
+  "length_m": 111.4
+ },
+ {
+  "face_id": "block_s:Pueyrredón",
+  "block": "block_s",
+  "street": "Pueyrredón",
+  "from_corner": "Pueyrredón x Marcelo Torcuato de Alvear",
+  "to_corner": "Pueyrredón x Santa Fe",
+  "from_latlon": [
+   -27.448776,
+   -58.987308
+  ],
+  "to_latlon": [
+   -27.44807,
+   -58.986514
+  ],
+  "mid_latlon": [
+   -27.448423,
+   -58.986911
+  ],
+  "length_m": 110.8
+ },
+ {
+  "face_id": "block_s:Santa Fe",
+  "block": "block_s",
+  "street": "Santa Fe",
+  "from_corner": "Santa Fe x Pueyrredón",
+  "to_corner": "Santa Fe x Bartolomé Mitre",
+  "from_latlon": [
+   -27.44807,
+   -58.986514
+  ],
+  "to_latlon": [
+   -27.448787,
+   -58.985722
+  ],
+  "mid_latlon": [
+   -27.448428,
+   -58.986118
+  ],
+  "length_m": 111.5
+ },
+ {
+  "face_id": "block_s:Bartolomé Mitre",
+  "block": "block_s",
+  "street": "Bartolomé Mitre",
+  "from_corner": "Bartolomé Mitre x Santa Fe",
+  "to_corner": "Bartolomé Mitre x Marcelo Torcuato de Alvear",
+  "from_latlon": [
+   -27.448787,
+   -58.985722
+  ],
+  "to_latlon": [
+   -27.44949,
+   -58.986514
+  ],
+  "mid_latlon": [
+   -27.449138,
+   -58.986118
+  ],
+  "length_m": 110.5
+ },
+ {
+  "face_id": "block_w:Remedios de Escalada",
+  "block": "block_w",
+  "street": "Remedios de Escalada",
+  "from_corner": "Remedios de Escalada x Marcelo Torcuato de Alvear",
+  "to_corner": "Remedios de Escalada x Santa Fe",
+  "from_latlon": [
+   -27.448015,
+   -58.988163
+  ],
+  "to_latlon": [
+   -27.447302,
+   -58.987376
+  ],
+  "mid_latlon": [
+   -27.447659,
+   -58.987769
+  ],
+  "length_m": 110.9
+ },
+ {
+  "face_id": "block_w:Santa Fe",
+  "block": "block_w",
+  "street": "Santa Fe",
+  "from_corner": "Santa Fe x Remedios de Escalada",
+  "to_corner": "Santa Fe x Pueyrredón",
+  "from_latlon": [
+   -27.447302,
+   -58.987376
+  ],
+  "to_latlon": [
+   -27.448011,
+   -58.986579
+  ],
+  "mid_latlon": [
+   -27.447656,
+   -58.986977
+  ],
+  "length_m": 111.2
+ },
+ {
+  "face_id": "block_w:Pueyrredón",
+  "block": "block_w",
+  "street": "Pueyrredón",
+  "from_corner": "Pueyrredón x Santa Fe",
+  "to_corner": "Pueyrredón x Marcelo Torcuato de Alvear",
+  "from_latlon": [
+   -27.448011,
+   -58.986579
+  ],
+  "to_latlon": [
+   -27.448718,
+   -58.987373
+  ],
+  "mid_latlon": [
+   -27.448364,
+   -58.986976
+  ],
+  "length_m": 110.9
+ },
+ {
+  "face_id": "block_w:Marcelo Torcuato de Alvear",
+  "block": "block_w",
+  "street": "Marcelo Torcuato de Alvear",
+  "from_corner": "Marcelo Torcuato de Alvear x Pueyrredón",
+  "to_corner": "Marcelo Torcuato de Alvear x Remedios de Escalada",
+  "from_latlon": [
+   -27.448718,
+   -58.987373
+  ],
+  "to_latlon": [
+   -27.448015,
+   -58.988163
+  ],
+  "mid_latlon": [
+   -27.448366,
+   -58.987768
+  ],
+  "length_m": 110.3
+ }
+]

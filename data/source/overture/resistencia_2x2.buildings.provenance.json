@@ -1,0 +1,25 @@
+{
+  "source": "overture_maps",
+  "theme": "buildings",
+  "type": "building",
+  "release": "2026-11-18.0",
+  "bbox_wsen": [
+    -58.989,
+    -27.4503,
+    -58.984,
+    -27.4458
+  ],
+  "licenses": [
+    "ODbL-1.0"
+  ],
+  "attribution": "© OpenStreetMap contributors, Overture Maps Foundation; includes Google Open Buildings and Microsoft ML Building Footprints",
+  "datasets": {
+    "Google Open Buildings": 332,
+    "OpenStreetMap": 94,
+    "Microsoft ML Buildings": 180
+  },
+  "feature_count": 606,
+  "downloaded_at_utc": "2026-11-24T00:58:44+00:00",
+  "sha256": "51aab8fa1d8711466b912d9fe8bc1d6c0c4b8dd4eb19c978a62093a4a4486bad",
+  "file": "resistencia_2x2.buildings.geojson"
+}
