@@ -132,3 +132,18 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 - [ ] The city looks coherent: streets, sidewalks, building volumes, attribution text at the bottom-left.
 - [ ] Scale feels right when walking and running.
 - [ ] The camera behaves well between buildings.
+
+## Phase 5 — Minimal save (2026-11-24)
+
+- `scripts/world/player_save.gd` + `WorldManager`: player position and camera saved to `user://save/player.json` on window close and every 10 s, restored on start. Format: `docs/persistence.md`.
+- Also added `README.md` and `docs/decisions.md`.
+
+| Check | Result |
+| --- | --- |
+| Godot test suite | 54 checks, 0 failures: position restored after restart (0.000 m error), camera yaw restored, invalid/foreign saves ignored, save stores EPSG:32721 and survives an origin change, sources and generated files unchanged (raw OSM still matches its download SHA-256) |
+| `unittest discover -s tests/tools` | 16 tests OK |
+| `Godot --headless --path . --quit-after 120` | exit 0, no errors or warnings |
+
+### Pending manual verification
+
+- [ ] Close the game window and open it again: the player appears where it was.

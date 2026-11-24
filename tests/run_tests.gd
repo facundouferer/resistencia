@@ -8,6 +8,7 @@ const REAL_MAIN_SCENE := "res://scenes/main/main.tscn"
 const REAL_WORLD_SCENE := "res://scenes/world/resistance_world.tscn"
 const METADATA := "res://generated/resistencia/scenario.json"
 const TEST_OVERRIDES := "user://test_building_overrides.json"
+const TEST_SAVE := "user://test_player_save.json"
 const REQUIRED_ACTIONS := [
 	"move_forward", "move_back", "move_left", "move_right",
 	"run", "mouse_capture", "mouse_release",
@@ -40,6 +41,11 @@ func _run() -> void:
 	await _test_walk_every_sidewalk()
 	await _test_step_from_roadway_onto_sidewalk()
 	await _test_buildings_block_the_player()
+	# Phase 5: persistence
+	await _test_position_survives_restart()
+	await _test_invalid_saves_fall_back_to_spawn()
+	_test_save_uses_projected_coordinates()
+	DirAccess.remove_absolute(TEST_SAVE)
 	print("\n%d checks, %d failures" % [_checks, _failures])
 	quit(1 if _failures > 0 else 0)
 
@@ -291,10 +297,76 @@ func _test_buildings_block_the_player() -> void:
 	await _free(main)
 
 
+# --- Phase 5: persistence ----------------------------------------------
+
+func _test_position_survives_restart() -> void:
+	DirAccess.remove_absolute(TEST_SAVE)
+	var hashes_before := _protected_hashes()
+	var main := await _spawn_main(REAL_MAIN_SCENE, TEST_SAVE)
+	var world: ResistanceWorld = main.get_node("World")
+	var target := GeoReference.local_to_godot(world.metadata["blocks"]["block_n"]["sidewalk_path"][1])
+	await _walk_path(main, target + Vector3(0, 0.3, 0), [target + Vector3(3, 0, 0)])
+	await _frames(20)
+	var saved_position := _player(main).global_position
+	_camera(main).yaw = 1.0
+	_check(main.save_player() == OK, "save_player writes the save file")
+	await _free(main)
+
+	main = await _spawn_main(REAL_MAIN_SCENE, TEST_SAVE)
+	var restored := _player(main).global_position
+	_check(restored.distance_to(saved_position) < 0.05,
+		"position restored after restart (%.3f m error)" % restored.distance_to(saved_position))
+	_check(is_equal_approx(_camera(main).yaw, 1.0), "camera yaw restored")
+	await _frames(30)
+	_check(_player(main).is_on_floor(), "restored player stands on the floor")
+	await _free(main)
+	_check(_protected_hashes() == hashes_before, "sources and generated resources unchanged by saving")
+	_check(_protected_hashes()["res://data/source/osm/resistencia_2x2.osm.json"] == _provenance_sha(
+		"res://data/source/osm/resistencia_2x2.osm.provenance.json"), "raw OSM file still matches its download hash")
+
+
+func _test_invalid_saves_fall_back_to_spawn() -> void:
+	for content in ["not json", JSON.stringify({"version": 1, "scenario": "other_city", "godot_position": [50, 0, 50]})]:
+		var file := FileAccess.open(TEST_SAVE, FileAccess.WRITE)
+		file.store_string(content)
+		file.close()
+		var main := await _spawn_main(REAL_MAIN_SCENE, TEST_SAVE)
+		var spawn: Vector3 = main.spawn_transform.origin
+		_check(_horizontal(_player(main).global_position - spawn).length() < 0.05,
+			"invalid or foreign save is ignored (%s)" % content.left(20))
+		await _free(main)
+
+
+func _test_save_uses_projected_coordinates() -> void:
+	var metadata := ResistanceWorld.load_metadata(METADATA)
+	var geo := GeoReference.from_metadata(metadata)
+	PlayerSave.write(TEST_SAVE, "resistencia_2x2", Vector3(10, 0.15, -20), 0.0, 0.0, geo)
+	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(TEST_SAVE))
+	_check(is_equal_approx(data["position"]["easting"], geo.origin_easting + 10.0)
+		and is_equal_approx(data["position"]["northing"], geo.origin_northing + 20.0), "save stores EPSG:32721 coordinates")
+	var moved := GeoReference.from_metadata(metadata)
+	moved.origin_easting += 100.0
+	var loaded := PlayerSave.read(TEST_SAVE, "resistencia_2x2", moved)
+	_check(loaded["position"].is_equal_approx(Vector3(-90, 0.15, -20)), "save survives a change of local origin")
+
+
+func _protected_hashes() -> Dictionary:
+	var hashes := {}
+	for path in ["res://data/source/osm/resistencia_2x2.osm.json", "res://data/source/overture/resistencia_2x2.buildings.geojson",
+			"res://generated/resistencia/scenario.json", "res://generated/resistencia/buildings.glb"]:
+		hashes[path] = FileAccess.get_sha256(path)
+	return hashes
+
+
+func _provenance_sha(path: String) -> String:
+	return JSON.parse_string(FileAccess.get_file_as_string(path))["sha256"]
+
+
 # --- helpers -----------------------------------------------------------
 
-func _spawn_main(scene := TEST_MAIN_SCENE) -> Node:
+func _spawn_main(scene := TEST_MAIN_SCENE, save_path := "") -> Node:
 	var main: Node = load(scene).instantiate()
+	main.save_path = save_path  # tests never touch the real player save
 	root.add_child(main)
 	await _frames(30) # let the player settle on the floor
 	return main
