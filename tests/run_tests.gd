@@ -3,7 +3,11 @@ extends SceneTree
 ## Usage: Godot --headless --path . -s tests/run_tests.gd
 ## Exit code 0 when every check passes, 1 otherwise.
 
-const MAIN_SCENE := "res://scenes/main/main.tscn"
+const TEST_MAIN_SCENE := "res://tests/scenes/test_main.tscn"
+const REAL_MAIN_SCENE := "res://scenes/main/main.tscn"
+const REAL_WORLD_SCENE := "res://scenes/world/resistance_world.tscn"
+const METADATA := "res://generated/resistencia/scenario.json"
+const TEST_OVERRIDES := "user://test_building_overrides.json"
 const REQUIRED_ACTIONS := [
 	"move_forward", "move_back", "move_left", "move_right",
 	"run", "mouse_capture", "mouse_release",
@@ -26,6 +30,16 @@ func _run() -> void:
 	_test_pitch_is_clamped()
 	await _test_wall_blocks_player()
 	await _test_respawn_after_fall()
+	# Phase 3: geographic world
+	_test_geo_reference_round_trip()
+	await _test_world_loads_buildings_with_collisions()
+	await _test_building_overrides_do_not_touch_generated_files()
+	# Phase 4: player in the geographic world
+	await _test_real_spawn_on_sidewalk()
+	await _test_walk_every_street_segment()
+	await _test_walk_every_sidewalk()
+	await _test_step_from_roadway_onto_sidewalk()
+	await _test_buildings_block_the_player()
 	print("\n%d checks, %d failures" % [_checks, _failures])
 	quit(1 if _failures > 0 else 0)
 
@@ -117,13 +131,221 @@ func _test_respawn_after_fall() -> void:
 	await _free(main)
 
 
+# --- Phase 3: geographic world ------------------------------------------
+
+func _test_geo_reference_round_trip() -> void:
+	var metadata := ResistanceWorld.load_metadata(METADATA)
+	_check(not metadata.is_empty(), "scenario metadata loads")
+	var geo := GeoReference.from_metadata(metadata)
+	_check(geo.projection == "EPSG:32721", "projection is EPSG:32721")
+	_check(geo.projected_to_godot(geo.origin_easting, geo.origin_northing).is_zero_approx(), "origin maps to Godot (0,0,0)")
+	var worst := 0.0
+	for e in [303502.41, 303842.32, 303667.47]:
+		for n in [6962201.94, 6962542.27]:
+			var v := geo.projected_to_godot(e, n, 1.5)
+			var back := geo.godot_to_projected(v)
+			worst = maxf(worst, absf(back["easting"] - e) + absf(back["northing"] - n) + absf(back["height"] - 1.5))
+	_check(worst < 0.01, "projected -> Godot -> projected error < 1 cm (%.6f m)" % worst)
+	var east := geo.projected_to_godot(geo.origin_easting + 10.0, geo.origin_northing + 20.0)
+	_check(east.is_equal_approx(Vector3(10, 0, -20)), "east is +X and north is -Z")
+
+
+func _test_world_loads_buildings_with_collisions() -> void:
+	var world := await _spawn_world()
+	var manager := world.get_node("Buildings") as BuildingManager
+	var expected: int = world.metadata["buildings"].size()
+	_check(expected == 172 and manager.buildings.size() == expected,
+		"all %d generated buildings are loaded by id" % manager.buildings.size())
+	var without := 0
+	for id in manager.buildings:
+		if manager.buildings[id].find_children("*", "StaticBody3D", true, false).is_empty():
+			without += 1
+	_check(without == 0, "every building has a collision body (%d missing)" % without)
+	for part in ["Terrain", "Streets", "Sidewalks"]:
+		_check(not world.get_node(part).find_children("*", "StaticBody3D", true, false).is_empty(),
+			"%s has collision" % part)
+	_check(manager.building_data[manager.building_data.keys()[0]].has("height_is_estimated"),
+		"building metadata keeps the estimated-height flag")
+	await _free(world)
+
+
+func _test_building_overrides_do_not_touch_generated_files() -> void:
+	var before := FileAccess.get_sha256("res://generated/resistencia/buildings.glb")
+	var metadata := ResistanceWorld.load_metadata(METADATA)
+	var ids: Array = metadata["buildings"].map(func(b): return b["id"])
+	var overrides := {
+		"version": 1,
+		"buildings": {
+			ids[0]: {"removed": true},
+			ids[1]: {"color": "#ff0000"},
+			ids[2]: {"replacement_scene": "res://tests/scenes/replacement_box.tscn"},
+		},
+		"added": [{"id": "custom_test", "scene": "res://tests/scenes/replacement_box.tscn", "position": [0, 0.15, 0]}],
+	}
+	var file := FileAccess.open(TEST_OVERRIDES, FileAccess.WRITE)
+	file.store_string(JSON.stringify(overrides))
+	file.close()
+	var world := await _spawn_world(TEST_OVERRIDES)
+	var manager := world.get_node("Buildings") as BuildingManager
+	_check(not manager.buildings.has(ids[0]), "override removes a building")
+	var colored := manager.buildings[ids[1]] as MeshInstance3D
+	_check(colored.material_override is StandardMaterial3D
+		and (colored.material_override as StandardMaterial3D).albedo_color == Color("#ff0000"), "override recolors a building")
+	_check(manager.buildings[ids[2]].scene_file_path == "res://tests/scenes/replacement_box.tscn",
+		"override replaces a building model")
+	_check(manager.buildings.has("custom_test"), "override adds a building")
+	_check(FileAccess.get_sha256("res://generated/resistencia/buildings.glb") == before,
+		"generated buildings.glb is unchanged")
+	await _free(world)
+	DirAccess.remove_absolute(TEST_OVERRIDES)
+
+
+# --- Phase 4: player in the geographic world -----------------------------
+
+func _test_real_spawn_on_sidewalk() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	await _frames(30)
+	var player := _player(main)
+	var curb: float = main.get_node("World").metadata["estimation_rules"]["curb_height_m"]
+	_check(player.is_on_floor(), "player stands on the floor in the real world")
+	_check(absf(player.global_position.y - curb) < 0.05, "player spawns on the sidewalk (y=%.3f)" % player.global_position.y)
+	await _free(main)
+
+
+func _test_walk_every_street_segment() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	var segments: Array = main.get_node("World").metadata["street_segments"]
+	var failed: Array[String] = []
+	for segment in segments:
+		var start := GeoReference.local_to_godot(segment["from"], 0.1)
+		var target := GeoReference.local_to_godot(segment["to"])
+		if not await _walk_path(main, start, [target]):
+			failed.append("%s %s" % [segment["street"], segment["from"]])
+	_check(segments.size() == 12 and failed.is_empty(),
+		"player runs along all %d street segments without getting stuck %s" % [segments.size(), failed])
+	await _free(main)
+
+
+func _test_walk_every_sidewalk() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	var world: ResistanceWorld = main.get_node("World")
+	var curb: float = world.metadata["estimation_rules"]["curb_height_m"]
+	for block in world.metadata["blocks"]:
+		var path: Array = world.metadata["blocks"][block]["sidewalk_path"]
+		var points: Array[Vector3] = []
+		for p in path:
+			points.append(GeoReference.local_to_godot(p))
+		var ok := await _walk_path(main, points[0] + Vector3(0, curb + 0.1, 0), points.slice(1), curb)
+		_check(ok, "player walks around the whole sidewalk of %s on the curb level" % block)
+	await _free(main)
+
+
+func _test_step_from_roadway_onto_sidewalk() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	var world: ResistanceWorld = main.get_node("World")
+	var spawn := Vector3(world.metadata["spawn"]["x"], 0, world.metadata["spawn"]["z"])
+	# The nearest roadway is outward from the block_s sidewalk, i.e. away from the block centre.
+	var center := _ring_center(world.metadata["blocks"]["block_s"]["lot"][0])
+	var outward := (spawn - center)
+	outward.y = 0
+	var start := spawn + outward.normalized() * 4.0 + Vector3(0, 0.1, 0)
+	var ok := await _walk_path(main, start, [spawn])
+	var player := _player(main)
+	await _frames(10)
+	_check(ok and absf(player.global_position.y - 0.15) < 0.05,
+		"player climbs the 0.15 m curb from the roadway (y=%.3f)" % player.global_position.y)
+	await _free(main)
+
+
+func _test_buildings_block_the_player() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	var world: ResistanceWorld = main.get_node("World")
+	var footprints: Array = []
+	for b in world.metadata["buildings"]:
+		var poly := PackedVector2Array()
+		for p in b["footprint"][0]:
+			poly.append(Vector2(p[0], -p[1]))
+		footprints.append(poly)
+	var inside := 0
+	var tried := 0
+	for b in world.metadata["buildings"]:
+		if b["block"] != "block_s" or b["footprint_area_m2"] < 150.0:
+			continue
+		var target := _ring_center(b["footprint"][0])
+		var path: Array = world.metadata["blocks"]["block_s"]["sidewalk_path"]
+		var nearest := GeoReference.local_to_godot(path[0])
+		for p in path:
+			var v := GeoReference.local_to_godot(p)
+			if v.distance_to(target) < nearest.distance_to(target):
+				nearest = v
+		await _walk_path(main, nearest + Vector3(0, 0.3, 0), [target], -1.0, 180)
+		var pos := _player(main).global_position
+		tried += 1
+		for poly in footprints:
+			if Geometry2D.is_point_in_polygon(Vector2(pos.x, pos.z), poly):
+				inside += 1
+				break
+		if tried == 5:
+			break
+	_check(tried == 5 and inside == 0, "player cannot enter buildings (%d/%d ended inside)" % [inside, tried])
+	await _free(main)
+
+
 # --- helpers -----------------------------------------------------------
 
-func _spawn_main() -> Node:
-	var main: Node = load(MAIN_SCENE).instantiate()
+func _spawn_main(scene := TEST_MAIN_SCENE) -> Node:
+	var main: Node = load(scene).instantiate()
 	root.add_child(main)
 	await _frames(30) # let the player settle on the floor
 	return main
+
+
+func _spawn_world(overrides_path := "user://__no_overrides__.json") -> ResistanceWorld:
+	var world := load(REAL_WORLD_SCENE).instantiate() as ResistanceWorld
+	(world.get_node("Buildings") as BuildingManager).overrides_path = overrides_path
+	root.add_child(world)
+	await _frames(2)
+	return world
+
+
+## Teleports the player to start and runs through the points, steering the
+## camera yaw towards each one. Returns false if a point is not reached.
+## When floor_y >= 0, also fails if the player leaves that height while on the floor.
+func _walk_path(main: Node, start: Vector3, points: Array, floor_y := -1.0, max_frames := 1500) -> bool:
+	var player := _player(main)
+	var camera := _camera(main)
+	player.global_position = start
+	player.velocity = Vector3.ZERO
+	await _frames(5)
+	Input.action_press("move_forward")
+	Input.action_press("run")
+	var ok := true
+	for target in points:
+		var frames := 0
+		while _horizontal(target - player.global_position).length() > 1.0:
+			var d := _horizontal(target - player.global_position)
+			camera.yaw = atan2(-d.x, -d.z)
+			camera.apply_look(Vector2.ZERO)
+			await physics_frame
+			frames += 1
+			if floor_y >= 0.0 and player.is_on_floor() and absf(player.global_position.y - floor_y) > 0.05:
+				ok = false
+			if frames > max_frames:
+				ok = false
+				break
+		if not ok:
+			break
+	Input.action_release("move_forward")
+	Input.action_release("run")
+	return ok
+
+
+func _ring_center(ring: Array) -> Vector3:
+	var sum := Vector2.ZERO
+	for i in ring.size() - 1:
+		sum += Vector2(ring[i][0], ring[i][1])
+	var c := sum / (ring.size() - 1)
+	return GeoReference.local_to_godot([c.x, c.y])
 
 
 func _free(node: Node) -> void:

@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var run_speed := 6.0 ## m/s
 @export var acceleration := 20.0 ## m/s²
 @export var turn_speed := 10.0
+## Highest obstacle (m) climbed automatically, e.g. a curb. Walls are taller.
+@export var max_step_height := 0.3
 @export var camera_path: NodePath = ^"CameraPivot"
 @export var visual_path: NodePath = ^"Visual"
 
@@ -30,9 +32,32 @@ func _physics_process(delta: float) -> void:
 	horizontal = horizontal.move_toward(direction * speed, acceleration * delta)
 	velocity.x = horizontal.x
 	velocity.z = horizontal.z
+	var stepped := _try_step_up(delta)
 	move_and_slide()
+	if stepped:
+		# Land on top of the step instead of floating for a few frames.
+		move_and_collide(Vector3.DOWN * max_step_height)
+		velocity.y = 0.0
 
 	if direction.length_squared() > 0.0001:
 		# Model front is -Z: yaw that rotates -Z onto the movement direction.
 		var target_yaw := atan2(-direction.x, -direction.z)
 		_visual.rotation.y = lerp_angle(_visual.rotation.y, target_yaw, clampf(turn_speed * delta, 0.0, 1.0))
+
+
+## Raises the body when a low obstacle (curb) blocks horizontal movement and
+## there is free space above it. Returns true when the body was raised.
+func _try_step_up(delta: float) -> bool:
+	var motion := Vector3(velocity.x, 0.0, velocity.z) * delta
+	if motion.length_squared() < 1e-8 or not is_on_floor():
+		return false
+	var hit := KinematicCollision3D.new()
+	if not test_move(global_transform, motion, hit) or hit.get_normal().y >= cos(floor_max_angle):
+		return false  # free, or touching walkable floor
+	var up := Vector3.UP * max_step_height
+	if test_move(global_transform, up):
+		return false  # ceiling
+	if test_move(global_transform.translated(up), motion):
+		return false  # still blocked: a wall, not a step
+	global_position += up
+	return true

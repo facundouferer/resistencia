@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/world/world_manager.gd" id="1_world_manager"]
-[ext_resource type="PackedScene" path="res://scenes/world/test_world.tscn" id="2_world"]
+[ext_resource type="PackedScene" path="res://scenes/world/resistance_world.tscn" id="2_world"]
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="3_player"]
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]

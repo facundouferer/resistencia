@@ -18,6 +18,8 @@ Keys are bound by physical position, so WASD works on any keyboard layout.
 - Movement is relative to the **camera yaw**: W moves where the camera looks, projected on the ground.
 - The character body does not rotate; its visual model turns to face the movement direction.
 - Walk speed: 2 m/s. Run speed: 6 m/s. Both are exported on `PlayerController` (1 Godot unit = 1 m).
+  A real brisk walk is about 1.4–2 m/s and a run 3–6 m/s; a 120 m block side takes about 60 s walking and 20 s running.
+- Curbs and other obstacles up to 0.3 m (`max_step_height`) are climbed automatically; walls are not.
 
 ## Camera
 

@@ -102,3 +102,33 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 ### Remaining known gaps
 
 - No height data in any source; street widths missing; ML footprints are approximate. See `docs/geographic-data.md`.
+
+## Phase 3 — 3D scenario generation (2026-11-24)
+
+- `tools/geometry_generator/generate_scene.py` + config → `generated/resistencia/` (terrain, streets, sidewalks, buildings GLB + `scenario.json`). Details: `docs/geographic-data.md`.
+- Godot: `GeoReference`, `ResistanceWorld` (`scenes/world/resistance_world.tscn`), `BuildingManager` with overrides layer. Architecture: `docs/architecture.md`.
+- Added dependency `mapbox-earcut` (polygon triangulation required by trimesh extrusion).
+
+| Check | Result |
+| --- | --- |
+| `unittest discover -s tests/tools` | 16 tests OK (blocks match cells, one connected roadway, sidewalks closed without holes, buildings inside lots, estimated heights flagged, GLB nodes = ids, metadata fields) |
+| Godot `--import` | exit 0, no errors |
+| Godot tests (Phase 3 part) | geo round trip error 0.000012 m, 172 buildings loaded with collisions, overrides remove/recolor/replace/add, `buildings.glb` hash unchanged |
+
+## Phase 4 — Player in the real scenario (2026-11-24)
+
+- `main.tscn` now loads `resistance_world.tscn`; the placeholder world moved to `tests/scenes/` (used by movement tests via `tests/scenes/test_main.tscn`).
+- Spawn on the `block_s` sidewalk, 20 m from the Pueyrredón × Santa Fe corner.
+- Curb step-up added to `PlayerController` (the capsule could not climb the 0.15 m curb: test failed at y = 0.001, passes at y = 0.151 after the fix).
+- Tests now run with `--fixed-fps 60` (≈ 5 s instead of ≈ 10 min of real-time waiting).
+
+| Check | Result |
+| --- | --- |
+| `Godot --headless --fixed-fps 60 --path . -s tests/run_tests.gd` | 44 checks, 0 failures: spawn on sidewalk, all 12 street segments run end to end, all 4 sidewalks walked around at curb level, curb climb, 5 buildings approached and never entered |
+| `Godot --headless --path . --quit-after 120` | exit 0, no errors or warnings |
+
+### Pending manual verification (`Godot --path .`)
+
+- [ ] The city looks coherent: streets, sidewalks, building volumes, attribution text at the bottom-left.
+- [ ] Scale feels right when walking and running.
+- [ ] The camera behaves well between buildings.
