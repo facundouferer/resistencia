@@ -1,0 +1,19 @@
+{
+  "scenario": "resistencia_2x2",
+  "extent_margin_m": 40.0,
+  "sidewalk_width_m": 3.0,
+  "sidewalk_width_is_estimated": true,
+  "sidewalk_offset_source": "median distance from OSM footway=sidewalk ways to street centerlines",
+  "curb_height_m": 0.15,
+  "level_height_m": 3.0,
+  "default_levels": 2,
+  "min_building_area_m2": 4.0,
+  "colors": {
+    "terrain": [96, 110, 80],
+    "roadway": [58, 58, 62],
+    "sidewalk": [170, 166, 158],
+    "lot": [120, 132, 96],
+    "building_surveyed": [214, 196, 170],
+    "building_machine_learned": [200, 190, 178]
+  }
+}

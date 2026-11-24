@@ -95,3 +95,32 @@ Outputs in `data/processed/resistencia_2x2/`:
 - **Heights**: none of the 172 buildings has height or levels in any source. All heights will be estimated and flagged as such.
 - **Street widths**: no `width` or `lanes` tags on the six streets (all `oneway=yes`).
 - 7 `building:part` ways exist in the download; not used yet.
+
+## 3D generation (Phase 3)
+
+```bash
+tools/.venv/bin/python -I tools/geometry_generator/generate_scene.py \
+  tools/geometry_generator/config/resistencia_2x2.json \
+  tools/geo_processor/areas/resistencia_2x2.json \
+  data/source/osm/resistencia_2x2.osm.json generated/resistencia \
+  --extra-buildings data/source/overture/resistencia_2x2.buildings.geojson
+```
+
+Outputs in `generated/resistencia/` (Godot imports them; never edit by hand, regenerate instead):
+
+| File | Content |
+| --- | --- |
+| `terrain.glb` | Flat ground over the area + 40 m margin, top at y = -0.02 |
+| `streets.glb` | Roadway: street centerlines buffered to the kerb, top at y = 0 |
+| `sidewalks.glb` | Per block: `Sidewalk_<block>` ring and `Lot_<block>` interior, top at the curb height |
+| `buildings.glb` | One mesh per building, node name = persistent building id |
+| `scenario.json` | Metadata: sources, license, projection, origin, bounds, estimation rules, resource hashes, spawn, blocks, street segments, buildings, warnings |
+
+Street layout rule (`tools/geometry_generator/config/resistencia_2x2.json`):
+
+- Sidewalk centerline offset from the street centerline: **6.1 m, measured** (median of 50 samples from OSM `footway=sidewalk` ways).
+- Sidewalk width: **3.0 m, estimated** → kerb at 4.6 m (roadway ≈ 9.2 m), property line at 7.6 m from the centerline.
+- Curb height: 0.15 m (estimated). Terrain: flat (no elevation data used).
+- Corners are square (mitre); real chamfered corners ("ochavas") are not in the data.
+
+Building height rule: source `height` if present, else `building:levels × 3.0 m`, else **2 levels × 3.0 m = 6 m**. Today all 172 heights are estimated (`height_is_estimated: true`, `height_rule` says which rule). Building footprints are clipped to their lot; none needed dropping.

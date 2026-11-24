@@ -1,0 +1,36 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/resistance_world.gd" id="1_world"]
+[ext_resource type="Script" path="res://scripts/buildings/building_manager.gd" id="2_buildings"]
+[ext_resource type="PackedScene" path="res://generated/resistencia/terrain.glb" id="3_terrain"]
+[ext_resource type="PackedScene" path="res://generated/resistencia/streets.glb" id="4_streets"]
+[ext_resource type="PackedScene" path="res://generated/resistencia/sidewalks.glb" id="5_sidewalks"]
+[ext_resource type="PackedScene" path="res://generated/resistencia/buildings.glb" id="6_buildings_glb"]
+
+[node name="ResistanceWorld" type="Node3D"]
+script = ExtResource("1_world")
+
+[node name="Terrain" parent="." instance=ExtResource("3_terrain")]
+
+[node name="Streets" parent="." instance=ExtResource("4_streets")]
+
+[node name="Sidewalks" parent="." instance=ExtResource("5_sidewalks")]
+
+[node name="Buildings" type="Node3D" parent="."]
+script = ExtResource("2_buildings")
+buildings_scene = ExtResource("6_buildings_glb")
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+
+[node name="Attribution" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Attribution"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -28.0
+offset_right = 900.0
+offset_bottom = -6.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
