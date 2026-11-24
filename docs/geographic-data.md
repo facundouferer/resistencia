@@ -130,3 +130,10 @@ Building height rule: source `height` if present, else `building:levels × 3.0 m
 ## Trees and street lamps
 
 From OSM nodes `natural=tree` and `highway=street_lamp` inside the scenario extent (area + 40 m). Palms are trees whose `genus` is in `props.palm_genera` (config). No height tags exist: heights are estimated (tree 8 m, palm 6 m, lamp 6 m). Lamp arm direction is derived (towards the nearest street centerline). None are mapped inside the four blocks.
+
+## Street-level imagery check: Mapillary (2026-11-24)
+
+- API (`graph.mapillary.com`) requires an access token (unauthenticated request: error 190).
+- Public web viewer: all six streets around the blocks have image sequences, but every capture is **older than 4 years** (age colouring). Sample on Pueyrredón: dashcam through a windshield, 2015-12-20, user `federicopertile`.
+- That sample shows dense street trees on the sidewalks; OSM has no trees mapped inside the four blocks.
+- Licence: Mapillary imagery is CC BY-SA 4.0; usable as visual reference with attribution, not as current ground truth (8+ years old).
