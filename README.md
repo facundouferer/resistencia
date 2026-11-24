@@ -34,3 +34,4 @@ Then follow `docs/geographic-data.md`.
 Map data © OpenStreetMap contributors, available under the Open Database License (ODbL) 1.0.
 Additional building footprints from Overture Maps Foundation (Google Open Buildings, Microsoft ML Building Footprints), ODbL 1.0.
 Street-level reference photos from Mapillary contributor federicopertile, CC BY-SA 4.0.
+Material textures from Poly Haven (CC0).

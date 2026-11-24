@@ -353,6 +353,7 @@ def feature_flags(features: list[str] | None) -> dict:
         "pitched_roof": "pitched" in text,
         "balconies": "balcon" in text,
         "brick_base": "brick" in text and ("base" in text or "band" in text),
+        "brick_facade": "brick" in text and not ("base" in text or "band" in text),
     }
 
 
@@ -365,6 +366,7 @@ def default_appearance(building_id: str, gen: dict) -> dict:
         "balconies": False,
         "base_band_color": None,
         "window_grid": "house",
+        "wall_material": "plaster",
         "source": "palette_by_id",
         "is_estimated": True,
     }
@@ -378,6 +380,7 @@ def observed_appearance(entry: dict, observed: dict, face_id: str, levels) -> di
         "balconies": flags["balconies"],
         "base_band_color": "#8a4b35" if flags["brick_base"] else None,
         "window_grid": "tower" if isinstance(levels, int) and levels >= 6 else "house",
+        "wall_material": "brick" if flags["brick_facade"] else "plaster",
         "source": "mapillary_reference",
         "reference_face": face_id,
         "reference_images": [img.get("pkey") for img in observed.get("images", [])],

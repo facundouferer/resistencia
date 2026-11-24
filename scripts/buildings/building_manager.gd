@@ -110,6 +110,7 @@ func apply_appearance(mesh: MeshInstance3D, data: Dictionary) -> void:
 		Color(band) if band is String else Color(0, 0, 0, 0))
 	mesh.set_instance_shader_parameter("balconies", 1.0 if appearance.get("balconies", false) else 0.0)
 	mesh.set_instance_shader_parameter("bay", TOWER_BAY_M if appearance.get("window_grid") == "tower" else HOUSE_BAY_M)
+	mesh.set_instance_shader_parameter("wall_material", 1.0 if appearance.get("wall_material") == "brick" else 0.0)
 
 
 func set_building_color(id: String, color: Color) -> void:

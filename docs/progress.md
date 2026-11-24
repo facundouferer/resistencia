@@ -192,3 +192,9 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 - User: "me gustaría que los edificios sean más parecidos a los reales" → option A. Tracked in `odd/tasks/photo-frontages.md`.
 - Generator: frontage volumes on the property line, gable tile roofs, appearance flags; shader: roof tint, brick plinth, balconies, tower window grid.
 - Checks: pipeline 25 tests OK; Godot suite 62 checks, 0 failures; render snapshots reviewed (new `houses_escalada` view).
+
+## Generic facade textures (2026-11-24)
+
+- User: "sí, avanzá con las texturas genéricas". Downloaded 12 CC0 maps (7.4 MB) from Poly Haven; shader v2 with plaster/brick walls, tile and concrete roofs, normal and roughness maps.
+- Regression caught and avoided: per-face vertex export (to fix roofs shaded as walls) made the kerb-edge test fail 4/564; reverted and solved in the shader instead.
+- Checks: pipeline tests OK; Godot suite 62 checks, 0 failures; render snapshots reviewed (street level, overview, Escalada houses).

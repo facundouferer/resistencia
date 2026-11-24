@@ -19,3 +19,5 @@ Decisions fixed by the briefing (engine, language, OSM, EPSG:32721, 1 unit = 1 m
 | 2026-11-24 | Mapillary 2015–16 photos as reference for levels, colours, ground floors and street trees; observations stored as a separate source file | No current open data on facades; user accepted older photos |
 | 2026-11-24 | Frontage band = sidewalk + 15 m of lot | Footprints (especially ML) start several metres behind the property line |
 | 2026-11-24 | Rebuild observed frontages on the property line as party-wall rows; OSM wins, Overture replaced | Real blocks are continuous rows on the property line; ML footprints are detached and set back (user chose option A) |
+| 2026-11-24 | CC0 tileable textures mapped in world space, tinted to the building colour | Realistic materials with no UVs or per-building photos; user chose generic textures first |
+| 2026-11-24 | Face normals from derivatives in the shader; meshes keep shared vertices | Per-face vertices fix shading but break physics edge connectivity (kerb snag) |

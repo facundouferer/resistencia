@@ -158,3 +158,10 @@ User: "poné los árboles en las veredas y también usa fotos de referencia para
 - Unknown levels or levels 0 (vacant lot, construction site) create nothing; existing footprints stay.
 - Features (free text from the survey) by keyword: `pitched` → gable tile roof (25°, ridge parallel to the street, 0.3 m eaves; only on near-rectangular footprints), `balcon` → balconies, `brick` + `base`/`band` → brick plinth. ≥ 6 levels → tower window grid (2.2 m bays).
 - Result: 29 photo frontages, 29 Overture footprints replaced, 39 OSM kept; 9 tile roofs, 12 with balconies, 2 brick bases, 7 towers. Flagged with `geometry_is_estimated` / `geometry_rule`.
+
+## Facade textures (2026-11-24)
+
+- Tileable CC0 textures from Poly Haven (1K JPG, albedo + OpenGL normal + roughness) in `assets/textures/`, provenance and SHA-256 in `assets/textures/SOURCES.json`: `painted_plaster_wall` (2 m tile), `brick_wall_001` (3 m), `clay_roof_tiles` (4 m), `brushed_concrete` (2.5 m).
+- `facade.gdshader` (`procedural_facade_v2`) maps them in world space (meshes have no UVs): walls plaster or brick, pitched roofs clay tiles (rows parallel to the ridge), flat roofs concrete, brick plinths. Each texture is tinted so its mean colour equals the building's observed/estimated colour, keeping the texture detail. Windows, doors, balconies stay drawn on top.
+- Wall material: brick when the photo features mention brick and not only a base/band (8 buildings), plaster otherwise.
+- Bug found while reviewing renders: some flat roofs were painted as walls. Cause: the GLB has no normals, Godot generates averaged vertex normals and large roofs with complex outlines got tilted normals. Exporting per-face (unmerged) vertices fixed shading but broke physics edge connectivity (player snagged on the kerb: 4/564 kerb-edge cases failed), so it was reverted; the shader now derives the exact face normal from screen-space derivatives. A test guards that collision meshes keep shared vertices.

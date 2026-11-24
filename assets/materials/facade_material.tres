@@ -1,6 +1,30 @@
 [gd_resource type="ShaderMaterial" format=3]
 
 [ext_resource type="Shader" path="res://assets/materials/facade.gdshader" id="1_facade"]
+[ext_resource type="Texture2D" path="res://assets/textures/painted_plaster_wall/albedo.jpg" id="2_pa"]
+[ext_resource type="Texture2D" path="res://assets/textures/painted_plaster_wall/normal.jpg" id="3_pn"]
+[ext_resource type="Texture2D" path="res://assets/textures/painted_plaster_wall/roughness.jpg" id="4_pr"]
+[ext_resource type="Texture2D" path="res://assets/textures/brick_wall_001/albedo.jpg" id="5_ba"]
+[ext_resource type="Texture2D" path="res://assets/textures/brick_wall_001/normal.jpg" id="6_bn"]
+[ext_resource type="Texture2D" path="res://assets/textures/brick_wall_001/roughness.jpg" id="7_br"]
+[ext_resource type="Texture2D" path="res://assets/textures/clay_roof_tiles/albedo.jpg" id="8_ta"]
+[ext_resource type="Texture2D" path="res://assets/textures/clay_roof_tiles/normal.jpg" id="9_tn"]
+[ext_resource type="Texture2D" path="res://assets/textures/clay_roof_tiles/roughness.jpg" id="10_tr"]
+[ext_resource type="Texture2D" path="res://assets/textures/brushed_concrete/albedo.jpg" id="11_ca"]
+[ext_resource type="Texture2D" path="res://assets/textures/brushed_concrete/normal.jpg" id="12_cn"]
+[ext_resource type="Texture2D" path="res://assets/textures/brushed_concrete/roughness.jpg" id="13_cr"]
 
 [resource]
 shader = ExtResource("1_facade")
+shader_parameter/plaster_albedo = ExtResource("2_pa")
+shader_parameter/plaster_normal = ExtResource("3_pn")
+shader_parameter/plaster_rough = ExtResource("4_pr")
+shader_parameter/brick_albedo = ExtResource("5_ba")
+shader_parameter/brick_normal = ExtResource("6_bn")
+shader_parameter/brick_rough = ExtResource("7_br")
+shader_parameter/tiles_albedo = ExtResource("8_ta")
+shader_parameter/tiles_normal = ExtResource("9_tn")
+shader_parameter/tiles_rough = ExtResource("10_tr")
+shader_parameter/concrete_albedo = ExtResource("11_ca")
+shader_parameter/concrete_normal = ExtResource("12_cn")
+shader_parameter/concrete_rough = ExtResource("13_cr")

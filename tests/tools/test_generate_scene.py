@@ -118,6 +118,15 @@ class GeneratedScenario(unittest.TestCase):
                 self.assertTrue(any(p["id"] in w for w in self.meta["warnings"]), p["id"])
                 self.assertTrue(self.result["roadway"].contains(Point(p["position"])))
 
+    def test_collision_meshes_keep_shared_vertices(self):
+        # Unmerged (per-face) vertices broke edge connectivity: the player snagged
+        # on the kerb (4/564 kerb-edge cases failed). Flat shading is done in the
+        # facade shader instead.
+        for name in ("sidewalks.glb", "buildings.glb"):
+            scene = trimesh.load(self.out / name, process=False)
+            for geometry_name, mesh in scene.geometry.items():
+                self.assertLess(len(mesh.vertices), 3 * len(mesh.faces), f"{name}:{geometry_name}")
+
     def test_metadata_has_required_fields_and_resource_hashes(self):
         written = json.loads((self.out / "scenario.json").read_text())
         for key in REQUIRED_METADATA:
@@ -237,10 +246,12 @@ class ReferenceObservations(unittest.TestCase):
 class FeatureKeywords(unittest.TestCase):
     def test_free_text_features_map_to_flags(self):
         self.assertEqual(gs.feature_flags(["red tile canopy/pitched tile roof", "ornate iron balcony"]),
-                         {"pitched_roof": True, "balconies": True, "brick_base": False})
+                         {"pitched_roof": True, "balconies": True, "brick_base": False, "brick_facade": False})
         self.assertEqual(gs.feature_flags(["brick bands", "flat roof"]),
-                         {"pitched_roof": False, "balconies": False, "brick_base": True})
-        self.assertEqual(gs.feature_flags(None), {"pitched_roof": False, "balconies": False, "brick_base": False})
+                         {"pitched_roof": False, "balconies": False, "brick_base": True, "brick_facade": False})
+        self.assertEqual(gs.feature_flags(None),
+                         {"pitched_roof": False, "balconies": False, "brick_base": False, "brick_facade": False})
+        self.assertTrue(gs.feature_flags(["brick-red facade", "corner tower"])["brick_facade"])
 
 
 if __name__ == "__main__":
