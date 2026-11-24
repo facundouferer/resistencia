@@ -70,5 +70,11 @@
       "Livistona",
       "Trachycarpus"
     ]
-  }
+  },
+  "frontage_depth_m": {
+    "house": 12.0,
+    "mid_rise": 15.0,
+    "tower": 20.0
+  },
+  "tile_roof_pitch_deg": 25.0
 }

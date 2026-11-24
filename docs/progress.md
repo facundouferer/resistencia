@@ -186,3 +186,9 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 - Attribution label now spans the screen width and wraps (it was cut off).
 - Checks: pipeline 21 tests OK (incl. synthetic reference observations, faces in sync); Godot suite 62 checks, 0 failures; render snapshots reviewed.
 - Manual check (user, 2026-11-24): curb climb and step-down work in play.
+
+## Photo-based frontages (2026-11-24)
+
+- User: "me gustaría que los edificios sean más parecidos a los reales" → option A. Tracked in `odd/tasks/photo-frontages.md`.
+- Generator: frontage volumes on the property line, gable tile roofs, appearance flags; shader: roof tint, brick plinth, balconies, tower window grid.
+- Checks: pipeline 25 tests OK; Godot suite 62 checks, 0 failures; render snapshots reviewed (new `houses_escalada` view).
