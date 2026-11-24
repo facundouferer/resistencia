@@ -14,3 +14,5 @@ Decisions fixed by the briefing (engine, language, OSM, EPSG:32721, 1 unit = 1 m
 | 2026-11-24 | Curb step-up in `PlayerController` (≤ 0.3 m) | `CharacterBody3D` cannot climb the 0.15 m curb |
 | 2026-11-24 | Save in projected coordinates in `user://` | Survives origin changes; keeps sources/generated untouched |
 | 2026-11-24 | Procedural facades (shader + cornice ledge), colour by building id hash | No open source has real facade shape or colour (user chose this option) |
+| 2026-11-24 | Trees/palms/lamps from OSM with generic models, palms by `genus` | Real positions and species exist in OSM; shapes and heights do not |
+| 2026-11-24 | Curb step-up decided by contact height, not normal angle | Normals oscillate around the 45° floor limit on the curb edge |

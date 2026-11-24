@@ -1,6 +1,6 @@
 {
  "name": "resistencia_2x2",
- "generated_at_utc": "2026-11-24T01:52:03+00:00",
+ "generated_at_utc": "2026-11-24T02:00:45+00:00",
  "generator": "tools/geometry_generator/generate_scene.py 0.1.0",
  "sources": [
   {
@@ -55,6 +55,7 @@
   "curb_height_m": 0.15,
   "level_height_m": 3.0,
   "default_levels": 2,
+  "props": "positions and species from OSM; heights by type unless tagged: tree 8.0 m, palm 6.0 m, street lamp 6.0 m",
   "terrain": "flat at y = 0 (no elevation data used)",
   "facades": "procedural_facade_v1: stylized windows/shopfront/cornice, colour picked from a palette by building id; not real appearance"
  },
@@ -9763,9 +9764,594 @@
    }
   }
  ],
+ "props": [
+  {
+   "id": "osm_node_5264813231",
+   "source": "openstreetmap",
+   "source_id": "node/5264813231",
+   "type": "street_lamp",
+   "position": [
+    17.707,
+    -205.116
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    9.734,
+    9.745
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_5277411941",
+   "source": "openstreetmap",
+   "source_id": "node/5277411941",
+   "type": "street_lamp",
+   "position": [
+    -7.774,
+    -206.322
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -12.105,
+    12.198
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_5364387581",
+   "source": "openstreetmap",
+   "source_id": "node/5364387581",
+   "type": "street_lamp",
+   "position": [
+    2.784,
+    -199.414
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -13.89,
+    13.997
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_12059068179",
+   "source": "openstreetmap",
+   "source_id": "node/12059068179",
+   "type": "palm",
+   "position": [
+    -4.777,
+    -215.672
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -18.267,
+    18.408
+   ],
+   "species": "Phoenix dactylifera",
+   "genus": "Phoenix"
+  },
+  {
+   "id": "osm_node_12059068180",
+   "source": "openstreetmap",
+   "source_id": "node/12059068180",
+   "type": "palm",
+   "position": [
+    -4.697,
+    -208.921
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -14.932,
+    15.047
+   ],
+   "species": "Phoenix dactylifera",
+   "genus": "Phoenix"
+  },
+  {
+   "id": "osm_node_12063068027",
+   "source": "openstreetmap",
+   "source_id": "node/12063068027",
+   "type": "street_lamp",
+   "position": [
+    -7.882,
+    -195.273
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -6.528,
+    6.578
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_12063068032",
+   "source": "openstreetmap",
+   "source_id": "node/12063068032",
+   "type": "tree",
+   "position": [
+    -14.865,
+    -201.281
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    -6.067,
+    6.114
+   ],
+   "species": "Handroanthus heptaphyllus",
+   "genus": "Handroanthus"
+  },
+  {
+   "id": "osm_node_12063068033",
+   "source": "openstreetmap",
+   "source_id": "node/12063068033",
+   "type": "tree",
+   "position": [
+    -9.512,
+    -207.092
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    -11.628,
+    11.718
+   ],
+   "species": "Eugenia uniflora",
+   "genus": "Eugenia"
+  },
+  {
+   "id": "osm_node_12079950359",
+   "source": "openstreetmap",
+   "source_id": "node/12079950359",
+   "type": "palm",
+   "position": [
+    7.476,
+    -210.245
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    17.408,
+    17.428
+   ],
+   "species": "Phoenix dactylifera",
+   "genus": "Phoenix"
+  },
+  {
+   "id": "osm_node_12079950361",
+   "source": "openstreetmap",
+   "source_id": "node/12079950361",
+   "type": "tree",
+   "position": [
+    13.626,
+    -212.098
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    15.263,
+    15.28
+   ],
+   "species": "Melia azedarach",
+   "genus": "Melia"
+  },
+  {
+   "id": "osm_node_12079950364",
+   "source": "openstreetmap",
+   "source_id": "node/12079950364",
+   "type": "tree",
+   "position": [
+    16.871,
+    -209.142
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    12.164,
+    12.178
+   ],
+   "species": "Handroanthus heptaphyllus",
+   "genus": "Handroanthus"
+  },
+  {
+   "id": "osm_node_12079950365",
+   "source": "openstreetmap",
+   "source_id": "node/12079950365",
+   "type": "tree",
+   "position": [
+    15.652,
+    -207.687
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    12.046,
+    12.06
+   ],
+   "species": "americana",
+   "genus": "Cordia"
+  },
+  {
+   "id": "osm_node_12080012273",
+   "source": "openstreetmap",
+   "source_id": "node/12080012273",
+   "type": "tree",
+   "position": [
+    19.577,
+    -201.484
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    6.984,
+    6.992
+   ],
+   "species": "Handroanthus heptaphyllus",
+   "genus": "Handroanthus"
+  },
+  {
+   "id": "osm_node_12082991572",
+   "source": "openstreetmap",
+   "source_id": "node/12082991572",
+   "type": "tree",
+   "position": [
+    6.896,
+    -216.062
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    20.606,
+    20.63
+   ],
+   "species": "Ceiba speciosa",
+   "genus": "Ceiba"
+  },
+  {
+   "id": "osm_node_12082991573",
+   "source": "openstreetmap",
+   "source_id": "node/12082991573",
+   "type": "tree",
+   "position": [
+    6.89,
+    -221.859
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    23.508,
+    23.534
+   ],
+   "species": "Ceiba speciosa",
+   "genus": "Ceiba"
+  },
+  {
+   "id": "osm_node_12082991575",
+   "source": "openstreetmap",
+   "source_id": "node/12082991575",
+   "type": "tree",
+   "position": [
+    5.738,
+    -209.796
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    18.052,
+    18.072
+   ],
+   "species": "americana",
+   "genus": "Cordia"
+  },
+  {
+   "id": "osm_node_12120183782",
+   "source": "openstreetmap",
+   "source_id": "node/12120183782",
+   "type": "street_lamp",
+   "position": [
+    13.822,
+    -178.612
+   ],
+   "base_y": 0.0,
+   "surface": "roadway",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -1.578,
+    -1.58
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_12120183783",
+   "source": "openstreetmap",
+   "source_id": "node/12120183783",
+   "type": "street_lamp",
+   "position": [
+    17.963,
+    -181.571
+   ],
+   "base_y": 0.0,
+   "surface": "roadway",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -2.166,
+    -2.169
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_12120183786",
+   "source": "openstreetmap",
+   "source_id": "node/12120183786",
+   "type": "street_lamp",
+   "position": [
+    26.668,
+    -186.763
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -3.918,
+    -3.922
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_12120183787",
+   "source": "openstreetmap",
+   "source_id": "node/12120183787",
+   "type": "tree",
+   "position": [
+    21.829,
+    -181.587
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    -4.089,
+    -4.094
+   ],
+   "species": "Handroanthus heptaphyllus",
+   "genus": "Handroanthus"
+  },
+  {
+   "id": "osm_node_12120183793",
+   "source": "openstreetmap",
+   "source_id": "node/12120183793",
+   "type": "tree",
+   "position": [
+    -21.308,
+    -169.409
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    11.008,
+    11.259
+   ],
+   "species": "Cassia fistula",
+   "genus": "Cassia"
+  },
+  {
+   "id": "osm_node_12120183797",
+   "source": "openstreetmap",
+   "source_id": "node/12120183797",
+   "type": "tree",
+   "position": [
+    -19.861,
+    -183.218
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    5.443,
+    -5.485
+   ],
+   "species": "Handroanthus heptaphyllus",
+   "genus": "Handroanthus"
+  },
+  {
+   "id": "osm_node_12144077520",
+   "source": "openstreetmap",
+   "source_id": "node/12144077520",
+   "type": "palm",
+   "position": [
+    -22.94,
+    -173.713
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    11.723,
+    -11.813
+   ],
+   "species": "Phoenix roebelenii",
+   "genus": "Phoenix"
+  },
+  {
+   "id": "osm_node_12144077521",
+   "source": "openstreetmap",
+   "source_id": "node/12144077521",
+   "type": "palm",
+   "position": [
+    -22.688,
+    -173.366
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    11.772,
+    -11.863
+   ],
+   "species": "Phoenix roebelenii",
+   "genus": "Phoenix"
+  },
+  {
+   "id": "osm_node_12144077522",
+   "source": "openstreetmap",
+   "source_id": "node/12144077522",
+   "type": "street_lamp",
+   "position": [
+    -22.011,
+    -173.045
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    11.597,
+    -11.686
+   ],
+   "species": null,
+   "genus": null
+  },
+  {
+   "id": "osm_node_12146040080",
+   "source": "openstreetmap",
+   "source_id": "node/12146040080",
+   "type": "palm",
+   "position": [
+    32.653,
+    -183.209
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 6.0,
+   "height_is_estimated": true,
+   "facing": [
+    -8.684,
+    -8.693
+   ],
+   "species": "Syagrus romanzoffiana",
+   "genus": "Syagrus"
+  },
+  {
+   "id": "osm_node_12146040081",
+   "source": "openstreetmap",
+   "source_id": "node/12146040081",
+   "type": "tree",
+   "position": [
+    25.219,
+    -188.26
+   ],
+   "base_y": 0.0,
+   "surface": "roadway",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    -2.445,
+    -2.448
+   ],
+   "species": "Fraxinus americana",
+   "genus": "Fraxinus"
+  },
+  {
+   "id": "osm_node_12146040082",
+   "source": "openstreetmap",
+   "source_id": "node/12146040082",
+   "type": "tree",
+   "position": [
+    33.106,
+    -193.609
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    -3.71,
+    -3.714
+   ],
+   "species": "Spathodea campanulata",
+   "genus": "Spathodea"
+  },
+  {
+   "id": "osm_node_12146040083",
+   "source": "openstreetmap",
+   "source_id": "node/12146040083",
+   "type": "tree",
+   "position": [
+    31.779,
+    -192.279
+   ],
+   "base_y": -0.02,
+   "surface": "terrain",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    -3.713,
+    -3.717
+   ],
+   "species": "Koelreuteria bipinnata",
+   "genus": "Koelreuteria"
+  }
+ ],
  "warnings": [
   "7 building:part ways present; not used for footprints yet",
   "172 of 172 buildings in the blocks have no height or levels",
-  "133 building footprints in the blocks are machine-learned (Overture), not surveyed; shapes and separation between adjacent buildings are approximate"
+  "133 building footprints in the blocks are machine-learned (Overture), not surveyed; shapes and separation between adjacent buildings are approximate",
+  "osm_node_12120183782: street_lamp lies on the modelled roadway (street layout is estimated; the real street may have a median here)",
+  "osm_node_12120183783: street_lamp lies on the modelled roadway (street layout is estimated; the real street may have a median here)",
+  "osm_node_12146040081: tree lies on the modelled roadway (street layout is estimated; the real street may have a median here)"
  ]
 }

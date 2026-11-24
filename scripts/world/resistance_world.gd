@@ -22,6 +22,7 @@ func _ready() -> void:
 	for path in collision_roots:
 		add_static_collisions(get_node(path))
 	($Buildings as BuildingManager).load_buildings(metadata)
+	($Props as PropManager).load_props(metadata)
 	var spawn := metadata["spawn"] as Dictionary
 	(get_node(spawn_point_path) as Node3D).position = Vector3(spawn["x"], spawn["y"], spawn["z"])
 	$Attribution/Label.text = "Map data: %s (%s)" % [metadata.get("attribution", ""), metadata.get("license", "")]

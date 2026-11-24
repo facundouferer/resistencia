@@ -35,6 +35,7 @@ func _run() -> void:
 	_test_geo_reference_round_trip()
 	await _test_world_loads_buildings_with_collisions()
 	await _test_building_overrides_do_not_touch_generated_files()
+	await _test_props_are_placed_with_collisions()
 	# Phase 4: player in the geographic world
 	await _test_real_spawn_on_sidewalk()
 	await _test_walk_every_street_segment()
@@ -42,6 +43,7 @@ func _run() -> void:
 	await _test_step_from_roadway_onto_sidewalk()
 	await _test_curb_climb_matrix()
 	await _test_buildings_block_the_player()
+	await _test_tree_trunk_blocks_the_player()
 	# Phase 5: persistence
 	await _test_position_survives_restart()
 	await _test_invalid_saves_fall_back_to_spawn()
@@ -211,6 +213,30 @@ func _test_building_overrides_do_not_touch_generated_files() -> void:
 	DirAccess.remove_absolute(TEST_OVERRIDES)
 
 
+func _test_props_are_placed_with_collisions() -> void:
+	var world := await _spawn_world()
+	var manager := world.get_node("Props") as PropManager
+	var entries: Array = world.metadata["props"]
+	_check(entries.size() > 0 and manager.props.size() == entries.size(),
+		"all %d OSM trees and street lamps are placed" % manager.props.size())
+	var bad := 0
+	for entry in entries:
+		var node: Node3D = manager.props[entry["id"]]
+		var expected := GeoReference.local_to_godot(entry["position"], float(entry["base_y"]))
+		if node.position.distance_to(expected) > 0.01 or node.find_children("*", "StaticBody3D", true, false).is_empty():
+			bad += 1
+	_check(bad == 0, "props sit at their OSM position with a collision body (%d wrong)" % bad)
+	var lamps_ok := true
+	for entry in entries:
+		if entry["type"] != "street_lamp":
+			continue
+		var arm := -(manager.props[entry["id"]] as Node3D).global_transform.basis.z
+		var to_street := Vector3(entry["facing"][0], 0, -entry["facing"][1]).normalized()
+		lamps_ok = lamps_ok and Vector2(arm.x, arm.z).normalized().dot(Vector2(to_street.x, to_street.z)) > 0.99
+	_check(lamps_ok, "street lamp arms point to the nearest street")
+	await _free(world)
+
+
 # --- Phase 4: player in the geographic world -----------------------------
 
 func _test_real_spawn_on_sidewalk() -> void:
@@ -268,7 +294,7 @@ func _test_step_from_roadway_onto_sidewalk() -> void:
 	await _free(main)
 
 
-## Every block, walking and running, straight and at 45 degrees.
+## Two sides of every block, walking and running, at five approach angles.
 func _test_curb_climb_matrix() -> void:
 	var main := await _spawn_main(REAL_MAIN_SCENE)
 	var world: ResistanceWorld = main.get_node("World")
@@ -276,22 +302,24 @@ func _test_curb_climb_matrix() -> void:
 	var total := 0
 	for block in world.metadata["blocks"]:
 		var path: Array = world.metadata["blocks"][block]["sidewalk_path"]
-		var a := GeoReference.local_to_godot(path[0])
-		var b := GeoReference.local_to_godot(path[1])
-		var on_sidewalk := (a + b) / 2.0
-		var tangent := (b - a).normalized()
-		var outward := on_sidewalk - _ring_center(world.metadata["blocks"][block]["lot"][0])
-		outward = (outward - tangent * outward.dot(tangent)).normalized()
-		for running in [false, true]:
-			for angle_deg in [0.0, 45.0]:
-				var dir := outward.rotated(Vector3.UP, deg_to_rad(angle_deg))
-				var start := on_sidewalk + dir * (4.0 / cos(deg_to_rad(angle_deg))) + Vector3(0, 0.1, 0)
-				var reached := await _walk_path(main, start, [on_sidewalk], -1.0, 600, running)
-				await _frames(5)
-				var y := _player(main).global_position.y
-				total += 1
-				if not reached or absf(y - 0.15) > 0.05:
-					failed.append("%s %s %d° y=%.2f" % [block, "run" if running else "walk", angle_deg, y])
+		var center := _ring_center(world.metadata["blocks"][block]["lot"][0])
+		for side in 2:
+			var a := GeoReference.local_to_godot(path[side])
+			var b := GeoReference.local_to_godot(path[side + 1])
+			var on_sidewalk := (a + b) / 2.0
+			var tangent := (b - a).normalized()
+			var outward := on_sidewalk - center
+			outward = (outward - tangent * outward.dot(tangent)).normalized()
+			for running in [false, true]:
+				for angle_deg in [-45.0, -20.0, 0.0, 20.0, 45.0]:
+					var dir := outward.rotated(Vector3.UP, deg_to_rad(angle_deg))
+					var start := on_sidewalk + dir * (4.0 / cos(deg_to_rad(angle_deg))) + Vector3(0, 0.1, 0)
+					var reached := await _walk_path(main, start, [on_sidewalk], -1.0, 600, running)
+					await _frames(5)
+					var y := _player(main).global_position.y
+					total += 1
+					if not reached or absf(y - 0.15) > 0.05:
+						failed.append("%s side%d %s %d° y=%.2f" % [block, side, "run" if running else "walk", angle_deg, y])
 	_check(failed.is_empty(), "curb climbed in %d/%d approaches %s" % [total - failed.size(), total, failed])
 	await _free(main)
 
@@ -327,6 +355,32 @@ func _test_buildings_block_the_player() -> void:
 		if tried == 5:
 			break
 	_check(tried == 5 and inside == 0, "player cannot enter buildings (%d/%d ended inside)" % [inside, tried])
+	await _free(main)
+
+
+func _test_tree_trunk_blocks_the_player() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	var world: ResistanceWorld = main.get_node("World")
+	var tree: Dictionary = {}
+	for entry in world.metadata["props"]:
+		if entry["type"] == "tree" and entry["surface"] == "terrain":
+			tree = entry
+			break
+	var trunk := GeoReference.local_to_godot(tree["position"], float(tree["base_y"]))
+	var player := _player(main)
+	var camera := _camera(main)
+	player.global_position = trunk + Vector3(5, 0.3, 0)
+	await _frames(10)
+	camera.yaw = atan2(1.0, 0.0)  # face -X, straight through the trunk
+	camera.apply_look(Vector2.ZERO)
+	var closest := 100.0
+	Input.action_press("move_forward")
+	for i in 240:
+		await physics_frame
+		closest = minf(closest, _horizontal(player.global_position - trunk).length())
+	Input.action_release("move_forward")
+	var trunk_radius := 0.22 * float(tree["height_m"]) / 8.0
+	_check(closest > trunk_radius + 0.3, "tree trunk blocks the player (closest %.2f m)" % closest)
 	await _free(main)
 
 

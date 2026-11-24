@@ -105,6 +105,51 @@ def facade_color(building_id: str, palette: list[str]) -> str:
     return palette[int(hashlib.sha256(building_id.encode()).hexdigest(), 16) % len(palette)]
 
 
+def extract_props(osm: aa.OsmData, origin, extent, roadway, platforms, streets_l: dict,
+                  rules: dict, curb: float) -> tuple[list[dict], list[str]]:
+    """OSM trees and street lamps inside the scenario extent, in local metres."""
+    props, warnings = [], []
+    all_streets = unary_union(list(streets_l.values()))
+    for node_id, tags in sorted(osm.node_tags.items()):
+        if tags.get("natural") == "tree":
+            kind = "palm" if tags.get("genus") in rules["palm_genera"] else "tree"
+        elif tags.get("highway") == "street_lamp":
+            kind = "street_lamp"
+        else:
+            continue
+        e, n = osm.nodes[node_id]
+        point = Point(e - origin[0], n - origin[1])
+        if not extent.contains(point):
+            continue
+        if platforms.contains(point):
+            surface, base_y = "sidewalk_or_lot", curb
+        elif roadway.contains(point):
+            surface, base_y = "roadway", 0.0
+            warnings.append(f"osm_node_{node_id}: {kind} lies on the modelled roadway "
+                            "(street layout is estimated; the real street may have a median here)")
+        else:
+            surface, base_y = "terrain", -0.02
+        height = rules[f"{kind}_height_m"] if kind != "palm" else rules["palm_height_m"]
+        parsed = aa.parse_number(tags.get("height"))
+        nearest = shapely.ops.nearest_points(all_streets, point)[0]
+        props.append({
+            "id": f"osm_node_{node_id}",
+            "source": "openstreetmap",
+            "source_id": f"node/{node_id}",
+            "type": kind,
+            "position": [round(point.x, 3), round(point.y, 3)],
+            "base_y": base_y,
+            "surface": surface,
+            "height_m": parsed if parsed is not None else height,
+            "height_is_estimated": parsed is None,
+            # Lamp arms point to the nearest street centerline (derived, not mapped).
+            "facing": [round(nearest.x - point.x, 3), round(nearest.y - point.y, 3)],
+            "species": tags.get("species"),
+            "genus": tags.get("genus"),
+        })
+    return props, warnings
+
+
 def ring_coords(geometry) -> list[list[list[float]]]:
     """Exterior rings of a (multi)polygon in local metres, 3 decimals."""
     return [[[round(x, 3), round(y, 3)] for x, y in poly.exterior.coords] for poly in polygons(geometry)]
@@ -220,6 +265,10 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
     ring = sidewalk_paths["block_s"]
     spawn_center = ring.interpolate((ring.project(Point(0, 0)) + 20.0) % ring.length)
 
+    props, prop_warnings = extract_props(osm, origin, extent, roadway, all_platforms, streets_l,
+                                         gen["props"], curb)
+    warnings += prop_warnings
+
     resources = {}
     for file in ("terrain.glb", "streets.glb", "sidewalks.glb", "buildings.glb"):
         resources[file] = hashlib.sha256((out / file).read_bytes()).hexdigest()
@@ -252,6 +301,9 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
             "curb_height_m": curb,
             "level_height_m": gen["level_height_m"],
             "default_levels": gen["default_levels"],
+            "props": "positions and species from OSM; heights by type unless tagged: "
+                     f"tree {gen['props']['tree_height_m']} m, palm {gen['props']['palm_height_m']} m, "
+                     f"street lamp {gen['props']['street_lamp_height_m']} m",
             "terrain": "flat at y = 0 (no elevation data used)",
             "facades": f"{gen['facade_style']}: stylized windows/shopfront/cornice, colour picked from a palette by building id; not real appearance",
         },
@@ -265,6 +317,7 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
         },
         "street_segments": street_segments(streets_l, intersections),
         "buildings": building_meta,
+        "props": props,
         "warnings": warnings,
     }
     (out / "scenario.json").write_text(json.dumps(metadata, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -293,6 +346,8 @@ def main() -> int:
     result = generate(gen, area_config, osm, extra, extra_source, args.output_dir)
     meta = result["metadata"]
     estimated = sum(1 for b in meta["buildings"] if b["height_is_estimated"])
+    kinds = {k: sum(1 for p in meta["props"] if p["type"] == k) for k in ("tree", "palm", "street_lamp")}
+    print(f"props: {kinds}")
     print(f"buildings: {len(meta['buildings'])} ({estimated} estimated heights); "
           f"street segments: {len(meta['street_segments'])}; spawn: {meta['spawn']}; "
           f"sidewalk offset: {meta['estimation_rules']['sidewalk_centerline_offset_m']} m")

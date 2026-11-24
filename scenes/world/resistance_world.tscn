@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://generated/resistencia/streets.glb" id="4_streets"]
 [ext_resource type="PackedScene" path="res://generated/resistencia/sidewalks.glb" id="5_sidewalks"]
 [ext_resource type="PackedScene" path="res://generated/resistencia/buildings.glb" id="6_buildings_glb"]
+[ext_resource type="Script" path="res://scripts/world/prop_manager.gd" id="7_props"]
 
 [node name="ResistanceWorld" type="Node3D"]
 script = ExtResource("1_world")
@@ -19,6 +20,9 @@ script = ExtResource("1_world")
 [node name="Buildings" type="Node3D" parent="."]
 script = ExtResource("2_buildings")
 buildings_scene = ExtResource("6_buildings_glb")
+
+[node name="Props" type="Node3D" parent="."]
+script = ExtResource("7_props")
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
 

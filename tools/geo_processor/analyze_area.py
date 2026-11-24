@@ -49,6 +49,7 @@ class OsmData:
     ways: dict[int, dict]
     relations: list[dict]
     osm_base_timestamp: str | None = None
+    node_tags: dict[int, dict] = field(default_factory=dict)  # tagged nodes only
 
 
 @dataclass
@@ -112,15 +113,17 @@ def merge_extra_buildings(primary: list[Building], extra: list[Building]) -> tup
 
 def load_osm(path: Path) -> OsmData:
     raw = json.loads(path.read_text(encoding="utf-8"))
-    nodes, ways, relations = {}, {}, []
+    nodes, ways, relations, node_tags = {}, {}, [], {}
     for element in raw["elements"]:
         if element["type"] == "node":
             nodes[element["id"]] = _to_utm.transform(element["lon"], element["lat"])
+            if element.get("tags"):
+                node_tags[element["id"]] = element["tags"]
         elif element["type"] == "way":
             ways[element["id"]] = element
         elif element["type"] == "relation":
             relations.append(element)
-    return OsmData(nodes, ways, relations, raw.get("osm3s", {}).get("timestamp_osm_base"))
+    return OsmData(nodes, ways, relations, raw.get("osm3s", {}).get("timestamp_osm_base"), node_tags)
 
 
 def way_line(osm: OsmData, way: dict) -> LineString:

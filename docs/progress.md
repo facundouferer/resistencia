@@ -129,9 +129,9 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 
 ### Pending manual verification (`Godot --path .`)
 
-- [ ] The city looks coherent: streets, sidewalks, building volumes, attribution text at the bottom-left.
-- [ ] Scale feels right when walking and running.
-- [ ] The camera behaves well between buildings.
+- [x] The city looks coherent: streets, sidewalks, building volumes, attribution text at the bottom-left (user, 2026-11-24).
+- [x] Scale feels right when walking and running (user, 2026-11-24).
+- [x] The camera behaves well between buildings (user, 2026-11-24).
 
 ## Phase 5 — Minimal save (2026-11-24)
 
@@ -146,7 +146,7 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 
 ### Pending manual verification
 
-- [ ] Close the game window and open it again: the player appears where it was.
+- [x] Close the game window and open it again: the player appears where it was (user, 2026-11-24).
 
 ## Fix — curb could not be climbed in manual play (2026-11-24)
 
@@ -162,3 +162,11 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 - Generator: cornice ledge + deterministic facade colour per building (`appearance`, flagged estimated). Godot: facade shader, `BuildingManager` applies it; colour overrides now change the facade colour.
 - Checks: pipeline 17 tests OK; Godot suite 56 checks, 0 failures; `tests/render_snapshot.gd` screenshots reviewed (street level and overview render windows, shopfronts, cornices, varied colours; no shader errors).
 - Limits: stylized only; ML footprints have stair-stepped outlines; all buildings are 2 levels (no height data).
+
+## Trees and street lamps (2026-11-24)
+
+- User: "agregá los árboles y las farolas" (manual tests reported as working).
+- OSM has no trees or lamps inside the 4 blocks; 29 lie in the 40 m margin beyond Alvear and Mitre: 15 broadleaf trees, 6 palms (by OSM `genus`), 8 street lamps. 3 fall on the modelled roadway of Alvear (warning in metadata; the real avenue may have a median, not verified).
+- Generator: `props` in `scenario.json` (OSM position, species, surface, estimated height, lamp facing to nearest street). Godot: `PropManager` + generic models in `assets/vegetation/` and `assets/props/` with trunk/pole collisions.
+- Regression found while testing: curb climb failed 1/16 (block_w, walking). Cause: the capsule rides the curb edge with contact normals oscillating around the 45° floor limit. Fix: step detection by contact height (3–30 cm) instead of normal angle. Curb matrix widened to 80 approaches (2 sides × 4 blocks × walk/run × 5 angles): 80/80.
+- Checks: pipeline 18 tests OK; Godot suite 60 checks, 0 failures; render snapshot `trees_and_lamps.png` reviewed.

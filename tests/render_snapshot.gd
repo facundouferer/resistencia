@@ -15,9 +15,17 @@ func _run() -> void:
 	main.save_path = ""
 	root.add_child(main)
 	var camera: CameraController = main.get_node("Player/CameraPivot")
-	var views := {"street_level": [0.6, -0.12, 4.0], "overview": [0.8, -0.6, 40.0]}
+	var player: Node3D = main.get_node("Player")
+	var spawn: Vector3 = player.global_position
+	# [yaw, pitch, distance, player position or null = spawn]
+	var views := {
+		"street_level": [0.6, -0.12, 4.0, null],
+		"overview": [0.8, -0.6, 40.0, null],
+		"trees_and_lamps": [2.6, -0.25, 22.0, Vector3(5, 0.2, 175)],
+	}
 	for name in views:
 		var v: Array = views[name]
+		player.global_position = spawn if v[3] == null else v[3]
 		camera.yaw = v[0]
 		camera.pitch = v[1]
 		camera.distance = v[2]

@@ -57,5 +57,18 @@
     "overhang_m": 0.25,
     "height_m": 0.3,
     "drop_m": 0.25
+  },
+  "props": {
+    "tree_height_m": 8.0,
+    "palm_height_m": 6.0,
+    "street_lamp_height_m": 6.0,
+    "palm_genera": [
+      "Phoenix",
+      "Syagrus",
+      "Butia",
+      "Washingtonia",
+      "Livistona",
+      "Trachycarpus"
+    ]
   }
 }

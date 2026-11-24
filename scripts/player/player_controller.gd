@@ -14,6 +14,7 @@ extends CharacterBody3D
 
 const STEP_PROBE_LIFT := 0.02
 const GROUND_PROBE_DEPTH := 0.1
+const STEP_MIN_HEIGHT := 0.03
 @export var camera_path: NodePath = ^"CameraPivot"
 @export var visual_path: NodePath = ^"Visual"
 
@@ -64,9 +65,12 @@ func _try_step_up(motion: Vector3) -> bool:
 	var hit := KinematicCollision3D.new()
 	if not test_move(probe, motion, hit):
 		return false
-	if hit.get_normal().y >= cos(floor_max_angle):
-		return false  # walkable slope, move_and_slide handles it
-	if hit.get_position().y - global_position.y > max_step_height:
+	# Decide by contact height, not by normal: a capsule riding the curb edge
+	# gets normals oscillating around the 45° floor limit.
+	var contact_height := hit.get_position().y - global_position.y
+	if contact_height < STEP_MIN_HEIGHT:
+		return false  # floor contact, nothing to climb
+	if contact_height > max_step_height:
 		return false  # obstacle taller than a step
 	var up := Vector3.UP * max_step_height
 	if test_move(global_transform, up):

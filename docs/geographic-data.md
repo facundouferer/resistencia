@@ -126,3 +126,7 @@ Street layout rule (`tools/geometry_generator/config/resistencia_2x2.json`):
 Facades (`procedural_facade_v1`): a 0.25 m cornice ledge in the geometry plus `assets/materials/facade.gdshader` drawing windows per 3 m level and 3.2 m bay, a shopfront ground floor and a darker cornice band. Facade colour is picked from `facade_palette` by a hash of the building id (deterministic) and stored as `appearance.facade_color` with `is_estimated: true`. **This is a stylized look, not the real appearance of each building.**
 
 Building height rule: source `height` if present, else `building:levels × 3.0 m`, else **2 levels × 3.0 m = 6 m**. Today all 172 heights are estimated (`height_is_estimated: true`, `height_rule` says which rule). Building footprints are clipped to their lot; none needed dropping.
+
+## Trees and street lamps
+
+From OSM nodes `natural=tree` and `highway=street_lamp` inside the scenario extent (area + 40 m). Palms are trees whose `genus` is in `props.palm_genera` (config). No height tags exist: heights are estimated (tree 8 m, palm 6 m, lamp 6 m). Lamp arm direction is derived (towards the nearest street centerline). None are mapped inside the four blocks.

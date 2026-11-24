@@ -99,6 +99,25 @@ class GeneratedScenario(unittest.TestCase):
             colors.add(appearance["facade_color"])
         self.assertGreaterEqual(len(colors), 6)
 
+    def test_props_come_from_osm_trees_and_lamps(self):
+        props = self.meta["props"]
+        raw = json.loads(OSM.read_text())
+        osm_ids = {f"osm_node_{e['id']}" for e in raw["elements"] if e["type"] == "node"
+                   and (e.get("tags", {}).get("natural") == "tree" or e.get("tags", {}).get("highway") == "street_lamp")}
+        ids = [p["id"] for p in props]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertTrue(set(ids) <= osm_ids)
+        self.assertEqual({p["type"] for p in props}, {"tree", "palm", "street_lamp"})
+        extent = self.result["extent"]
+        for p in props:
+            self.assertTrue(extent.contains(Point(p["position"])), p["id"])
+            self.assertTrue(p["height_is_estimated"])
+            if p["type"] == "palm":
+                self.assertIn(p["genus"], ["Phoenix", "Syagrus", "Butia", "Washingtonia", "Livistona", "Trachycarpus"])
+            if p["surface"] == "roadway":
+                self.assertTrue(any(p["id"] in w for w in self.meta["warnings"]), p["id"])
+                self.assertTrue(self.result["roadway"].contains(Point(p["position"])))
+
     def test_metadata_has_required_fields_and_resource_hashes(self):
         written = json.loads((self.out / "scenario.json").read_text())
         for key in REQUIRED_METADATA:
