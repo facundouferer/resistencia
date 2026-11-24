@@ -316,8 +316,8 @@ func _curb_matrix(climbing: bool) -> void:
 		for side in 2:
 			var a := GeoReference.local_to_godot(path[side])
 			var b := GeoReference.local_to_godot(path[side + 1])
-			var on_sidewalk := (a + b) / 2.0
 			var tangent := (b - a).normalized()
+			var on_sidewalk := _clear_of_props(world, (a + b) / 2.0, tangent, 3.5)
 			var outward := on_sidewalk - center
 			outward = (outward - tangent * outward.dot(tangent)).normalized()
 			for running in [false, true]:
@@ -357,8 +357,8 @@ func _curb_matrix(climbing: bool) -> void:
 		var center := _ring_center(world.metadata["blocks"][block]["lot"][0])
 		var a := GeoReference.local_to_godot(path[0])
 		var b := GeoReference.local_to_godot(path[1])
-		var on_sidewalk := (a + b) / 2.0
 		var tangent := (b - a).normalized()
+		var on_sidewalk := _clear_of_props(world, (a + b) / 2.0, tangent, 6.0)
 		var outward := on_sidewalk - center
 		outward = (outward - tangent * outward.dot(tangent)).normalized()
 		for angle_deg in [-75.0, 75.0]:
@@ -397,6 +397,9 @@ func _test_step_down_from_curb_edge() -> void:
 			outward = (outward - tangent * outward.dot(tangent)).normalized()
 			var d := 7.0
 			while d < a.distance_to(b) - 7.0:
+				if _distance_to_props(world, a + tangent * d) < 1.5:
+					d += 7.0
+					continue
 				cases.append([a + tangent * d + outward * (half_width - 0.005) + Vector3(0, 0.15, 0), outward])
 				d += 7.0
 	cases.append([Vector3(23.7290554046631, 0.149513557553291, -17.8599338531494), Vector3(-0.7071, 0, -0.7071)])
@@ -598,6 +601,24 @@ func _walk_path(main: Node, start: Vector3, points: Array, floor_y := -1.0, max_
 	Input.action_release("move_forward")
 	Input.action_release("run")
 	return ok
+
+
+## Horizontal distance from a point to the nearest prop (tree, lamp).
+func _distance_to_props(world: ResistanceWorld, point: Vector3) -> float:
+	var best := INF
+	for entry in world.metadata.get("props", []):
+		best = minf(best, _horizontal(GeoReference.local_to_godot(entry["position"]) - point).length())
+	return best
+
+
+## Moves a test point along the sidewalk until no prop is within `clearance` metres.
+func _clear_of_props(world: ResistanceWorld, point: Vector3, tangent: Vector3, clearance: float) -> Vector3:
+	var p := point
+	for i in 20:
+		if _distance_to_props(world, p) >= clearance:
+			return p
+		p += tangent * 1.0
+	return p
 
 
 func _ring_center(ring: Array) -> Vector3:

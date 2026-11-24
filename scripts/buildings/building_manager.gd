@@ -16,6 +16,8 @@ extends Node3D
 ## }
 
 const OVERRIDES_VERSION := 1
+## Index = shader ground_floor_kind.
+const GROUND_FLOOR_KINDS := ["shopfront", "residential", "garage"]
 
 @export var buildings_scene: PackedScene
 ## Stylized facade (windows, shopfront, cornice). Per-building colour comes
@@ -95,6 +97,8 @@ func apply_appearance(mesh: MeshInstance3D, data: Dictionary) -> void:
 	var base_y := float(data.get("base_y", 0.0))
 	mesh.set_instance_shader_parameter("base_y", base_y)
 	mesh.set_instance_shader_parameter("top_y", base_y + float(data.get("height_m", 0.0)))
+	mesh.set_instance_shader_parameter("ground_floor_kind",
+		float(GROUND_FLOOR_KINDS.find(appearance.get("ground_floor", "shopfront"))))
 
 
 func set_building_color(id: String, color: Color) -> void:

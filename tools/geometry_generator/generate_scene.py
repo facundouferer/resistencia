@@ -169,7 +169,120 @@ def street_segments(streets_local: dict, intersections: list[Point]) -> list[dic
     return segments
 
 
-def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source, out: Path) -> dict:
+GROUND_FLOOR_KINDS = ("shopfront", "residential", "garage")
+FRONTAGE_REACH_M = 18.0  # sidewalk (3 m) + first 15 m of the lot: buildings in this band face the street
+KERB_TREE_INSET_M = 0.7
+TREE_CORNER_CLEARANCE_M = 6.0
+DEFAULT_TREE_SPACING_M = 9.0
+
+
+def block_faces(platforms: dict, streets_l: dict) -> dict:
+    """Block sides (platform edges) keyed '<block>:<street>', oriented corner to corner.
+
+    Collinear pieces of the same side (a bend in the street) are merged.
+    """
+    faces = {}
+    for block, platform in platforms.items():
+        ring = shapely.simplify(platform, 0.5).exterior.coords[:]
+        for a, b in zip(ring, ring[1:]):
+            mid = Point((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+            street = min(streets_l, key=lambda n: streets_l[n].distance(mid))
+            corners = [min((n for n in streets_l if n != street), key=lambda n: streets_l[n].distance(Point(p)))
+                       for p in (a, b)]
+            key = f"{block}:{street}"
+            if key in faces:
+                face = faces[key]
+                coords = list(face["line"].coords)
+                if coords[-1] == a:
+                    face["line"], face["to_corner"] = LineString(coords + [b]), f"{street} x {corners[1]}"
+                else:
+                    face["line"], face["from_corner"] = LineString([a] + coords), f"{street} x {corners[0]}"
+            else:
+                faces[key] = {"block": block, "street": street, "line": LineString([a, b]),
+                              "from_corner": f"{street} x {corners[0]}", "to_corner": f"{street} x {corners[1]}"}
+    return faces
+
+
+def match_frontage(footprint, block: str, faces: dict, reference: dict | None):
+    """The observed frontage entry for a building facing a surveyed block side, if any."""
+    if not reference:
+        return None
+    best, best_area = None, 0.0
+    for face_id, face in faces.items():
+        if face["block"] != block:
+            continue
+        near = footprint.intersection(face["line"].buffer(FRONTAGE_REACH_M))
+        if near.area > best_area:
+            best, best_area = (face_id, face, near), near.area
+    if best is None:
+        return None
+    face_id, face, near = best
+    observed = reference.get(face_id)
+    if not observed or observed.get("visibility") == "none" or not observed.get("buildings"):
+        return None
+    t = face["line"].project(near.centroid, normalized=True)
+    entries = sorted(observed["buildings"], key=lambda e: e.get("order", 0))
+    total = sum(float(e.get("frontage_fraction") or 0) for e in entries) or 1.0
+    cumulative = 0.0
+    for entry in entries:
+        cumulative += float(entry.get("frontage_fraction") or 0) / total
+        if t <= cumulative + 1e-9:
+            return face_id, entry, observed
+    return face_id, entries[-1], observed
+
+
+def ground_floor_kind(features: list[str]) -> str:
+    features = [f.lower() for f in features or []]
+    if any("shop" in f for f in features):
+        return "shopfront"
+    if any("garage" in f for f in features):
+        return "garage"
+    return "residential"
+
+
+def reference_trees(faces: dict, platforms: dict, reference: dict | None, curb: float) -> list[dict]:
+    """Street trees on surveyed sidewalks: evenly spaced along the kerb, count as observed."""
+    trees = []
+    for face_id, face in sorted(faces.items()):
+        observed = (reference or {}).get(face_id) or {}
+        info = observed.get("trees") or {}
+        if not info.get("present"):
+            continue
+        line = face["line"]
+        usable = line.length - 2 * TREE_CORNER_CLEARANCE_M
+        count = info.get("approx_count")
+        if not isinstance(count, int) or count < 1:
+            count = int(usable // DEFAULT_TREE_SPACING_M) + 1
+        for i in range(count):
+            d = TREE_CORNER_CLEARANCE_M + (usable * (i + 0.5) / count)
+            p = line.interpolate(d)
+            q = line.interpolate(min(d + 0.5, line.length))
+            r = line.interpolate(max(d - 0.5, 0.0))
+            tx, ty = q.x - r.x, q.y - r.y
+            n = np.array([-ty, tx]) / max(np.hypot(tx, ty), 1e-9)
+            inside = np.array([p.x, p.y]) + n * KERB_TREE_INSET_M
+            if not platforms[face["block"]].contains(Point(inside)):
+                inside = np.array([p.x, p.y]) - n * KERB_TREE_INSET_M
+            trees.append({
+                "id": f"ref_tree_{face_id.replace(':', '_').replace(' ', '_')}_{i + 1}",
+                "source": "mapillary_reference",
+                "source_id": face_id,
+                "type": "tree",
+                "position": [round(float(inside[0]), 3), round(float(inside[1]), 3)],
+                "base_y": curb,
+                "surface": "sidewalk_or_lot",
+                "height_m": 8.0,
+                "height_is_estimated": True,
+                "facing": [0.0, 0.0],
+                "species": None,
+                "genus": None,
+                "reference_images": [img.get("pkey") for img in observed.get("images", [])],
+            })
+    return trees
+
+
+def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source, out: Path,
+             reference: dict | None = None) -> dict:
     report, _, _, buildings, boundary, extra_geo = aa.analyze(area_config, osm, extra, extra_source)
     origin = (report["local_origin"]["easting"], report["local_origin"]["northing"])
     blocks = extra_geo["blocks"]
@@ -195,6 +308,7 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
                .intersection(extent).difference(all_platforms))
 
     warnings = list(report["warnings"])
+    faces = block_faces(platforms, streets_l)
     building_meta, building_meshes = [], []
     for b in sorted((b for b in buildings if b.block), key=lambda b: b.id):
         footprint = to_local(b.footprint, origin)
@@ -209,6 +323,35 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
         else:
             height = gen["default_levels"] * gen["level_height_m"]
             estimated, rule = True, "default_levels x level_height_m"
+        appearance = {
+            "style": gen["facade_style"],
+            "facade_color": facade_color(b.id, gen["facade_palette"]),
+            "ground_floor": "shopfront",
+            "source": "palette_by_id",
+            "is_estimated": True,
+        }
+        levels = b.levels
+        matched = match_frontage(clipped, b.block, faces, reference)
+        if matched:
+            face_id, entry, observed = matched
+            observed_levels = entry.get("levels")
+            if isinstance(observed_levels, int) and observed_levels > 0 and b.height_m is None:
+                levels = observed_levels
+                height = observed_levels * gen["level_height_m"]
+                estimated, rule = True, "reference photo levels x level_height_m (mapillary)"
+            elif observed_levels == 0:
+                warnings.append(f"{b.id}: reference photo of {face_id} shows no building here "
+                                f"({', '.join(entry.get('features') or [])}); footprint kept")
+            color = entry.get("facade_color")
+            if isinstance(color, str) and len(color) == 7 and color.startswith("#"):
+                appearance["facade_color"] = color.lower()
+            appearance.update({
+                "ground_floor": ground_floor_kind(entry.get("features")),
+                "source": "mapillary_reference",
+                "reference_face": face_id,
+                "reference_images": [img.get("pkey") for img in observed.get("images", [])],
+                "reference_confidence": entry.get("confidence"),
+            })
         top = curb + height
         cornice = gen["cornice"]
         body = slab(clipped, 0.0, top, b.id)
@@ -229,16 +372,12 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
             "clipped_to_lot": round(1 - clipped.area / footprint.area, 3) if footprint.area else 0.0,
             "base_y": curb,
             "height_m": round(height, 2),
-            "levels": b.levels,
+            "levels": levels,
             "height_is_estimated": estimated,
             "height_rule": rule,
             "building_type": b.tags.get("building", "unknown") if b.source == "openstreetmap" else "unknown",
             "model": "generic_building",
-            "appearance": {
-                "style": gen["facade_style"],
-                "facade_color": facade_color(b.id, gen["facade_palette"]),
-                "is_estimated": True,
-            },
+            "appearance": appearance,
         })
 
     out.mkdir(parents=True, exist_ok=True)
@@ -268,6 +407,7 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
     props, prop_warnings = extract_props(osm, origin, extent, roadway, all_platforms, streets_l,
                                          gen["props"], curb)
     warnings += prop_warnings
+    props += reference_trees(faces, platforms, reference, curb)
 
     resources = {}
     for file in ("terrain.glb", "streets.glb", "sidewalks.glb", "buildings.glb"):
@@ -322,7 +462,7 @@ def generate(gen: dict, area_config: dict, osm: aa.OsmData, extra, extra_source,
     }
     (out / "scenario.json").write_text(json.dumps(metadata, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return {"metadata": metadata, "roadway": roadway, "platforms": platforms, "sidewalks": sidewalks,
-            "lots": lots, "extent": extent}
+            "lots": lots, "extent": extent, "faces": faces}
 
 
 def main() -> int:
@@ -332,6 +472,7 @@ def main() -> int:
     parser.add_argument("osm_json", type=Path)
     parser.add_argument("output_dir", type=Path)
     parser.add_argument("--extra-buildings", type=Path)
+    parser.add_argument("--reference", type=Path, help="street-level photo observations (JSON)")
     args = parser.parse_args()
 
     gen = json.loads(args.gen_config.read_text(encoding="utf-8"))
@@ -343,7 +484,20 @@ def main() -> int:
         prov = args.extra_buildings.with_name(args.extra_buildings.name.removesuffix(".geojson") + ".provenance.json")
         data = json.loads(prov.read_text(encoding="utf-8")) if prov.exists() else {"file": args.extra_buildings.name}
         extra_source = {k: data.get(k) for k in ("source", "release", "licenses", "attribution", "sha256", "file")}
-    result = generate(gen, area_config, osm, extra, extra_source, args.output_dir)
+    reference, reference_source = None, None
+    if args.reference:
+        data = json.loads(args.reference.read_text(encoding="utf-8"))
+        reference = {face["face_id"]: face for face in data["faces"]}
+        reference_source = {k: data.get(k) for k in ("source", "license", "surveyed_at_utc", "method")}
+        reference_source["file"] = args.reference.name
+    result = generate(gen, area_config, osm, extra, extra_source, args.output_dir, reference)
+    if reference_source:
+        meta_path = args.output_dir / "scenario.json"
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        meta["sources"].append(reference_source)
+        meta["attribution"] += "; street-level reference photos from Mapillary contributors (CC BY-SA 4.0)"
+        meta_path.write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        result["metadata"] = meta
     meta = result["metadata"]
     estimated = sum(1 for b in meta["buildings"] if b["height_is_estimated"])
     kinds = {k: sum(1 for p in meta["props"] if p["type"] == k) for k in ("tree", "palm", "street_lamp")}

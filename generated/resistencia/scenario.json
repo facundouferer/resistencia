@@ -1,6 +1,6 @@
 {
  "name": "resistencia_2x2",
- "generated_at_utc": "2026-11-24T02:00:45+00:00",
+ "generated_at_utc": "2026-11-24T02:25:29+00:00",
  "generator": "tools/geometry_generator/generate_scene.py 0.1.0",
  "sources": [
   {
@@ -18,10 +18,17 @@
    "attribution": "© OpenStreetMap contributors, Overture Maps Foundation; includes Google Open Buildings and Microsoft ML Building Footprints",
    "sha256": "51aab8fa1d8711466b912d9fe8bc1d6c0c4b8dd4eb19c978a62093a4a4486bad",
    "file": "resistencia_2x2.buildings.geojson"
+  },
+  {
+   "source": "mapillary",
+   "license": "CC BY-SA 4.0",
+   "surveyed_at_utc": "2026-11-23",
+   "method": "visual interpretation of street-level photos by an AI agent; approximate",
+   "file": "mapillary_observations.json"
   }
  ],
  "license": "Open Database License (ODbL) 1.0",
- "attribution": "© OpenStreetMap contributors; Overture Maps Foundation (Google Open Buildings, Microsoft ML Buildings)",
+ "attribution": "© OpenStreetMap contributors; Overture Maps Foundation (Google Open Buildings, Microsoft ML Buildings); street-level reference photos from Mapillary contributors (CC BY-SA 4.0)",
  "projection": "EPSG:32721",
  "units": "metres",
  "origin": {
@@ -63,7 +70,7 @@
   "terrain.glb": "6fbd699adcd942ab597665de46d9e6cd3ba433298734a0106705c44848769368",
   "streets.glb": "7ef6d33bc8f78c7ef4d358f62c6c3cf92450c73c34a0c76246d1df1fcaeeb74a",
   "sidewalks.glb": "2581e7aa588e737c1ae2aefbf2f8b544a2d37b28b7727bc30dae9069bc62c8bd",
-  "buildings.glb": "1555e01c9fe8af89af4049bfb4fd086091c8fe63d367108e18dee2877d3cf19a"
+  "buildings.glb": "1da4ac18ba2c5e08051efbc6432c99a06e86a0b0c253cdf5538d54dd8c105b57"
  },
  "spawn": {
   "x": 14.294,
@@ -1093,8 +1100,17 @@
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#cfcac0",
-    "is_estimated": true
+    "facade_color": "#7a7f72",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -1140,6 +1156,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -1198,6 +1216,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -1252,6 +1272,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -1298,6 +1320,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -1344,6 +1368,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -1381,16 +1407,25 @@
    "footprint_area_m2": 85.57,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 9.0,
+   "levels": 3,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e8dcc4",
-    "is_estimated": true
+    "facade_color": "#f2f2f2",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -1460,15 +1495,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#ecebe6",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -1542,6 +1586,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -1596,6 +1642,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -1646,15 +1694,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#ecebe6",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -1695,16 +1752,25 @@
    "footprint_area_m2": 121.09,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 9.0,
+   "levels": 3,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#e8e2d6",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -1757,16 +1823,25 @@
    "footprint_area_m2": 125.85,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 9.0,
+   "levels": 3,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#b9a58a",
-    "is_estimated": true
+    "facade_color": "#e8e2d6",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -1819,16 +1894,25 @@
    "footprint_area_m2": 210.47,
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 9.0,
+   "levels": 3,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#cfcac0",
-    "is_estimated": true
+    "facade_color": "#f2f2f2",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -1873,16 +1957,25 @@
    "footprint_area_m2": 172.13,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 9.0,
+   "levels": 3,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#f2f2f2",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -1919,16 +2012,23 @@
    "footprint_area_m2": 132.51,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#cfcac0",
-    "is_estimated": true
+    "facade_color": "#c9a58a",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Marcelo Torcuato de Alvear",
+    "reference_images": [
+     "216088573243706"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -1973,16 +2073,23 @@
    "footprint_area_m2": 156.68,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d8b48c",
-    "is_estimated": true
+    "facade_color": "#c9a58a",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Marcelo Torcuato de Alvear",
+    "reference_images": [
+     "216088573243706"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -2043,16 +2150,23 @@
    "footprint_area_m2": 165.65,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e6d3a3",
-    "is_estimated": true
+    "facade_color": "#c9a58a",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Marcelo Torcuato de Alvear",
+    "reference_images": [
+     "216088573243706"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -2101,16 +2215,23 @@
    "footprint_area_m2": 129.9,
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "facade_color": "#c9a58a",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Marcelo Torcuato de Alvear",
+    "reference_images": [
+     "216088573243706"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -2155,16 +2276,25 @@
    "footprint_area_m2": 124.67,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 9.0,
+   "levels": 3,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#e8e2d6",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Pueyrredón",
+    "reference_images": [
+     "4069304573129010",
+     "454446195619743",
+     "208477420816896"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -2205,16 +2335,26 @@
    "footprint_area_m2": 109.85,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 15.0,
+   "levels": 5,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#b9a58a",
-    "is_estimated": true
+    "facade_color": "#f0f0ee",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2267,16 +2407,26 @@
    "footprint_area_m2": 170.03,
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 15.0,
+   "levels": 5,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d8b48c",
-    "is_estimated": true
+    "facade_color": "#f0f0ee",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2321,16 +2471,26 @@
    "footprint_area_m2": 157.96,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 15.0,
+   "levels": 5,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#cfcac0",
-    "is_estimated": true
+    "facade_color": "#c96b6b",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2371,16 +2531,26 @@
    "footprint_area_m2": 132.03,
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 15.0,
+   "levels": 5,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d8b48c",
-    "is_estimated": true
+    "facade_color": "#c96b6b",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2449,8 +2619,18 @@
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#c98f6b",
-    "is_estimated": true
+    "facade_color": "#6f7a5c",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2495,8 +2675,18 @@
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e8dcc4",
-    "is_estimated": true
+    "facade_color": "#6f7a5c",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2553,8 +2743,18 @@
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "facade_color": "#6f7a5c",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2599,8 +2799,18 @@
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "facade_color": "#6f7a5c",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "316130139909531",
+     "307097024346807",
+     "484790669390523"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2658,6 +2868,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -2723,16 +2935,25 @@
    "footprint_area_m2": 340.19,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 12.0,
+   "levels": 4,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#d9a640",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2801,16 +3022,25 @@
    "footprint_area_m2": 634.31,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 12.0,
+   "levels": 4,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#b9a58a",
-    "is_estimated": true
+    "facade_color": "#d9a640",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2847,16 +3077,25 @@
    "footprint_area_m2": 318.29,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e6d3a3",
-    "is_estimated": true
+    "facade_color": "#ecdcc4",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2893,16 +3132,25 @@
    "footprint_area_m2": 187.36,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d8b48c",
-    "is_estimated": true
+    "facade_color": "#ecdcc4",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2939,16 +3187,25 @@
    "footprint_area_m2": 146.57,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#ecdcc4",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -2989,16 +3246,25 @@
    "footprint_area_m2": 103.26,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 18.0,
+   "levels": 6,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e8dcc4",
-    "is_estimated": true
+    "facade_color": "#cfc9bd",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -3076,7 +3342,14 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Marcelo Torcuato de Alvear",
+    "reference_images": [
+     "216088573243706"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -3130,7 +3403,14 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Marcelo Torcuato de Alvear",
+    "reference_images": [
+     "216088573243706"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -3175,16 +3455,25 @@
    "footprint_area_m2": 80.06,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 18.0,
+   "levels": 6,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#c98f6b",
-    "is_estimated": true
+    "facade_color": "#cfc9bd",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -3237,16 +3526,25 @@
    "footprint_area_m2": 143.68,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 18.0,
+   "levels": 6,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "yes",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d8b48c",
-    "is_estimated": true
+    "facade_color": "#cfc9bd",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_s:Bartolomé Mitre",
+    "reference_images": [
+     "144733987616505",
+     "3744855428974218",
+     "804914640150873"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -3292,6 +3590,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3338,6 +3638,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3384,6 +3686,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3446,6 +3750,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3492,6 +3798,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3538,6 +3846,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3584,15 +3894,23 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#cfcac0",
-    "is_estimated": true
+    "facade_color": "#e3d6b8",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Bartolomé Mitre",
+    "reference_images": [
+     "804128363825200",
+     "144733987616505"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -3638,6 +3956,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d9c7a7",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3684,6 +4004,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3738,7 +4060,16 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "307097024346807",
+     "485732595878377"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -3784,6 +4115,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3830,6 +4163,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3876,6 +4211,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3922,6 +4259,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -3976,6 +4315,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4022,6 +4363,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4068,6 +4411,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4114,6 +4459,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4176,6 +4523,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4230,6 +4579,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4276,6 +4627,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4322,6 +4675,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4376,6 +4731,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4422,6 +4779,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4468,6 +4827,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4522,6 +4883,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4559,16 +4922,24 @@
    "footprint_area_m2": 134.62,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d9c7a7",
-    "is_estimated": true
+    "facade_color": "#eeeeea",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Pueyrredón",
+    "reference_images": [
+     "4044299405645769",
+     "475773860338783"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -4614,6 +4985,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4660,7 +5033,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Santa Fe",
+    "reference_images": [
+     "485732595878377",
+     "1272566839811586"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -4706,6 +5087,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4760,6 +5143,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4806,6 +5191,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -4843,16 +5230,25 @@
    "footprint_area_m2": 29.99,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "facade_color": "#f2f2f0",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -4914,7 +5310,16 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "307097024346807",
+     "485732595878377"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -4960,6 +5365,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5014,6 +5421,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5060,6 +5469,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5114,6 +5525,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5160,6 +5573,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5206,6 +5621,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5276,6 +5693,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5326,6 +5745,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5372,15 +5793,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#f0efea",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -5426,6 +5856,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5464,15 +5896,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#f0efea",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -5510,15 +5951,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#8a6a50",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -5564,6 +6014,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5626,7 +6078,16 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "307097024346807",
+     "485732595878377"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -5696,6 +6157,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5750,6 +6213,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5788,15 +6253,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e8dcc4",
-    "is_estimated": true
+    "facade_color": "#e6e6e2",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_w:Santa Fe",
+    "reference_images": [
+     "964062457757294",
+     "1272566839811586",
+     "485732595878377"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -5850,6 +6324,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5908,6 +6384,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -5970,15 +6448,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "facade_color": "#8a6a50",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -6032,6 +6519,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6078,7 +6567,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Santa Fe",
+    "reference_images": [
+     "485732595878377",
+     "1272566839811586"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -6124,6 +6621,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6170,6 +6669,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6216,7 +6717,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Santa Fe",
+    "reference_images": [
+     "485732595878377",
+     "1272566839811586"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -6254,15 +6763,23 @@
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#b9a58a",
-    "is_estimated": true
+    "facade_color": "#f2f2f0",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Pueyrredón",
+    "reference_images": [
+     "475773860338783",
+     "4044299405645769"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -6316,6 +6833,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6353,16 +6872,25 @@
    "footprint_area_m2": 189.69,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 42.0,
+   "levels": 14,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#a8573f",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "307097024346807",
+     "485732595878377"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -6408,6 +6936,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6454,6 +6984,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6500,7 +7032,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Santa Fe",
+    "reference_images": [
+     "485732595878377",
+     "1272566839811586"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -6546,15 +7086,23 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#c98f6b",
-    "is_estimated": true
+    "facade_color": "#f2f2f0",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Pueyrredón",
+    "reference_images": [
+     "475773860338783",
+     "4044299405645769"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -6600,6 +7148,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6646,6 +7196,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6692,6 +7244,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6738,6 +7292,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6775,16 +7331,25 @@
    "footprint_area_m2": 155.89,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 42.0,
+   "levels": 14,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d9c7a7",
-    "is_estimated": true
+    "facade_color": "#a8573f",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "307097024346807",
+     "485732595878377"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -6830,6 +7395,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6868,15 +7435,23 @@
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#c98f6b",
-    "is_estimated": true
+    "facade_color": "#f2f2f0",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Pueyrredón",
+    "reference_images": [
+     "475773860338783",
+     "4044299405645769"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -6922,6 +7497,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -6960,15 +7537,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#8a5a44",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_w:Santa Fe",
+    "reference_images": [
+     "964062457757294",
+     "1272566839811586",
+     "485732595878377"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -7014,6 +7600,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7060,6 +7648,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7106,6 +7696,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7144,15 +7736,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#b9a58a",
-    "is_estimated": true
+    "facade_color": "#8a5a44",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_w:Santa Fe",
+    "reference_images": [
+     "964062457757294",
+     "1272566839811586",
+     "485732595878377"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -7198,6 +7799,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7252,7 +7855,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Bartolomé Mitre",
+    "reference_images": [
+     "804128363825200",
+     "144733987616505"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -7290,15 +7901,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#8a6a50",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -7344,6 +7964,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7381,16 +8003,25 @@
    "footprint_area_m2": 82.83,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 30.0,
+   "levels": 10,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e8dcc4",
-    "is_estimated": true
+    "facade_color": "#d9cfc2",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "307097024346807",
+     "485732595878377"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -7428,15 +8059,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d8b48c",
-    "is_estimated": true
+    "facade_color": "#8a6a50",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -7482,6 +8122,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7520,15 +8162,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#f0efea",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -7590,7 +8241,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Santa Fe",
+    "reference_images": [
+     "485732595878377",
+     "1272566839811586"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -7628,15 +8287,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e3c4b0",
-    "is_estimated": true
+    "facade_color": "#e6e6e2",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_w:Santa Fe",
+    "reference_images": [
+     "964062457757294",
+     "1272566839811586",
+     "485732595878377"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -7682,6 +8350,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7728,6 +8398,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7765,16 +8437,24 @@
    "footprint_area_m2": 105.7,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#cfcac0",
-    "is_estimated": true
+    "facade_color": "#eeeeea",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Pueyrredón",
+    "reference_images": [
+     "4044299405645769",
+     "475773860338783"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -7820,6 +8500,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7866,6 +8548,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e6d3a3",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7912,6 +8596,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -7969,16 +8655,25 @@
    "footprint_area_m2": 149.07,
    "clipped_to_lot": 0.003,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e8dcc4",
-    "is_estimated": true
+    "facade_color": "#f0eeea",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_w:Santa Fe",
+    "reference_images": [
+     "964062457757294",
+     "1272566839811586",
+     "485732595878377"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -8015,16 +8710,25 @@
    "footprint_area_m2": 104.09,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#cfcac0",
-    "is_estimated": true
+    "facade_color": "#f2f2f0",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -8070,6 +8774,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d9c7a7",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8107,16 +8813,25 @@
    "footprint_area_m2": 133.69,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 30.0,
+   "levels": 10,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#c98f6b",
-    "is_estimated": true
+    "facade_color": "#d9cfc2",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Santa Fe",
+    "reference_images": [
+     "150988246971058",
+     "307097024346807",
+     "485732595878377"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -8162,6 +8877,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8208,6 +8925,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8254,6 +8973,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8316,7 +9037,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Pueyrredón",
+    "reference_images": [
+     "475773860338783",
+     "4044299405645769"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -8362,6 +9091,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e3c4b0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8408,6 +9139,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8454,6 +9187,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8507,16 +9242,24 @@
    "footprint_area_m2": 202.71,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "facade_color": "#eeeeea",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Pueyrredón",
+    "reference_images": [
+     "4044299405645769",
+     "475773860338783"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -8562,6 +9305,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8608,6 +9353,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8646,15 +9393,23 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#e6d3a3",
-    "is_estimated": true
+    "facade_color": "#e3d6b8",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Bartolomé Mitre",
+    "reference_images": [
+     "804128363825200",
+     "144733987616505"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -8700,6 +9455,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#c98f6b",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8745,16 +9502,25 @@
    "footprint_area_m2": 13.86,
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 3.0,
+   "levels": 1,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#f0ebe0",
-    "is_estimated": true
+    "facade_color": "#f2f2f0",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -8800,6 +9566,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8862,6 +9630,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d9c7a7",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8908,6 +9678,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -8953,16 +9725,24 @@
    "footprint_area_m2": 96.28,
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
-   "height_m": 6.0,
-   "levels": null,
+   "height_m": 42.0,
+   "levels": 14,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#a8573f",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Pueyrredón",
+    "reference_images": [
+     "4044299405645769",
+     "475773860338783"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -9008,6 +9788,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9054,6 +9836,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#f0ebe0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9100,6 +9884,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9138,15 +9924,23 @@
    "clipped_to_lot": -0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d8b48c",
-    "is_estimated": true
+    "facade_color": "#e8eef2",
+    "ground_floor": "shopfront",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Pueyrredón",
+    "reference_images": [
+     "4044299405645769",
+     "475773860338783"
+    ],
+    "reference_confidence": "low"
    }
   },
   {
@@ -9184,15 +9978,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#d9c7a7",
-    "is_estimated": true
+    "facade_color": "#8a5a44",
+    "ground_floor": "garage",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_w:Santa Fe",
+    "reference_images": [
+     "964062457757294",
+     "1272566839811586",
+     "485732595878377"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -9238,6 +10041,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9284,6 +10089,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9338,6 +10145,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#e8dcc4",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9384,6 +10193,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9430,6 +10241,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d9c7a7",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9476,6 +10289,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#cfcac0",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9514,15 +10329,24 @@
    "clipped_to_lot": 0.0,
    "base_y": 0.15,
    "height_m": 6.0,
-   "levels": null,
+   "levels": 2,
    "height_is_estimated": true,
-   "height_rule": "default_levels x level_height_m",
+   "height_rule": "reference photo levels x level_height_m (mapillary)",
    "building_type": "unknown",
    "model": "generic_building",
    "appearance": {
     "style": "procedural_facade_v1",
-    "facade_color": "#a8b0a8",
-    "is_estimated": true
+    "facade_color": "#8a6a50",
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_n:Remedios de Escalada",
+    "reference_images": [
+     "318245036355073",
+     "455971682372788",
+     "302799197888611"
+    ],
+    "reference_confidence": "medium"
    }
   },
   {
@@ -9568,6 +10392,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9614,6 +10440,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#d8b48c",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9668,6 +10496,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#a8b0a8",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9714,6 +10544,8 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
+    "ground_floor": "shopfront",
+    "source": "palette_by_id",
     "is_estimated": true
    }
   },
@@ -9760,7 +10592,15 @@
    "appearance": {
     "style": "procedural_facade_v1",
     "facade_color": "#b9a58a",
-    "is_estimated": true
+    "ground_floor": "residential",
+    "source": "mapillary_reference",
+    "is_estimated": true,
+    "reference_face": "block_e:Bartolomé Mitre",
+    "reference_images": [
+     "804128363825200",
+     "144733987616505"
+    ],
+    "reference_confidence": "low"
    }
   }
  ],
@@ -10344,12 +11184,2226 @@
    ],
    "species": "Koelreuteria bipinnata",
    "genus": "Koelreuteria"
+  },
+  {
+   "id": "ref_tree_block_e_Bartolomé_Mitre_1",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    153.357,
+    -7.534
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "804128363825200",
+    "144733987616505"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Bartolomé_Mitre_2",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    141.783,
+    -19.567
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "804128363825200",
+    "144733987616505"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Bartolomé_Mitre_3",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    130.209,
+    -31.599
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "804128363825200",
+    "144733987616505"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Bartolomé_Mitre_4",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    118.636,
+    -43.632
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "804128363825200",
+    "144733987616505"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Bartolomé_Mitre_5",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    107.062,
+    -55.664
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "804128363825200",
+    "144733987616505"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Bartolomé_Mitre_6",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    95.488,
+    -67.697
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "804128363825200",
+    "144733987616505"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_1",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    90.007,
+    72.36
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_2",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    96.006,
+    66.587
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_3",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    102.006,
+    60.815
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_4",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    108.005,
+    55.043
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_5",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    114.004,
+    49.27
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_6",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    120.003,
+    43.498
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_7",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    126.003,
+    37.725
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_8",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    132.002,
+    31.953
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_9",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    138.001,
+    26.18
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_10",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    144.0,
+    20.408
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_11",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    150.0,
+    14.635
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Corrientes_12",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Corrientes",
+   "type": "tree",
+   "position": [
+    155.999,
+    8.863
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "364047565012004"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_1",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    15.319,
+    8.061
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_2",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    23.88,
+    16.999
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_3",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    32.44,
+    25.937
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_4",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    41.001,
+    34.874
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_5",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    49.562,
+    43.812
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_6",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    58.123,
+    52.749
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_7",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    66.683,
+    61.687
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Pueyrredón_8",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Pueyrredón",
+   "type": "tree",
+   "position": [
+    75.244,
+    70.625
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4044299405645769",
+    "475773860338783"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Santa_Fe_1",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Santa Fe",
+   "type": "tree",
+   "position": [
+    73.369,
+    -65.086
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "307097024346807",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Santa_Fe_2",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Santa Fe",
+   "type": "tree",
+   "position": [
+    55.593,
+    -47.622
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "307097024346807",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Santa_Fe_3",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Santa Fe",
+   "type": "tree",
+   "position": [
+    37.817,
+    -30.158
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "307097024346807",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_e_Santa_Fe_4",
+   "source": "mapillary_reference",
+   "source_id": "block_e:Santa Fe",
+   "type": "tree",
+   "position": [
+    20.041,
+    -12.694
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "307097024346807",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_1",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    67.58,
+    77.959
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_2",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    59.034,
+    69.037
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_3",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    50.488,
+    60.115
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_4",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    41.942,
+    51.193
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_5",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    33.396,
+    42.271
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_6",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    24.851,
+    33.349
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_7",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    16.305,
+    24.427
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Pueyrredón_8",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Pueyrredón",
+   "type": "tree",
+   "position": [
+    7.759,
+    15.505
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "475773860338783",
+    "4044299405645769"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Remedios_de_Escalada_1",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Remedios de Escalada",
+   "type": "tree",
+   "position": [
+    -69.868,
+    93.177
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "318245036355073",
+    "455971682372788",
+    "302799197888611"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Remedios_de_Escalada_2",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Remedios de Escalada",
+   "type": "tree",
+   "position": [
+    -58.621,
+    104.954
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "318245036355073",
+    "455971682372788",
+    "302799197888611"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Remedios_de_Escalada_3",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Remedios de Escalada",
+   "type": "tree",
+   "position": [
+    -47.373,
+    116.731
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "318245036355073",
+    "455971682372788",
+    "302799197888611"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Remedios_de_Escalada_4",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Remedios de Escalada",
+   "type": "tree",
+   "position": [
+    -36.126,
+    128.508
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "318245036355073",
+    "455971682372788",
+    "302799197888611"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Remedios_de_Escalada_5",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Remedios de Escalada",
+   "type": "tree",
+   "position": [
+    -24.879,
+    140.285
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "318245036355073",
+    "455971682372788",
+    "302799197888611"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Remedios_de_Escalada_6",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Remedios de Escalada",
+   "type": "tree",
+   "position": [
+    -13.631,
+    152.062
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "318245036355073",
+    "455971682372788",
+    "302799197888611"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_1",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -8.449,
+    15.202
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_2",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -17.368,
+    23.811
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_3",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -26.286,
+    32.42
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_4",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -35.205,
+    41.029
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_5",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -44.124,
+    49.638
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_6",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -53.042,
+    58.247
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_7",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -61.961,
+    66.856
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_n_Santa_Fe_8",
+   "source": "mapillary_reference",
+   "source_id": "block_n:Santa Fe",
+   "type": "tree",
+   "position": [
+    -70.88,
+    75.465
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "485732595878377",
+    "1272566839811586"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Bartolomé_Mitre_1",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    69.972,
+    -93.919
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "144733987616505",
+    "3744855428974218",
+    "804914640150873"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Bartolomé_Mitre_2",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    60.163,
+    -104.005
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "144733987616505",
+    "3744855428974218",
+    "804914640150873"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Bartolomé_Mitre_3",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    50.354,
+    -114.092
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "144733987616505",
+    "3744855428974218",
+    "804914640150873"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Bartolomé_Mitre_4",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    40.546,
+    -124.179
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "144733987616505",
+    "3744855428974218",
+    "804914640150873"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Bartolomé_Mitre_5",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    30.737,
+    -134.265
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "144733987616505",
+    "3744855428974218",
+    "804914640150873"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Bartolomé_Mitre_6",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    20.928,
+    -144.352
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "144733987616505",
+    "3744855428974218",
+    "804914640150873"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Bartolomé_Mitre_7",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Bartolomé Mitre",
+   "type": "tree",
+   "position": [
+    11.119,
+    -154.438
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "144733987616505",
+    "3744855428974218",
+    "804914640150873"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Marcelo_Torcuato_de_Alvear_1",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Marcelo Torcuato de Alvear",
+   "type": "tree",
+   "position": [
+    -8.383,
+    -152.635
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "216088573243706"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Marcelo_Torcuato_de_Alvear_2",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Marcelo Torcuato de Alvear",
+   "type": "tree",
+   "position": [
+    -22.606,
+    -138.747
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "216088573243706"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Marcelo_Torcuato_de_Alvear_3",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Marcelo Torcuato de Alvear",
+   "type": "tree",
+   "position": [
+    -36.83,
+    -124.859
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "216088573243706"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Marcelo_Torcuato_de_Alvear_4",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Marcelo Torcuato de Alvear",
+   "type": "tree",
+   "position": [
+    -51.054,
+    -110.971
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "216088573243706"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Marcelo_Torcuato_de_Alvear_5",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Marcelo Torcuato de Alvear",
+   "type": "tree",
+   "position": [
+    -65.278,
+    -97.083
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "216088573243706"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_1",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -68.189,
+    -78.198
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_2",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -59.585,
+    -69.332
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_3",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -50.981,
+    -60.467
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_4",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -42.377,
+    -51.602
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_5",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -33.773,
+    -42.736
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_6",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -25.169,
+    -33.871
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_7",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -16.565,
+    -25.006
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Pueyrredón_8",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -7.961,
+    -16.14
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "4069304573129010",
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Santa_Fe_1",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Santa Fe",
+   "type": "tree",
+   "position": [
+    9.722,
+    -17.43
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "316130139909531",
+    "307097024346807",
+    "484790669390523"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Santa_Fe_2",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Santa Fe",
+   "type": "tree",
+   "position": [
+    21.553,
+    -29.053
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "316130139909531",
+    "307097024346807",
+    "484790669390523"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Santa_Fe_3",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Santa Fe",
+   "type": "tree",
+   "position": [
+    33.383,
+    -40.676
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "316130139909531",
+    "307097024346807",
+    "484790669390523"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Santa_Fe_4",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Santa Fe",
+   "type": "tree",
+   "position": [
+    45.214,
+    -52.299
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "316130139909531",
+    "307097024346807",
+    "484790669390523"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Santa_Fe_5",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Santa Fe",
+   "type": "tree",
+   "position": [
+    57.045,
+    -63.922
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "316130139909531",
+    "307097024346807",
+    "484790669390523"
+   ]
+  },
+  {
+   "id": "ref_tree_block_s_Santa_Fe_6",
+   "source": "mapillary_reference",
+   "source_id": "block_s:Santa Fe",
+   "type": "tree",
+   "position": [
+    68.875,
+    -75.545
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "150988246971058",
+    "316130139909531",
+    "307097024346807",
+    "484790669390523"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_1",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -15.507,
+    -8.684
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_2",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -24.118,
+    -17.558
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_3",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -32.73,
+    -26.431
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_4",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -41.342,
+    -35.304
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_5",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -49.953,
+    -44.178
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_6",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -58.565,
+    -53.051
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_7",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -67.176,
+    -61.924
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Pueyrredón_8",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Pueyrredón",
+   "type": "tree",
+   "position": [
+    -75.788,
+    -70.798
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "454446195619743",
+    "208477420816896"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Santa_Fe_1",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Santa Fe",
+   "type": "tree",
+   "position": [
+    -75.535,
+    65.216
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "964062457757294",
+    "1272566839811586",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Santa_Fe_2",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Santa Fe",
+   "type": "tree",
+   "position": [
+    -61.266,
+    51.442
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "964062457757294",
+    "1272566839811586",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Santa_Fe_3",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Santa Fe",
+   "type": "tree",
+   "position": [
+    -46.997,
+    37.668
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "964062457757294",
+    "1272566839811586",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Santa_Fe_4",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Santa Fe",
+   "type": "tree",
+   "position": [
+    -32.727,
+    23.894
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "964062457757294",
+    "1272566839811586",
+    "485732595878377"
+   ]
+  },
+  {
+   "id": "ref_tree_block_w_Santa_Fe_5",
+   "source": "mapillary_reference",
+   "source_id": "block_w:Santa Fe",
+   "type": "tree",
+   "position": [
+    -18.458,
+    10.121
+   ],
+   "base_y": 0.15,
+   "surface": "sidewalk_or_lot",
+   "height_m": 8.0,
+   "height_is_estimated": true,
+   "facing": [
+    0.0,
+    0.0
+   ],
+   "species": null,
+   "genus": null,
+   "reference_images": [
+    "964062457757294",
+    "1272566839811586",
+    "485732595878377"
+   ]
   }
  ],
  "warnings": [
   "7 building:part ways present; not used for footprints yet",
   "172 of 172 buildings in the blocks have no height or levels",
   "133 building footprints in the blocks are machine-learned (Overture), not surveyed; shapes and separation between adjacent buildings are approximate",
+  "osm_relation_8148745: reference photo of block_s:Bartolomé Mitre shows no building here (construction site, hoarding with 'IZEL' billboard); footprint kept",
+  "osm_way_573181821: reference photo of block_s:Santa Fe shows no building here (construction site, green/grey hoarding, unfinished brick/concrete frame building); footprint kept",
+  "osm_way_573181824: reference photo of block_s:Santa Fe shows no building here (construction site, green/grey hoarding, unfinished brick/concrete frame building); footprint kept",
+  "osm_way_573181825: reference photo of block_s:Santa Fe shows no building here (construction site, green/grey hoarding, unfinished brick/concrete frame building); footprint kept",
+  "osm_way_573181828: reference photo of block_s:Santa Fe shows no building here (construction site, green/grey hoarding, unfinished brick/concrete frame building); footprint kept",
   "osm_node_12120183782: street_lamp lies on the modelled roadway (street layout is estimated; the real street may have a median here)",
   "osm_node_12120183783: street_lamp lies on the modelled roadway (street layout is estimated; the real street may have a median here)",
   "osm_node_12146040081: tree lies on the modelled roadway (street layout is estimated; the real street may have a median here)"

@@ -130,5 +130,67 @@ class GeneratedScenario(unittest.TestCase):
         self.assertTrue(self.result["sidewalks"]["block_s"].contains(Point(spawn["x"], -spawn["z"])))
 
 
+FAKE_REFERENCE = {  # test data, not a real survey
+    "block_s:Pueyrredón": {
+        "face_id": "block_s:Pueyrredón", "visibility": "good",
+        "images": [{"pkey": "test-image", "captured": "2015-12-20", "author": "test"}],
+        "trees": {"present": True, "approx_count": 5},
+        "buildings": [
+            {"order": 1, "frontage_fraction": 0.5, "levels": 4, "facade_color": "#112233", "features": ["shopfront"]},
+            {"order": 2, "frontage_fraction": 0.5, "levels": 1, "facade_color": "#445566", "features": ["garage door"]},
+        ],
+    },
+    "block_n:Corrientes": {"face_id": "block_n:Corrientes", "visibility": "none", "trees": None, "buildings": None},
+}
+
+
+@unittest.skipUnless(OSM.exists() and OVERTURE.exists(), "raw sources not downloaded")
+class ReferenceObservations(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls._tmp = tempfile.TemporaryDirectory()
+        gen = json.loads((ROOT / "tools/geometry_generator/config/resistencia_2x2.json").read_text())
+        area = json.loads((ROOT / "tools/geo_processor/areas/resistencia_2x2.json").read_text())
+        extra = aa.load_overture_buildings(OVERTURE)
+        cls.result = gs.generate(gen, area, aa.load_osm(OSM), extra, {"source": "overture_maps"},
+                                 Path(cls._tmp.name), FAKE_REFERENCE)
+        cls.meta = cls.result["metadata"]
+
+    @classmethod
+    def tearDownClass(cls):
+        cls._tmp.cleanup()
+
+    def test_faces_match_the_survey_list(self):
+        surveyed = json.loads((ROOT / "tools/reference/faces_resistencia_2x2.json").read_text())
+        faces = self.result["faces"]
+        self.assertEqual(sorted(faces), sorted(f["face_id"] for f in surveyed))
+        for face in surveyed:
+            generated = faces[face["face_id"]]
+            self.assertEqual(generated["from_corner"], face["from_corner"])
+            self.assertEqual(generated["to_corner"], face["to_corner"])
+            self.assertAlmostEqual(generated["line"].length, face["length_m"], delta=0.2)
+
+    def test_observed_trees_are_placed_on_that_sidewalk(self):
+        trees = [p for p in self.meta["props"] if p["source"] == "mapillary_reference"]
+        self.assertEqual(len(trees), 5)
+        sidewalk = self.result["sidewalks"]["block_s"]
+        for tree in trees:
+            self.assertEqual(tree["source_id"], "block_s:Pueyrredón")
+            self.assertTrue(sidewalk.contains(Point(tree["position"])), tree["id"])
+            self.assertTrue(tree["height_is_estimated"])
+
+    def test_facing_buildings_take_observed_levels_colour_and_ground_floor(self):
+        facing = [b for b in self.meta["buildings"] if b["appearance"].get("reference_face") == "block_s:Pueyrredón"]
+        self.assertGreater(len(facing), 0)
+        for b in facing:
+            self.assertIn((b["levels"], b["appearance"]["facade_color"], b["appearance"]["ground_floor"]),
+                          [(4, "#112233", "shopfront"), (1, "#445566", "garage")])
+            self.assertAlmostEqual(b["height_m"], b["levels"] * 3.0)
+            self.assertTrue(b["height_is_estimated"])
+            self.assertIn("mapillary", b["height_rule"])
+        others = [b for b in self.meta["buildings"] if "reference_face" not in b["appearance"]]
+        self.assertTrue(all(b["height_m"] == 6.0 for b in others))
+
+
 if __name__ == "__main__":
     unittest.main()

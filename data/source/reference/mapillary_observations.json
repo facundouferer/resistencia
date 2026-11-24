@@ -1,0 +1,231 @@
+{
+  "source": "mapillary",
+  "license": "CC BY-SA 4.0",
+  "surveyed_at_utc": "2026-11-23",
+  "method": "visual interpretation of street-level photos by an AI agent; approximate",
+  "notes": "All usable imagery is one dashcam contributor (federicopertile), Motorola phone through a windshield, captured 2015-12-20 to 2016-01-03. Images are sparse (often 30-100 m apart), so frontages are only partly visible. Inner streets (Santa Fe, Pueyrredon) show two faces per photo. Unknown stretches are entries with levels null and feature 'unknown'.",
+  "faces": [
+    {
+      "face_id": "block_e:Bartolomé Mitre",
+      "images": [
+        {"pkey": "804128363825200", "captured": "2015-12-31", "author": "federicopertile"},
+        {"pkey": "144733987616505", "captured": "2015-12-31", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": 6, "notes": "regular row of large broadleaf trees in a grass verge along the kerb; canopy over the sidewalk"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.35, "levels": null, "facade_color": null, "features": ["unknown"], "confidence": "low"},
+        {"order": 2, "frontage_fraction": 0.25, "levels": 2, "facade_color": "#e6e2da", "features": ["flat roof", "large windows", "grey stone base"], "confidence": "medium"},
+        {"order": 3, "frontage_fraction": 0.2, "levels": 2, "facade_color": "#e3d6b8", "features": ["older building", "tall vertical windows", "flat roof"], "confidence": "medium"},
+        {"order": 4, "frontage_fraction": 0.2, "levels": 2, "facade_color": "#f0f0ee", "features": ["shopfront", "signage", "flat roof"], "confidence": "low"}
+      ],
+      "notes": "Photos look SW toward Santa Fe; the Corrientes end is behind the camera. A tall grey concrete tower (~12+ storeys, balconies, looked unfinished in 2015) is visible ahead-right near/after the Santa Fe corner; it may belong to block_s or block_e (see Santa Fe faces)."
+    },
+    {
+      "face_id": "block_e:Santa Fe",
+      "images": [
+        {"pkey": "150988246971058", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "307097024346807", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "485732595878377", "captured": "2016-01-03", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": 4, "notes": "large trees along the kerb, seen across the street"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.5, "levels": null, "facade_color": null, "features": ["unknown"], "confidence": "low"},
+        {"order": 2, "frontage_fraction": 0.25, "levels": 10, "facade_color": "#d9cfc2", "features": ["tower", "balconies", "shopfront", "large 'General Paz' billboard"], "confidence": "low"},
+        {"order": 3, "frontage_fraction": 0.25, "levels": 14, "facade_color": "#a8573f", "features": ["corner tower", "brick-red facade", "balconies", "white ground floor with pilotis and front steps"], "confidence": "medium"}
+      ],
+      "notes": "Seen only across the street from SE-heading photos. Corner Santa Fe x Pueyrredon (to_corner) has a tall brick-red apartment tower (~12-14 storeys), also visible from Pueyrredon (pkey 4044299405645769). A concrete-frame tower under construction (~15 storeys) was visible in this area in 2016; exact lot uncertain."
+    },
+    {
+      "face_id": "block_e:Pueyrredón",
+      "images": [
+        {"pkey": "4044299405645769", "captured": "2015-12-20", "author": "federicopertile"},
+        {"pkey": "475773860338783", "captured": "2015-12-20", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": 8, "notes": "dense continuous canopy of large trees; grass verge"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.25, "levels": 14, "facade_color": "#a8573f", "features": ["corner tower", "brick-red facade", "balconies", "white ground floor"], "confidence": "medium"},
+        {"order": 2, "frontage_fraction": 0.45, "levels": 1, "facade_color": "#eeeeea", "features": ["houses", "pitched tile roof", "garage door", "wall/fence"], "confidence": "low"},
+        {"order": 3, "frontage_fraction": 0.3, "levels": 2, "facade_color": "#e8eef2", "features": ["shopfront", "blue/white signage"], "confidence": "low"}
+      ],
+      "notes": "Photos look NE toward Corrientes; trees hide most facades. Shares the tall brick corner tower with block_e:Santa Fe."
+    },
+    {
+      "face_id": "block_e:Corrientes",
+      "images": [
+        {"pkey": "364047565012004", "captured": "2015-12-31", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": null, "notes": "heavy tree canopy on the block_e side; facades hidden"},
+      "buildings": null,
+      "notes": "Only image found looks NW toward Pueyrredon; the block_e side is almost entirely hidden by trees. Opposite (NE) side has 3-storey cream buildings with red window frames (not this block)."
+    },
+    {
+      "face_id": "block_n:Remedios de Escalada",
+      "images": [
+        {"pkey": "318245036355073", "captured": "2015-12-30", "author": "federicopertile"},
+        {"pkey": "455971682372788", "captured": "2015-12-30", "author": "federicopertile"},
+        {"pkey": "302799197888611", "captured": "2015-12-30", "author": "federicopertile"}
+      ],
+      "visibility": "good",
+      "trees": {"present": true, "approx_count": 6, "notes": "trees in a grass verge, some palms; fairly regular"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.25, "levels": 1, "facade_color": "#f2f2f0", "features": ["flat roof", "white render", "AC units"], "confidence": "medium"},
+        {"order": 2, "frontage_fraction": 0.3, "levels": 2, "facade_color": "#f0efea", "features": ["modern houses", "flat roof", "garden/shrubs"], "confidence": "medium"},
+        {"order": 3, "frontage_fraction": 0.2, "levels": 2, "facade_color": "#8a6a50", "features": ["older house", "ornate iron balcony", "wood shutters"], "confidence": "medium"},
+        {"order": 4, "frontage_fraction": 0.25, "levels": 2, "facade_color": "#f4f4f2", "features": ["white house", "shutters", "palm in front"], "confidence": "low"}
+      ],
+      "notes": "Photos look NE toward Corrientes. High-rise towers (12-20 storeys, one under construction) visible in the distance beyond Corrientes, not on this face."
+    },
+    {
+      "face_id": "block_n:Corrientes",
+      "images": [
+        {"pkey": "489717172453286", "captured": "2015-12-31", "author": "federicopertile"}
+      ],
+      "visibility": "none",
+      "trees": null,
+      "buildings": null,
+      "notes": "Only NW-facing dashcam shots found; the block_n (SW) side is out of frame or hidden by trees."
+    },
+    {
+      "face_id": "block_n:Pueyrredón",
+      "images": [
+        {"pkey": "475773860338783", "captured": "2015-12-20", "author": "federicopertile"},
+        {"pkey": "4044299405645769", "captured": "2015-12-20", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": 8, "notes": "dense canopy including a flame tree (red flowers, chivato)"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.3, "levels": 2, "facade_color": "#f2f2f0", "features": ["white building", "white fence/railing"], "confidence": "low"},
+        {"order": 2, "frontage_fraction": 0.7, "levels": null, "facade_color": null, "features": ["unknown"], "confidence": "low"}
+      ],
+      "notes": "Seen across/left in NE-heading photos; trees hide almost everything."
+    },
+    {
+      "face_id": "block_n:Santa Fe",
+      "images": [
+        {"pkey": "485732595878377", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "1272566839811586", "captured": "2016-01-03", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": 8, "notes": "dense large trees along the kerb"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.25, "levels": 4, "facade_color": "#ece9e2", "features": ["corner apartment building", "brick bands", "balconies"], "confidence": "low"},
+        {"order": 2, "frontage_fraction": 0.75, "levels": null, "facade_color": null, "features": ["unknown"], "confidence": "low"}
+      ],
+      "notes": "Seen on the left of SE-heading photos; mostly hidden by trees."
+    },
+    {
+      "face_id": "block_s:Marcelo Torcuato de Alvear",
+      "images": [
+        {"pkey": "216088573243706", "captured": "2015-12-31", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": 5, "notes": "large trees along the kerb"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.35, "levels": null, "facade_color": null, "features": ["unknown"], "confidence": "low"},
+        {"order": 2, "frontage_fraction": 0.2, "levels": 2, "facade_color": "#d99a80", "features": ["older building", "ornamental cornice"], "confidence": "low"},
+        {"order": 3, "frontage_fraction": 0.45, "levels": 1, "facade_color": "#c9a58a", "features": ["wall/fence only", "garage door", "houses"], "confidence": "low"}
+      ],
+      "notes": "Photo looks NW toward Pueyrredon. Opposite side has palms, the Ministry building and towers under construction with a crane (not this block)."
+    },
+    {
+      "face_id": "block_s:Pueyrredón",
+      "images": [
+        {"pkey": "4069304573129010", "captured": "2015-12-20", "author": "federicopertile"},
+        {"pkey": "454446195619743", "captured": "2015-12-20", "author": "federicopertile"},
+        {"pkey": "208477420816896", "captured": "2015-12-20", "author": "federicopertile"}
+      ],
+      "visibility": "good",
+      "trees": {"present": true, "approx_count": 8, "notes": "continuous row incl. flame trees and palms in a grass verge"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.15, "levels": 1, "facade_color": "#5a4a3c", "features": ["dark wood-clad house", "pitched roof", "corner"], "confidence": "low"},
+        {"order": 2, "frontage_fraction": 0.25, "levels": 3, "facade_color": "#f2f2f2", "features": ["modern building", "black metal fence/gate", "flat roof"], "confidence": "medium"},
+        {"order": 3, "frontage_fraction": 0.3, "levels": 2, "facade_color": "#ecebe6", "features": ["houses", "grey base", "wood-clad upper storey", "palms in front"], "confidence": "medium"},
+        {"order": 4, "frontage_fraction": 0.3, "levels": 3, "facade_color": "#e8e2d6", "features": ["pitched tile roof", "unknown towards corner"], "confidence": "low"}
+      ],
+      "notes": "Photos look NE toward Santa Fe. The corner Santa Fe x Pueyrredon (to_corner) was not clearly seen."
+    },
+    {
+      "face_id": "block_s:Santa Fe",
+      "images": [
+        {"pkey": "150988246971058", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "316130139909531", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "307097024346807", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "484790669390523", "captured": "2016-01-03", "author": "federicopertile"}
+      ],
+      "visibility": "good",
+      "trees": {"present": true, "approx_count": 6, "notes": "trees in grass verge, plus a sidewalk palm mid-block"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.15, "levels": 2, "facade_color": "#e9e9e6", "features": ["corner", "dense shrubs/palm", "'UPCP' sign"], "confidence": "low"},
+        {"order": 2, "frontage_fraction": 0.2, "levels": 5, "facade_color": "#f0f0ee", "features": ["white apartment building", "garage door", "white tower (~12 storeys) behind"], "confidence": "medium"},
+        {"order": 3, "frontage_fraction": 0.15, "levels": 5, "facade_color": "#c96b6b", "features": ["shopfront", "antiques shop", "balcony"], "confidence": "medium"},
+        {"order": 4, "frontage_fraction": 0.5, "levels": 0, "facade_color": "#6f7a5c", "features": ["construction site", "green/grey hoarding", "unfinished brick/concrete frame building"], "confidence": "medium"}
+      ],
+      "notes": "In 2016 the Mitre end of this face was a construction site with hoarding and an 'IZEL' tower billboard (seen also from Mitre, pkey 144733987616505). Likely a high-rise exists there today; 2016 photos cannot confirm."
+    },
+    {
+      "face_id": "block_s:Bartolomé Mitre",
+      "images": [
+        {"pkey": "144733987616505", "captured": "2015-12-31", "author": "federicopertile"},
+        {"pkey": "3744855428974218", "captured": "2015-12-31", "author": "federicopertile"},
+        {"pkey": "804914640150873", "captured": "2015-12-31", "author": "federicopertile"}
+      ],
+      "visibility": "good",
+      "trees": {"present": true, "approx_count": 7, "notes": "regular row of trees in grass verge"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.3, "levels": 0, "facade_color": "#7a7f72", "features": ["construction site", "hoarding with 'IZEL' billboard"], "confidence": "medium"},
+        {"order": 2, "frontage_fraction": 0.2, "levels": 4, "facade_color": "#d9a640", "features": ["balconies", "ochre/yellow facade"], "confidence": "medium"},
+        {"order": 3, "frontage_fraction": 0.2, "levels": 1, "facade_color": "#ecdcc4", "features": ["house", "red tile canopy/pitched tile roof", "garden"], "confidence": "medium"},
+        {"order": 4, "frontage_fraction": 0.3, "levels": 6, "facade_color": "#cfc9bd", "features": ["corner building", "shopfront ('topline', 'J&S')", "flat roof"], "confidence": "medium"}
+      ],
+      "notes": "Photos look SW toward Alvear/plaza. Flame trees (orange flowers) on the opposite side."
+    },
+    {
+      "face_id": "block_w:Remedios de Escalada",
+      "images": [],
+      "visibility": "none",
+      "trees": null,
+      "buildings": null,
+      "notes": "Only SW-facing frames near Alvear found; the block_w side was not usable (trees, low buildings at frame edge). No pkey recorded."
+    },
+    {
+      "face_id": "block_w:Santa Fe",
+      "images": [
+        {"pkey": "964062457757294", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "1272566839811586", "captured": "2016-01-03", "author": "federicopertile"},
+        {"pkey": "485732595878377", "captured": "2016-01-03", "author": "federicopertile"}
+      ],
+      "visibility": "good",
+      "trees": {"present": true, "approx_count": 5, "notes": "irregular; some large trees and a few small ones in grass verge"},
+      "buildings": [
+        {"order": 1, "frontage_fraction": 0.2, "levels": 2, "facade_color": "#c9d8bf", "features": ["house", "arches", "green shop sign"], "confidence": "medium"},
+        {"order": 2, "frontage_fraction": 0.2, "levels": 2, "facade_color": "#e6e6e2", "features": ["house", "railing", "flat roof"], "confidence": "medium"},
+        {"order": 3, "frontage_fraction": 0.35, "levels": 2, "facade_color": "#8a5a44", "features": ["brick and white houses", "garage door", "pitched tile roof"], "confidence": "medium"},
+        {"order": 4, "frontage_fraction": 0.25, "levels": 1, "facade_color": "#f0eeea", "features": ["corner", "white house with red-brick base", "pitched tile roof"], "confidence": "low"}
+      ],
+      "notes": "Photos look SE toward Pueyrredon; low-rise residential face."
+    },
+    {
+      "face_id": "block_w:Pueyrredón",
+      "images": [
+        {"pkey": "454446195619743", "captured": "2015-12-20", "author": "federicopertile"},
+        {"pkey": "208477420816896", "captured": "2015-12-20", "author": "federicopertile"}
+      ],
+      "visibility": "partial",
+      "trees": {"present": true, "approx_count": 8, "notes": "dense canopy incl. flame trees"},
+      "buildings": null,
+      "notes": "Visible only on the left of NE-heading photos; facades hidden by trees."
+    },
+    {
+      "face_id": "block_w:Marcelo Torcuato de Alvear",
+      "images": [],
+      "visibility": "none",
+      "trees": null,
+      "buildings": null,
+      "notes": "No images found between Pueyrredon and Escalada on Alvear (only at the two corners)."
+    }
+  ]
+}

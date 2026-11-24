@@ -16,3 +16,5 @@ Decisions fixed by the briefing (engine, language, OSM, EPSG:32721, 1 unit = 1 m
 | 2026-11-24 | Procedural facades (shader + cornice ledge), colour by building id hash | No open source has real facade shape or colour (user chose this option) |
 | 2026-11-24 | Trees/palms/lamps from OSM with generic models, palms by `genus` | Real positions and species exist in OSM; shapes and heights do not |
 | 2026-11-24 | Curb step-up decided by contact height, not normal angle | Normals oscillate around the 45° floor limit on the curb edge |
+| 2026-11-24 | Mapillary 2015–16 photos as reference for levels, colours, ground floors and street trees; observations stored as a separate source file | No current open data on facades; user accepted older photos |
+| 2026-11-24 | Frontage band = sidewalk + 15 m of lot | Footprints (especially ML) start several metres behind the property line |

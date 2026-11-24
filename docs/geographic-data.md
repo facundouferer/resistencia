@@ -103,7 +103,8 @@ tools/.venv/bin/python -I tools/geometry_generator/generate_scene.py \
   tools/geometry_generator/config/resistencia_2x2.json \
   tools/geo_processor/areas/resistencia_2x2.json \
   data/source/osm/resistencia_2x2.osm.json generated/resistencia \
-  --extra-buildings data/source/overture/resistencia_2x2.buildings.geojson
+  --extra-buildings data/source/overture/resistencia_2x2.buildings.geojson \
+  --reference data/source/reference/mapillary_observations.json
 ```
 
 Outputs in `generated/resistencia/` (Godot imports them; never edit by hand, regenerate instead):
@@ -137,3 +138,15 @@ From OSM nodes `natural=tree` and `highway=street_lamp` inside the scenario exte
 - Public web viewer: all six streets around the blocks have image sequences, but every capture is **older than 4 years** (age colouring). Sample on Pueyrredón: dashcam through a windshield, 2015-12-20, user `federicopertile`.
 - That sample shows dense street trees on the sidewalks; OSM has no trees mapped inside the four blocks.
 - Licence: Mapillary imagery is CC BY-SA 4.0; usable as visual reference with attribution, not as current ground truth (8+ years old).
+
+## Reference photos: buildings and street trees (2026-11-24)
+
+User: "poné los árboles en las veredas y también usa fotos de referencia para la construcción de los edificios. no es necesario que los edificios sean tan actuales."
+
+- Faces surveyed: `tools/reference/faces_resistencia_2x2.json` (16 block sides, generated with the same `block_faces()` the generator uses; a test keeps them in sync).
+- Observations: `data/source/reference/mapillary_observations.json`, written by an AI agent looking at Mapillary photos (CC BY-SA 4.0, author `federicopertile`, dashcam through a windshield, 2015-12-20 to 2016-01-03). Visibility: 5 good, 8 partial, 3 none (block_n:Corrientes, block_w:Remedios de Escalada, block_w:Alvear). Approximate by nature.
+- Generator (`--reference`):
+  - Street trees: on each face where trees were seen, the observed count (or one every 9 m) evenly along the kerb, 0.7 m inside, 6 m clear of corners. 91 trees, `source: mapillary_reference`, heights estimated.
+  - Buildings: a building whose footprint lies in the frontage band (sidewalk + first 15 m of the lot) takes, from the observed frontage segment it falls in: levels (height = levels × 3 m, still `height_is_estimated: true`, rule names Mapillary), facade colour and ground floor (shopfront / residential / garage). 73 of 172 buildings matched; the rest keep the defaults.
+  - Where a photo shows no building (2016 construction site at block_s, Santa Fe × Mitre) the footprint is kept and a warning is recorded.
+- Notable: a ~14-storey brick-red tower at block_e (Santa Fe × Pueyrredón), a ~6-storey corner at block_s (Mitre × Alvear). Photos are 2015–16: today's buildings may differ.
