@@ -40,6 +40,7 @@ func _run() -> void:
 	await _test_walk_every_street_segment()
 	await _test_walk_every_sidewalk()
 	await _test_step_from_roadway_onto_sidewalk()
+	await _test_curb_climb_matrix()
 	await _test_buildings_block_the_player()
 	# Phase 5: persistence
 	await _test_position_survives_restart()
@@ -263,6 +264,34 @@ func _test_step_from_roadway_onto_sidewalk() -> void:
 	await _free(main)
 
 
+## Every block, walking and running, straight and at 45 degrees.
+func _test_curb_climb_matrix() -> void:
+	var main := await _spawn_main(REAL_MAIN_SCENE)
+	var world: ResistanceWorld = main.get_node("World")
+	var failed: Array[String] = []
+	var total := 0
+	for block in world.metadata["blocks"]:
+		var path: Array = world.metadata["blocks"][block]["sidewalk_path"]
+		var a := GeoReference.local_to_godot(path[0])
+		var b := GeoReference.local_to_godot(path[1])
+		var on_sidewalk := (a + b) / 2.0
+		var tangent := (b - a).normalized()
+		var outward := on_sidewalk - _ring_center(world.metadata["blocks"][block]["lot"][0])
+		outward = (outward - tangent * outward.dot(tangent)).normalized()
+		for running in [false, true]:
+			for angle_deg in [0.0, 45.0]:
+				var dir := outward.rotated(Vector3.UP, deg_to_rad(angle_deg))
+				var start := on_sidewalk + dir * (4.0 / cos(deg_to_rad(angle_deg))) + Vector3(0, 0.1, 0)
+				var reached := await _walk_path(main, start, [on_sidewalk], -1.0, 600, running)
+				await _frames(5)
+				var y := _player(main).global_position.y
+				total += 1
+				if not reached or absf(y - 0.15) > 0.05:
+					failed.append("%s %s %d° y=%.2f" % [block, "run" if running else "walk", angle_deg, y])
+	_check(failed.is_empty(), "curb climbed in %d/%d approaches %s" % [total - failed.size(), total, failed])
+	await _free(main)
+
+
 func _test_buildings_block_the_player() -> void:
 	var main := await _spawn_main(REAL_MAIN_SCENE)
 	var world: ResistanceWorld = main.get_node("World")
@@ -383,14 +412,15 @@ func _spawn_world(overrides_path := "user://__no_overrides__.json") -> Resistanc
 ## Teleports the player to start and runs through the points, steering the
 ## camera yaw towards each one. Returns false if a point is not reached.
 ## When floor_y >= 0, also fails if the player leaves that height while on the floor.
-func _walk_path(main: Node, start: Vector3, points: Array, floor_y := -1.0, max_frames := 1500) -> bool:
+func _walk_path(main: Node, start: Vector3, points: Array, floor_y := -1.0, max_frames := 1500, running := true) -> bool:
 	var player := _player(main)
 	var camera := _camera(main)
 	player.global_position = start
 	player.velocity = Vector3.ZERO
 	await _frames(5)
 	Input.action_press("move_forward")
-	Input.action_press("run")
+	if running:
+		Input.action_press("run")
 	var ok := true
 	for target in points:
 		var frames := 0

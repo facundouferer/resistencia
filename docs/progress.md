@@ -147,3 +147,11 @@ User chose option A: complete the 3 empty blocks with Overture Maps buildings (r
 ### Pending manual verification
 
 - [ ] Close the game window and open it again: the player appears where it was.
+
+## Fix — curb could not be climbed in manual play (2026-11-24)
+
+- User report: "hay un problema con la acera que no puedo subir".
+- Reproduced with a new test (4 blocks × walk/run × straight/45°): only 4/16 approaches climbed the curb. The earlier single test passed by chance.
+- Cause: the capsule's rounded bottom rests on the curb edge (contact normal ~50°), so `is_on_floor()` is false and the step-up never ran. Also the step check used the velocity, which `move_and_slide` cancels against the curb.
+- Fix: step-up uses the intended motion, probes 2 cm above the floor, and accepts "ground within 10 cm below" instead of `is_on_floor()`.
+- Result: 16/16 approaches; Godot suite 55 checks, 0 failures.
